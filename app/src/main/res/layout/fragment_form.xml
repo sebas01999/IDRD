@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.form.view.fragment_form">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="28dp"
+        >
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tu prestamo"
+            android:textColor="@color/principal"
+            android:textSize="25dp"
+
+            />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextNaturaleza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=" Naturaleza del evento"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="11dp"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="26dp"
+
+            >
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Numero aproximado de usuarios"
+                android:textSize="14dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                ></TextView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/principal"
+                android:layout_marginLeft="50dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_menos"
+                        ></ImageButton>
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="24dp"
+                        android:text="1"
+                        android:textColor="@color/principal"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:textAlignment="center"
+                        ></TextView>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_mas"
+
+                        ></ImageButton>
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            app:cardCornerRadius="20dp"
+            app:strokeColor="@color/principal"
+            app:strokeWidth="2dp"
+            android:layout_marginTop="69dp"
+            app:cardBackgroundColor="#E8DCFF"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dia,Hora y duración "
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="16.7dp"
+                    android:layout_marginTop="16dp"
+
+                    ></TextView>
+
+                <com.google.android.material.card.MaterialCardView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginHorizontal="17dp"
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:strokeColor="@color/principal"
+                    app:strokeWidth="2dp"
+                    android:background="#E8DCFF"
+
+                >
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/ic_date"
+                        android:layout_marginLeft="16.7dp"
+                        android:layout_marginTop="14dp"
+                        ></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="19dp"
+                        android:layout_marginLeft="56.3dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Seleccione el dia"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/principal"
+
+                        ></TextView>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginHorizontal="17dp"
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:strokeColor="@color/principal"
+                    app:strokeWidth="2dp"
+                    android:background="#E8DCFF"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/ic_time"
+                        android:layout_marginLeft="16.7dp"
+                        android:layout_marginTop="14dp"
+                        ></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="19dp"
+                        android:layout_marginLeft="56.3dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Seleccione la hora"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/principal"
+
+                        ></TextView>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginHorizontal="17dp"
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:strokeColor="@color/principal"
+                    app:strokeWidth="2dp"
+                    android:background="#E8DCFF"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/ic_time2"
+                        android:layout_marginLeft="16.7dp"
+                        android:layout_marginTop="14dp"
+                        ></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="19dp"
+                        android:layout_marginLeft="56.3dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Duración (Horas)"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/principal"
+
+                        ></TextView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="20dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="@color/principal"
+                        android:layout_marginLeft="232dp"
+                        android:layout_marginTop="9dp"
+
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ic_menos"
+                                ></ImageButton>
+
+                            <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="24dp"
+                                android:text="1"
+                                android:textColor="@color/principal"
+                                android:textStyle="bold"
+                                android:textSize="17dp"
+                                android:textAlignment="center"
+                                ></TextView>
+
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/ic_mas"
+
+                                ></ImageButton>
+
+                        </LinearLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/button_enviarsolicitud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corner"
+            android:textStyle="bold"
+            android:text="Enviar Solicitud"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            android:layout_marginTop="115dp"></Button>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

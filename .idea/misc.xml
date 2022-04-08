@@ -3,15 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/proyectosAndroid/IDRD/app/src/main/res/drawable/ic_cedula.xml" value="0.20092592592592592" />
-        <entry key="..\:/proyectosAndroid/IDRD/app/src/main/res/drawable/ic_name.xml" value="0.20092592592592592" />
-        <entry key="..\:/proyectosAndroid/IDRD/app/src/main/res/drawable/ic_phone.xml" value="0.20092592592592592" />
-        <entry key="..\:/proyectosAndroid/IDRD/app/src/main/res/drawable/progressbar.xml" value="0.20092592592592592" />
-        <entry key="..\:/proyectosAndroid/IDRD/app/src/main/res/drawable/rounded_corner.xml" value="0.20092592592592592" />
-        <entry key="..\:/proyectosAndroid/IDRD/app/src/main/res/layout/activity_main.xml" value="0.15489130434782608" />
-        <entry key="..\:/proyectosAndroid/IDRD/app/src/main/res/layout/activity_mainprincipal.xml" value="0.296195652173913" />
-        <entry key="..\:/proyectosAndroid/IDRD/app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="..\:/proyectosAndroid/IDRD/app/src/main/res/layout/fragment_register.xml" value="0.22" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/drawable/borde_redondo.xml" value="0.2846153846153846" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/drawable/ic_date.xml" value="0.2846153846153846" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/drawable/ic_email.xml" value="0.2846153846153846" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2203125" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/drawable/ic_mas.xml" value="0.2203125" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/drawable/ic_menos.xml" value="0.2203125" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/drawable/ic_time.xml" value="0.2846153846153846" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/drawable/ic_time2.xml" value="0.2846153846153846" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/drawable/ic_volver.xml" value="0.2846153846153846" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/layout/activity_mainprincipal.xml" value="0.13272543059777103" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/layout/fragment_aceptar_rechazar.xml" value="0.25" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/layout/fragment_form.xml" value="0.25" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/layout/fragment_recuperar.xml" value="0.25" />
+        <entry key="..\:/Users/yumaj/AndroidStudioProjects/IDRD/app/src/main/res/layout/fragment_register.xml" value="0.1" />
       </map>
     </option>
   </component>
