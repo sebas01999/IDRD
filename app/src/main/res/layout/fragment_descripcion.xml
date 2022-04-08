@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.descripcion.view.descripcionFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/image_parque"
+            android:layout_width="match_parent"
+            android:layout_height="274dp"
+            android:background="@color/placeholder_bg"
+            android:scaleType="fitXY"></ImageView>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_btn_back"></ImageButton>
+
+        <ImageButton
+            android:id="@+id/btn_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="310dp"
+            android:background="@drawable/ic_map_icon"
+            android:layout_marginRight="22dp"></ImageButton>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="31dp"
+            android:layout_marginTop="322dp"
+            android:text="Descripción"
+            android:textColor="@color/principal"
+            android:textSize="20dp"
+            android:textStyle="bold"></TextView>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_calificacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="22dp"
+
+
+
+            android:background="@drawable/ic_estrella_sin_fondo"
+            app:backgroundTint="@color/white"
+            android:paddingRight="30dp"
+            android:text="4.5"
+            android:textAlignment="inherit"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"></com.google.android.material.button.MaterialButton>
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="31dp"
+            android:layout_marginTop="362dp"
+            android:layout_marginRight="28dp">
+
+            <TextView
+                android:id="@+id/descripcion_parque"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Descripcion"
+                android:textColor="@color/black"
+                android:textSize="15dp">
+
+            </TextView>
+        </ScrollView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="260dp"
+            android:background="@color/white"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="7dp">
+
+            <TextView
+                android:id="@+id/nombre_parque"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="8dp"
+                android:text="Nombre del parque"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="normal"></TextView>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btn_prestamo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="31dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/rounded_corner"
+            android:text="Prestamo"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="21dp"></Button>
+    </RelativeLayout>
+
+</FrameLayout>

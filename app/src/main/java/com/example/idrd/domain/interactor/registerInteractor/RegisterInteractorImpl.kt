@@ -30,7 +30,6 @@ class RegisterInteractorImpl: RegisterInteractor
                             }else{
                                 continuation.resumeWithException(FirebaseLoginException(exito.exception?.message))
                             }
-
                         }
 
                     }else{

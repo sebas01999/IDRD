@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    app:cnb_unselectedColor="@color/black"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/item1"
+        android:title="@string/inicio"
+        android:icon="@drawable/ic_inicio"
+        app:cnb_backgroundColor="@color/principal"
+        app:cnb_iconColor="@color/white"
+        app:cnb_textColor="@color/white"></item>
+    <item android:id="@+id/item2"
+        android:title="@string/ingresar"
+        android:icon="@drawable/ic_ingresar"
+        app:cnb_backgroundColor="@color/principal"
+        app:cnb_iconColor="@color/white"
+        app:cnb_textColor="@color/white" >
+    </item>
+    <item android:id="@+id/item3"
+        android:title="@string/eventos"
+        android:icon="@drawable/ic_eventos"
+        app:cnb_backgroundColor="@color/principal"
+        app:cnb_iconColor="@color/white"
+        app:cnb_textColor="@color/white">
+    </item>
+    <item android:id="@+id/item4"
+        android:title="@string/cuenta"
+        android:icon="@drawable/ic_cuenta"
+        app:cnb_backgroundColor="@color/principal"
+        app:cnb_iconColor="@color/white"
+        app:cnb_textColor="@color/white">
+    </item>
+</menu>

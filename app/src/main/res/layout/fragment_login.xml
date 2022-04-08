@@ -63,11 +63,10 @@
            android:layout_width="55dp"
            android:layout_height="55dp"
            android:layout_gravity="center"
-           style="?android:attr/progressBarStyleHorizontal"
-           android:progressDrawable="@drawable/progressbar"
+           style="?android:attr/progressBarStyle"
+           android:indeterminateDrawable="@drawable/progressbar"
+           android:indeterminateDuration="@android:integer/config_longAnimTime"
            android:layout_marginTop="21dp"
-           android:max="500"
-           android:progress="0"
            android:visibility="gone"></ProgressBar>
         <Button
             android:id="@+id/button1"
