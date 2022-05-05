@@ -104,5 +104,10 @@ class RegisterFragment : Fragment(),RegisterContract.RegisterView {
     override fun showError(errormsg: String?) {
         Toast.makeText(context,errormsg, Toast.LENGTH_SHORT).show()
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.dettachView()
+        presenter.dettachJob()
+    }
 
 }

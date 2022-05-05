@@ -41,4 +41,6 @@
     <style name="AppTheme" parent="Theme.MaterialComponents">
         <item name="bottomSheetDialogTheme">@style/ModalBottomSheetDialog</item>
     </style>
+    
+
 </resources>

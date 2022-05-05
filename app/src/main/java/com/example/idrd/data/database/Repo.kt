@@ -14,6 +14,7 @@ class Repo {
             val listData = mutableListOf<Parque>()
             for (document in result){
                 val parque:Parque = document.toObject(Parque::class.java)
+                parque.id=document.id
                 listData.add(parque)
             }
             mutableData.value=listData

@@ -51,15 +51,14 @@
             android:layout_marginRight="22dp"
 
 
-
             android:background="@drawable/ic_estrella_sin_fondo"
-            app:backgroundTint="@color/white"
             android:paddingRight="30dp"
             android:text="4.5"
             android:textAlignment="inherit"
             android:textColor="@color/white"
             android:textSize="20dp"
-            android:textStyle="bold"></com.google.android.material.button.MaterialButton>
+            android:textStyle="bold"
+            app:backgroundTint="@color/white"></com.google.android.material.button.MaterialButton>
 
 
 
@@ -117,7 +116,7 @@
             android:text="Prestamo"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="21dp"></Button>
+            android:textSize="20dp"></Button>
     </RelativeLayout>
 
 </FrameLayout>

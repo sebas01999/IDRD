@@ -29,22 +29,25 @@ class descripcionFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view: View = inflater!!.inflate(R.layout.fragment_descripcion, container, false)
-            if(arguments!=null){
+        val bundle=Bundle()
+        if(arguments!=null){
                 val parque: Parque = arguments?.getSerializable("parque") as Parque
                 view.nombre_parque.text=parque.nombre
                 Glide.with(this).load(parque.imageUrl).into(view.image_parque)
                 view.btn_calificacion.text=parque.calificacion
                 view.descripcion_parque.text=parque.descripcion
+                bundle.putSerializable("parque", parque)
             }
+
+
 
             val bottomSheetFragment= fragment_form()
 
-
+            bottomSheetFragment.arguments=bundle
 
             view.btn_prestamo.setOnClickListener {
 
                 bottomSheetFragment.show(childFragmentManager, "BottomSheetDialog")
-
             }
         return view
     }
