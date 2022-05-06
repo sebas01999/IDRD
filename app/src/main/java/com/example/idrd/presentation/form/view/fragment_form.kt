@@ -161,6 +161,8 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView {
             Integer.parseInt(numUsers).also { solicitud.numUsers= it }
             solicitud.fecha= presenter.formatedDate(date, hour)
             solicitud.idParque=parque.id
+            solicitud.nombre=parque.nombre
+            solicitud.url=parque.imageUrl
             solicitud.naturaleza=nature
 
 

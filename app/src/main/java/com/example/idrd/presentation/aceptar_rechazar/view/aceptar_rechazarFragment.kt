@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.idrd.R
 
-
-class fragment_aceptar_rechazar : Fragment() {
-    // TODO: Rename and change types of parameters
+class aceptar_rechazarFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

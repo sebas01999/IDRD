@@ -34,7 +34,7 @@
                 android:layout_margin="5dp"
                 app:cardElevation="8dp"
                 app:cardCornerRadius="20dp"
-                android:visibility=""
+                android:visibility="gone"
                 >
                 <LinearLayout
                     android:layout_width="match_parent"

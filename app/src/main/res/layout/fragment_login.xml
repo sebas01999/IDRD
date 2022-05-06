@@ -57,7 +57,9 @@
             android:textStyle="bold"
             android:textSize="14dp"
             android:layout_marginTop="22dp"
-            android:clickable="true"></TextView>
+            android:clickable="true">
+        </TextView>
+
        <ProgressBar
            android:id="@+id/progressBar_singIn"
            android:layout_width="55dp"
@@ -67,7 +69,9 @@
            android:indeterminateDrawable="@drawable/progressbar"
            android:indeterminateDuration="@android:integer/config_longAnimTime"
            android:layout_marginTop="21dp"
-           android:visibility="gone"></ProgressBar>
+           android:visibility="gone">
+       </ProgressBar>
+
         <Button
             android:id="@+id/button1"
             android:layout_width="match_parent"

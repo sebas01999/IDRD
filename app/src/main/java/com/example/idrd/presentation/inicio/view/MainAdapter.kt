@@ -17,9 +17,11 @@ class MainAdapter(private val context: Context, private var itemClickListener:On
     public interface OnItemClickListener{
         fun onItemClick(item:Parque)
     }
+
     fun setListData(data:MutableList<Parque>){
         dataList= data
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_row, parent, false)
         return MainViewHolder(view)
