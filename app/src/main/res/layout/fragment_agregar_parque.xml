@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="8dp"
+    android:minWidth="800dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.agregarParque.view.agregarParqueFragment">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:minWidth="800dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etxt_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre"
+                android:layout_marginTop="7dp"
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    >
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dropdown_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:backgroundTintMode="@color/white"
+                >
+                <AutoCompleteTextView
+                    android:id="@+id/drop_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:hint="Seleccione el tipo"
+                    >
+
+                </AutoCompleteTextView>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etxt_ubicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ubicación"
+                android:layout_marginTop="7dp"
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ubicacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    >
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etxt_horario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Horario"
+                android:layout_marginTop="7dp"
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/horario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    >
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etxt_descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descripcion"
+                android:layout_marginTop="7dp"
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/descripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    >
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etxt_idAdmin"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Cedula del administrador"
+                    android:layout_gravity="center_vertical"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/idAdmin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        >
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/verificar"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@drawable/ic_baseline_verified_24"
+                    android:background="@color/principal"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    >
+                </ImageButton>
+                <ProgressBar
+                    android:id="@+id/progressBar_verificar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    style="?android:attr/progressBarStyle"
+                    android:indeterminateDrawable="@drawable/progressbar"
+                    android:indeterminateDuration="@android:integer/config_longAnimTime"
+                    android:layout_marginTop="21dp"
+                    android:visibility="gone"></ProgressBar>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/nombre_Admin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="nombre admin"
+                android:textStyle="bold"
+                android:visibility="gone"></TextView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/agregar_foto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_dimagenes"
+                android:backgroundTint="@color/white"
+                android:text="Agrega una foto"
+                android:textColor="@color/principal"
+                android:layout_marginTop="7dp"
+                android:layout_gravity="center"
+                app:cornerRadius="10dp"
+
+                >
+            </com.google.android.material.button.MaterialButton>
+            <LinearLayout
+                android:id="@+id/botones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/guardar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/principal"
+                    android:text="Guardar"
+                    android:layout_margin="7dp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    app:cornerRadius="10dp"
+
+                    >
+                </com.google.android.material.button.MaterialButton>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancelar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/principal"
+                    android:text="cancelar"
+                    android:textColor="@color/white"
+                    android:layout_margin="7dp"
+                    android:layout_gravity="center"
+                    app:cornerRadius="10dp"
+
+                    >
+                </com.google.android.material.button.MaterialButton>
+
+            </LinearLayout>
+            <ProgressBar
+                android:id="@+id/progressBar_guardar"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                style="?android:attr/progressBarStyle"
+                android:indeterminateDrawable="@drawable/progressbar"
+                android:indeterminateDuration="@android:integer/config_longAnimTime"
+                android:layout_marginTop="21dp"
+                android:visibility="gone"></ProgressBar>
+
+
+        </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

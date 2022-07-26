@@ -7,6 +7,8 @@ import com.example.idrd.R
 import com.example.idrd.presentation.acceder_solicitudes.view.fragment_acceder_solicitudes
 import com.example.idrd.presentation.crud_parques.view.CrudParquesFragment
 import com.example.idrd.presentation.cuenta.view.cuentaFragment
+import com.example.idrd.presentation.cuenta_AdminParque.view.cuenta_AdminParqueFragment
+import com.example.idrd.presentation.cuenta_Admingeneral.view.cuenta_AdmingeneralFragment
 import com.example.idrd.presentation.eventos.view.eventosFragment
 import com.example.idrd.presentation.ingresar.view.ingresarFragment
 import com.example.idrd.presentation.inicio.view.InicioFragment
@@ -23,9 +25,9 @@ class mainprincipal : AppCompatActivity() {
         btn_nav.setOnItemSelectedListener { es ->
             when(es){
                 R.id.item1 -> replaceFragment(InicioFragment())
-                R.id.item2 -> replaceFragment(ingresarFragment())
-                R.id.item3 -> replaceFragment(fragment_acceder_solicitudes())
-                R.id.item4 -> replaceFragment(CrudParquesFragment())
+                R.id.item2 -> replaceFragment(fragment_acceder_solicitudes())
+                R.id.item3 -> replaceFragment(eventosFragment())
+                R.id.item4 -> replaceFragment(cuenta_AdmingeneralFragment())
             }
         }
     }

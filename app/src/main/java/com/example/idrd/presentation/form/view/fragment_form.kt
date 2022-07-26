@@ -63,7 +63,7 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView {
                 btn_menos1.isSaveEnabled=false
             }else{
                 nume-=1
-                num_horas.text= nume.toString();
+                num_horas.text= nume.toString()
             }
 
         }
@@ -71,7 +71,7 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView {
             var nume=Integer.parseInt(num_horas.text.toString())
 
             nume+=1
-            num_horas.text= nume.toString();
+            num_horas.text= nume.toString()
 
         }
 
@@ -90,8 +90,6 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView {
         val picker = DatePicker{day, mont, year->onDateSelected(day, mont, year)}
 
         picker.show(childFragmentManager, "Material_Date_Picker")
-
-
 
     }
     fun onDateSelected(day:Int, month: Int, year:Int){
@@ -112,10 +110,13 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView {
         picker.show(childFragmentManager, "TAG")
 
         picker.addOnPositiveButtonClickListener {
+            val formatedH = SimpleDateFormat("HH:mm")
             val h= picker.hour
             val m=picker.minute
-
-            time.text="$h:$m"
+            val hora=h.toString()+":"+m.toString()
+            var salida1= formatedH.parse(hora)
+            var salida=formatedH.format(salida1)
+            time.text=salida.toString()
         }
 
     }
@@ -146,7 +147,7 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView {
             return
         }
         if(presenter.checkEmptyDate(date)){
-            showError("Ingrese fecha")
+            showError("Seleccione una fecha")
             return
         }
         if(presenter.checkEmptyHour(hour)){

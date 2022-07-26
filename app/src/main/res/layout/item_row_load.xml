@@ -52,7 +52,6 @@
                 android:src="@drawable/ic_estrella_load"></ImageView>
 
 
-
             <View
                 android:id="@+id/ubicacion_parque"
                 android:layout_width="250dp"
@@ -85,17 +84,18 @@
 
 
     </androidx.cardview.widget.CardView>
+
     <ImageView
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_gravity=""
-        android:layout_marginTop="41dp"
         android:layout_marginLeft="11dp"
+        android:layout_marginTop="41dp"
         android:layout_weight="1"
-        android:elevation="6dp"
         android:background="@color/placeholder_bg"
+        android:elevation="6dp"
         android:src="@drawable/load"></ImageView>
 
 

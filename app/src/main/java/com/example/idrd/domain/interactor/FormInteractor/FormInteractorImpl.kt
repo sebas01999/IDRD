@@ -16,14 +16,15 @@ class FormInteractorImpl: FormInteractor {
 
         solicitud.idUser= auth.currentUser?.uid.toString()
 
-        db.collection("solicitudes").document().set(solicitud).addOnCompleteListener {
+        val ref= db.collection("solicitudes").document()
+                solicitud.id=ref.id
+            ref.set(solicitud).addOnCompleteListener {
             if (it.isSuccessful){
                 continuation.resume(Unit)
             }else{
                 continuation.resumeWithException(FirebaseFormExceptions(it.exception?.message))
             }
         }
-
 
     }
 }

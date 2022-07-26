@@ -46,7 +46,7 @@ class InicioFragment : Fragment(),MainAdapter.OnItemClickListener {
 
         val bundle=Bundle()
         bundle.putSerializable("parque", item)
-        val transaction=childFragmentManager?.beginTransaction()
+        val transaction=fragmentManager?.beginTransaction()
 
         val fragmento = descripcionFragment()
         fragmento.arguments=bundle

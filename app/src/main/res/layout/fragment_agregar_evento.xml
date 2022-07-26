@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="8dp"
+    android:minWidth="800dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.agregarEventos.view.agregarEventoFragment">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:minWidth="800dp"
+    >
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etxt_descripcionEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripcion del evento"
+        android:layout_marginTop="7dp"
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/evento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            >
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.card.MaterialCardView
+
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        app:cardCornerRadius="20dp"
+        app:strokeColor="@color/principal"
+        app:strokeWidth="2dp"
+        android:layout_marginTop="29dp"
+        app:cardBackgroundColor="#E8DCFF"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dia,Hora y duración "
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="16.7dp"
+                android:layout_marginTop="16dp"
+
+                ></TextView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/datePicker"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="17dp"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="@color/principal"
+                app:strokeWidth="2dp"
+                android:background="#E8DCFF"
+
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_date"
+                    android:layout_marginLeft="16.7dp"
+                    android:layout_marginTop="14dp"
+                    ></ImageView>
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="19dp"
+                    android:layout_marginLeft="56.3dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Seleccione el dia"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/principal"
+
+                    ></TextView>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/timePicker"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="17dp"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="@color/principal"
+                app:strokeWidth="2dp"
+                android:background="#E8DCFF"
+
+                >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_time"
+                    android:layout_marginLeft="16.7dp"
+                    android:layout_marginTop="14dp"
+                    ></ImageView>
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="19dp"
+                    android:layout_marginLeft="56.3dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Seleccione la hora"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/principal"
+
+                    ></TextView>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="17dp"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="@color/principal"
+                app:strokeWidth="2dp"
+                android:background="#E8DCFF"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/ic_time2"
+                        android:layout_marginLeft="16.7dp"
+                        android:layout_marginTop="14dp"
+                        ></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="19dp"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Duración (Horas)"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/principal"
+
+                        ></TextView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        app:cardCornerRadius="20dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="@color/principal"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+
+                            <ImageButton
+                                android:id="@+id/btn_menos1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ic_menos"
+                                ></ImageButton>
+
+                            <TextView
+                                android:id="@+id/num_horas"
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+
+                                android:text="1"
+                                android:textColor="@color/principal"
+                                android:textStyle="bold"
+                                android:textSize="21dp"
+                                android:textAlignment="center"
+                                android:inputType="number"
+                                ></TextView>
+
+                            <ImageButton
+                                android:id="@+id/btn_mas1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ic_mas"
+
+                                ></ImageButton>
+
+                        </LinearLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/agregar_foto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_dimagenes"
+        android:backgroundTint="@color/white"
+        android:text="Agrega una foto"
+        android:textColor="@color/principal"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        app:cornerRadius="10dp"
+
+        >
+    </com.google.android.material.button.MaterialButton>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/agregarColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_colores"
+        android:backgroundTint="@color/white"
+        android:text="Agrega un color"
+        android:textColor="@color/principal"
+        android:layout_marginTop="7dp"
+        android:layout_gravity="center"
+        app:cornerRadius="10dp"
+
+        >
+    </com.google.android.material.button.MaterialButton>
+    <LinearLayout
+        android:id="@+id/botones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/guardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/principal"
+            android:text="Guardar"
+            android:layout_margin="7dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            app:cornerRadius="10dp"
+
+            >
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/principal"
+            android:text="cancelar"
+            android:textColor="@color/white"
+            android:layout_margin="7dp"
+            android:layout_gravity="center"
+            app:cornerRadius="10dp"
+
+            >
+        </com.google.android.material.button.MaterialButton>
+
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar_guardar"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        style="?android:attr/progressBarStyle"
+        android:indeterminateDrawable="@drawable/progressbar"
+        android:indeterminateDuration="@android:integer/config_longAnimTime"
+        android:layout_marginTop="21dp"
+        android:visibility="gone"></ProgressBar>
+</LinearLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>

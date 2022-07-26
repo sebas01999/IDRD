@@ -45,7 +45,7 @@ class fragment_acceder_solicitudes : Fragment(),AccederAdapter.OnItemClickListen
     override fun onItemClick(item: Solicitud) {
         val bundle=Bundle()
         bundle.putSerializable("solicitud",item)
-        val transaction = childFragmentManager?.beginTransaction()
+        val transaction = fragmentManager?.beginTransaction()
         val fragmento= aceptar_rechazarFragment()
         fragmento.arguments=bundle
         transaction?.replace(R.id.container,fragmento)

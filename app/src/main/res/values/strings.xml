@@ -7,4 +7,12 @@
     <string name="ingresar">INGRESAR</string>
     <string name="cuenta">CUENTA</string>
 
+    <string-array name="tipos">
+        <item>Metropolitano</item>
+        <item>De bolsillo</item>
+        <item>Vecinales</item>
+        <item>Zonales</item>
+        <item>Escenario IDRD</item>
+    </string-array>
+
 </resources>

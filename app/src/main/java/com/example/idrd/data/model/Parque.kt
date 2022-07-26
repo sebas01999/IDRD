@@ -4,11 +4,12 @@ import java.io.Serializable
 
 class Parque: Serializable {
     var id:String="DEFAULT ID"
-    val imageUrl:String = "DEFAULT URL"
-    val nombre:String = "DEFAULT NOMBRE"
-    val tipo:String = "DEFAULT TIPO"
-    val ubicacion:String = "DEFAULT UBICACION"
-    val calificacion:String = "DEFAULT CALIFICACION"
-    val horario:String = "DEFAULT HORARIO"
-    val descripcion:String = "DEFAULT DESCRIPCION"
+    var imageUrl:String = "DEFAULT URL"
+    var nombre:String = "DEFAULT NOMBRE"
+    var tipo:String = "DEFAULT TIPO"
+    var ubicacion:String = "DEFAULT UBICACION"
+    var calificacion:String = "DEFAULT CALIFICACION"
+    var horario:String = "DEFAULT HORARIO"
+    var descripcion:String = "DEFAULT DESCRIPCION"
+    var idAdmin:String = "DEFAULT IDADMIN"
 }

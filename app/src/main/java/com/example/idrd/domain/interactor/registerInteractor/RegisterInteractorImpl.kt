@@ -19,21 +19,12 @@ class RegisterInteractorImpl: RegisterInteractor
         val db = Firebase.firestore
         auth.createUserWithEmailAndPassword(users.correo, password).addOnCompleteListener { itSignUp ->
             if (itSignUp.isSuccessful){
-                val  profileUpdates = UserProfileChangeRequest.Builder()
-                    .setDisplayName(users.nombre).build()
-                auth.currentUser?.updateProfile(profileUpdates)?.addOnCompleteListener {
-                    if(it.isSuccessful){
-                        users.id=auth.currentUser?.uid.toString()
-                        db.collection("Users").document(users.id).set(users).addOnCompleteListener { exito ->
-                            if (exito.isSuccessful){
-                                continuation.resume(Unit)
-                            }else{
-                                continuation.resumeWithException(FirebaseLoginException(exito.exception?.message))
-                            }
-                        }
-
+                users.id=auth.currentUser?.uid.toString()
+                db.collection("Users").document(users.id).set(users).addOnCompleteListener { exito ->
+                    if (exito.isSuccessful){
+                        continuation.resume(Unit)
                     }else{
-                        continuation.resumeWithException(FirebaseLoginException(it.exception?.message))
+                        continuation.resumeWithException(FirebaseLoginException(exito.exception?.message))
                     }
                 }
 
