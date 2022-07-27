@@ -30,10 +30,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".presentation.mapas.mapita"
-            android:exported="false"
-            android:label="@string/title_activity_mapita" />
+
         <activity
             android:name=".presentation.mainprincipal.view.mainprincipal"
             android:exported="false" />
