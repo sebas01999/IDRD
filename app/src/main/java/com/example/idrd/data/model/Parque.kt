@@ -12,4 +12,5 @@ class Parque: Serializable {
     var horario:String = "DEFAULT HORARIO"
     var descripcion:String = "DEFAULT DESCRIPCION"
     var idAdmin:String = "DEFAULT IDADMIN"
+    var nombreAdmin:String="DEFAULT NOMBRE ADMIN"
 }

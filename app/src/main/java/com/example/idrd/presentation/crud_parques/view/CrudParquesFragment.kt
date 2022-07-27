@@ -15,13 +15,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.idrd.R
 import com.example.idrd.data.model.Parque
+import com.example.idrd.data.model.Users
 import com.example.idrd.domain.interactor.crudParques.CrudParqueInteractorImpl
+import com.example.idrd.presentation.agregarParque.model.UserViewModel
 import com.example.idrd.presentation.agregarParque.view.agregarParqueFragment
 import com.example.idrd.presentation.crud_parques.CrudParqueContract
 import com.example.idrd.presentation.crud_parques.CrudParquesPresenter.CrudParquesPresenter
 import com.example.idrd.presentation.inicio.model.MainViewModel
 import com.example.idrd.presentation.inicio.view.MainAdapter
-import kotlinx.android.synthetic.main.fragment_agregar_parque.*
 import kotlinx.android.synthetic.main.fragment_crud_parques.*
 import kotlinx.android.synthetic.main.fragment_crud_parques.cancelar
 import kotlinx.android.synthetic.main.fragment_crud_parques.descripcion
@@ -33,7 +34,9 @@ import kotlinx.android.synthetic.main.fragment_crud_parques.etxt_ubicacion
 import kotlinx.android.synthetic.main.fragment_crud_parques.horario
 import kotlinx.android.synthetic.main.fragment_crud_parques.mostrarParque
 import kotlinx.android.synthetic.main.fragment_crud_parques.nombre
+import kotlinx.android.synthetic.main.fragment_crud_parques.progressBar_verificar
 import kotlinx.android.synthetic.main.fragment_crud_parques.ubicacion
+import kotlinx.android.synthetic.main.fragment_crud_parques.verificar
 import kotlinx.android.synthetic.main.fragment_crud_parques.view.*
 
 
@@ -41,8 +44,10 @@ import kotlinx.android.synthetic.main.fragment_crud_parques.view.*
 class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudParqueContract.CrudView {
     private lateinit var adapter: MainAdapter
     private val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
+    private val viewModelUser by lazy { ViewModelProvider(this).get(UserViewModel::class.java) }
     private var parque:Parque?= null
     var filepath : Uri?=null
+    var verificado:Users?=null
     lateinit var presenter: CrudParquesPresenter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,6 +79,9 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         view.agregar_foto.setOnClickListener {
             addFoto()
         }
+        view.verificar.setOnClickListener {
+            verificar()
+        }
 
         view.toolbar.setOnMenuItemClickListener{
             when (it.itemId) {
@@ -104,6 +112,11 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         ubicacion.setText(parque!!.ubicacion)
         horario.setText(parque!!.horario)
         descripcion.setText(parque!!.descripcion)
+        if (parque!!.idAdmin!="DEFAULT IDADMIN"){
+            idAdmin.setText(parque!!.idAdmin)
+            nombre_Admin.text=parque!!.nombreAdmin
+            nombre_Admin.visibility=View.VISIBLE
+        }
         mostrarParque.visibility= View.VISIBLE
     }
 
@@ -138,6 +151,48 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
     override fun hideProgressDialog() {
         cancelar.visibility=View.VISIBLE
         progressBar_crud.visibility=View.GONE
+    }
+
+    override fun showProgressDialogV() {
+        verificar.visibility=View.GONE
+        progressBar_verificar.visibility=View.VISIBLE
+    }
+
+    override fun hideProgressDialogV() {
+        verificar.visibility=View.VISIBLE
+        progressBar_verificar.visibility=View.GONE
+    }
+
+    override fun verificar() {
+        val cedulaAdmin:String=etxt_idAdmin.editText?.text.toString().trim()
+        if (presenter.checkEmptyCedulaAdmin(cedulaAdmin)){
+            etxt_idAdmin.error="Ingrese un numero de cedula"
+            verificado=null
+            nombre_Admin.setText("")
+            nombre_Admin.visibility=View.GONE
+            return
+        }else{
+            if (parque!=null){
+                if (parque!!.idAdmin!=cedulaAdmin){
+                    showProgressDialogV()
+                    observeDataV(cedulaAdmin)
+                }
+            }
+        }
+    }
+    fun observeDataV(cedula:String){
+        viewModelUser.fetchDataUser(cedula).observe(viewLifecycleOwner, Observer {
+            hideProgressDialogV()
+            if (!it.isEmpty()){
+                var user: MutableList<Users>?=it
+                etxt_idAdmin.error=""
+                nombre_Admin.text=user?.get(0)?.nombre
+                nombre_Admin.visibility=View.VISIBLE
+                verificado=user?.get(0)
+            }else{
+                etxt_idAdmin.error="El numero de cedula no existe"
+            }
+        })
     }
 
     override fun editar() {

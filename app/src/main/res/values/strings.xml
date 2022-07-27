@@ -14,5 +14,6 @@
         <item>Zonales</item>
         <item>Escenario IDRD</item>
     </string-array>
+    <string name="title_activity_mapita">mapita</string>
 
 </resources>

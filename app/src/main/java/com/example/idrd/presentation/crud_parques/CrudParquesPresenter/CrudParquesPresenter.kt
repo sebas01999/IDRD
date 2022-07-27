@@ -114,6 +114,9 @@ class CrudParquesPresenter(crudParqueInteractor: CrudParqueInteractor):CrudParqu
         return descripcion.isEmpty()
     }
 
+    override fun checkEmptyCedulaAdmin(cedula: String): Boolean {
+        return cedula.isEmpty()
+    }
 
 
 }

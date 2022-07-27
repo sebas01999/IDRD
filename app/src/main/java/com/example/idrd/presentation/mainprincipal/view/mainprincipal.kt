@@ -4,15 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.idrd.R
-import com.example.idrd.presentation.acceder_solicitudes.view.fragment_acceder_solicitudes
-import com.example.idrd.presentation.crud_parques.view.CrudParquesFragment
-import com.example.idrd.presentation.cuenta.view.cuentaFragment
-import com.example.idrd.presentation.cuenta_AdminParque.view.cuenta_AdminParqueFragment
 import com.example.idrd.presentation.cuenta_Admingeneral.view.cuenta_AdmingeneralFragment
 import com.example.idrd.presentation.eventos.view.eventosFragment
-import com.example.idrd.presentation.ingresar.view.ingresarFragment
 import com.example.idrd.presentation.inicio.view.InicioFragment
-import com.example.idrd.presentation.mapa.view.MapaFragment
+import com.example.idrd.presentation.mapa.view.MapsFragment
 import kotlinx.android.synthetic.main.activity_mainprincipal.*
 
 class mainprincipal : AppCompatActivity() {
@@ -26,7 +21,7 @@ class mainprincipal : AppCompatActivity() {
         btn_nav.setOnItemSelectedListener { es ->
             when(es){
                 R.id.item1 -> replaceFragment(InicioFragment())
-                R.id.item2 -> replaceFragment(MapaFragment ())
+                R.id.item2 -> replaceFragment(MapsFragment())
                 R.id.item3 -> replaceFragment(eventosFragment())
                 R.id.item4 -> replaceFragment(cuenta_AdmingeneralFragment())
             }

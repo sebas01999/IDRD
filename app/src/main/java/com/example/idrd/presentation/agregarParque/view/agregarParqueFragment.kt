@@ -115,6 +115,9 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
         val cedulaAdmin:String=etxt_idAdmin.editText?.text.toString().trim()
         if (presenter.checkEmptyCedulaAdmin(cedulaAdmin)){
             etxt_idAdmin.error="Ingrese un numero de cedula"
+            verificado=null
+            nombre_Admin.setText("")
+            nombre_Admin.visibility=View.GONE
             return
         }else{
             showProgressDialogV()
@@ -128,7 +131,7 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
         val ubicacion:String=etxt_ubicacion.editText?.text.toString().trim()
         val horario: String= etxt_horario.editText?.text.toString().trim()
         val descripcion:String=etxt_descripcion.editText?.text.toString().trim()
-
+        val cedulaAdmin:String=etxt_idAdmin.editText?.text.toString().trim()
         if (presenter.checkEmptyNombre(nombre)){
             etxt_nombre.error="Ingrese el nombre el parque"
             return
@@ -150,6 +153,18 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
             return
         }
         var parque=Parque()
+
+        if (!presenter.checkEmptyCedulaAdmin(cedulaAdmin) && verificado==null){
+            verificar()
+            if (verificado!=null){
+                parque.idAdmin=cedulaAdmin
+                parque.nombreAdmin= (verificado!!.nombre)
+            }
+        }
+        if (verificado!=null){
+            parque.idAdmin=verificado!!.cedula
+            parque.nombreAdmin=verificado!!.nombre
+        }
         parque.nombre=nombre
         parque.tipo=tipo
         parque.ubicacion=ubicacion
@@ -165,11 +180,14 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
             hideProgressDialogV()
             if (!it.isEmpty()){
                 var user: MutableList<Users>? =it
-                etxt_idAdmin.clearFocus()
+                etxt_idAdmin.error=""
                 nombre_Admin.text= user?.get(0)?.nombre
                 nombre_Admin.visibility=View.VISIBLE
                 verificado=user?.get(0)
             }else{
+                nombre_Admin.setText("")
+                nombre_Admin.visibility=View.GONE
+                verificado=null
                 etxt_idAdmin.error="El numero de cedula no existe"
             }
 
@@ -192,7 +210,8 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
         ubicacion.setText("")
         horario.setText("")
         descripcion.setText("")
-
+        idAdmin.setText("")
+        nombre_Admin.setText("")
         Toast.makeText(context,"Parque guardado correctamente", Toast.LENGTH_SHORT).show()
 
     }

@@ -8,6 +8,9 @@ interface CrudParqueContract {
         fun showError(msgError:String?)
         fun showProgressDialog()
         fun hideProgressDialog()
+        fun showProgressDialogV()
+        fun hideProgressDialogV()
+        fun verificar()
         fun editar()
         fun borrar()
         fun cancelarV()
@@ -28,6 +31,6 @@ interface CrudParqueContract {
         fun checkEmptyHour(hour: String):Boolean
         fun checkEmptyUbicacion(ubicacion: String):Boolean
         fun checkEmptyDescripcion(descripcion: String):Boolean
-
+        fun checkEmptyCedulaAdmin(cedula: String):Boolean
     }
 }
