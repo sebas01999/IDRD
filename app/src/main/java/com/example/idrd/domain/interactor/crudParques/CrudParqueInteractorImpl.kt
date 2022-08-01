@@ -27,8 +27,18 @@ class CrudParqueInteractorImpl:CrudParqueInteractor {
                     parque.id = ref.id
                     ref.set(parque).addOnCompleteListener { cont ->
                         if (cont.isSuccessful) {
-
+                            if (!parque.cedula.equals("DEFAULT CEDULA")){
+                                var user=db.collection("Users").document(parque.idAdmin)
+                                user.update("rol",parque.id).addOnCompleteListener { userAct->
+                                   if (userAct.isSuccessful){
+                                       continuacion.resume(Unit)
+                                   }else{
+                                       continuacion.resumeWithException(FirebaseAgregarExceptions(userAct.exception?.message))
+                                   }
+                                }
+                            }
                             continuacion.resume(Unit)
+
                         } else {
                             continuacion.resumeWithException(FirebaseAgregarExceptions(cont.exception?.message))
                         }
@@ -48,7 +58,30 @@ class CrudParqueInteractorImpl:CrudParqueInteractor {
                 }
             }
     }
+    override suspend fun editParqueQuitarAdmin(parque: Parque): Unit = suspendCancellableCoroutine { continuacion ->
+        val db = Firebase.firestore
 
+        var user=db.collection("Users").document(parque.idAdmin)
+        user.update("rol","USER").addOnCompleteListener { cont ->
+            if (cont.isSuccessful) {
+                continuacion.resume(Unit)
+            } else {
+                continuacion.resumeWithException(FirebaseAgregarExceptions(cont.exception?.message))
+            }
+        }
+    }
+    override suspend fun editParqueCambiarAdmin(parque: Parque): Unit = suspendCancellableCoroutine { continuacion ->
+        val db = Firebase.firestore
+
+        var user=db.collection("Users").document(parque.idAdmin)
+        user.update("rol",parque.id).addOnCompleteListener { cont ->
+            if (cont.isSuccessful) {
+                continuacion.resume(Unit)
+            } else {
+                continuacion.resumeWithException(FirebaseAgregarExceptions(cont.exception?.message))
+            }
+        }
+    }
     override suspend fun editParqueFoto(parque: Parque, uri: Uri): Unit = suspendCancellableCoroutine { continuacion->
         val db = Firebase.firestore
         var imagen = FirebaseStorage.getInstance().reference.child(parque.nombre)

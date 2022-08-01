@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.idrd.R
 import com.example.idrd.data.model.Parque
+import com.example.idrd.presentation.calificarParque.view.calificarParqueFragment
 import com.example.idrd.presentation.form.view.fragment_form
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -42,13 +43,19 @@ class descripcionFragment : Fragment() {
 
 
             val bottomSheetFragment= fragment_form()
-
+            val bottomSheetFragmentCalificar=calificarParqueFragment()
+            bottomSheetFragmentCalificar.arguments=bundle
             bottomSheetFragment.arguments=bundle
 
             view.btn_prestamo.setOnClickListener {
 
                 bottomSheetFragment.show(childFragmentManager, "BottomSheetDialog")
             }
+            view.btn_calificacion.setOnClickListener {
+                bottomSheetFragmentCalificar.show(childFragmentManager, "BottomSheetDialog")
+            }
+
+
         return view
     }
 

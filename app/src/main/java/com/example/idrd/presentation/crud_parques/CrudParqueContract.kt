@@ -26,6 +26,8 @@ interface CrudParqueContract {
         fun editar(parque: Parque)
         fun editarFoto(parque: Parque, uri: Uri)
         fun borrar(parque: Parque)
+        fun editParqueQuitarAdmin(parque: Parque)
+        fun editParqueCambiarAdmin(parque: Parque)
         fun checkEmptyNombre(nombre: String):Boolean
         fun checkEmptytipo(tipo: String):Boolean
         fun checkEmptyHour(hour: String):Boolean

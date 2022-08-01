@@ -94,6 +94,41 @@ class CrudParquesPresenter(crudParqueInteractor: CrudParqueInteractor):CrudParqu
         }
     }
 
+    override fun editParqueQuitarAdmin(parque: Parque) {
+        launch {
+            try {
+                view?.showProgressDialog()
+                crudParqueInteractor?.editParqueQuitarAdmin(parque)
+                if (isViewAttached()){
+                    view?.hideProgressDialog()
+
+                }
+            }catch (e:FirebaseCrudExceptions){
+                if(isViewAttached()){
+                    view?.showError(e.message)
+                    view?.hideProgressDialog()
+                }
+            }
+        }
+    }
+
+    override fun editParqueCambiarAdmin(parque: Parque) {
+        launch {
+            try {
+                view?.showProgressDialog()
+                crudParqueInteractor?.editParqueCambiarAdmin(parque)
+                if (isViewAttached()){
+                    view?.hideProgressDialog()
+                }
+            }catch (e:FirebaseCrudExceptions){
+                if(isViewAttached()){
+                    view?.showError(e.message)
+                    view?.hideProgressDialog()
+                }
+            }
+        }
+    }
+
     override fun checkEmptyNombre(nombre: String): Boolean {
         return nombre.isEmpty()
     }

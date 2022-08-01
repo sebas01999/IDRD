@@ -106,6 +106,7 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
     }
 
     override fun onItemClick(item: Parque) {
+        parque=null
         parque=item
 
         nombre.setText(parque!!.nombre)
@@ -113,9 +114,13 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         horario.setText(parque!!.horario)
         descripcion.setText(parque!!.descripcion)
         if (parque!!.idAdmin!="DEFAULT IDADMIN"){
-            idAdmin.setText(parque!!.idAdmin)
+            idAdmin.setText(parque!!.cedula)
             nombre_Admin.text=parque!!.nombreAdmin
             nombre_Admin.visibility=View.VISIBLE
+        }else{
+            idAdmin.setText("")
+            nombre_Admin.setText("")
+            nombre_Admin.visibility=View.GONE
         }
         mostrarParque.visibility= View.VISIBLE
     }
@@ -173,7 +178,7 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
             return
         }else{
             if (parque!=null){
-                if (parque!!.idAdmin!=cedulaAdmin){
+                if (parque!!.cedula!=cedulaAdmin){
                     showProgressDialogV()
                     observeDataV(cedulaAdmin)
                 }
@@ -189,7 +194,15 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
                 nombre_Admin.text=user?.get(0)?.nombre
                 nombre_Admin.visibility=View.VISIBLE
                 verificado=user?.get(0)
+                if (verificado?.rol!="USER"){
+                    etxt_idAdmin.error="El usuario ya es administrador"
+                    verificado=null
+
+                }
             }else{
+                nombre_Admin.setText("")
+                nombre_Admin.visibility=View.GONE
+                verificado=null
                 etxt_idAdmin.error="El numero de cedula no existe"
             }
         })
@@ -202,6 +215,7 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
             val horario:String= etxt_horario.editText?.text.toString().trim()
             val descripcion:String= etxt_descripcion.editText?.text.toString().trim()
             val tipo:String= drop_items.text.toString()
+            val cedulaAdmin:String=etxt_idAdmin.editText?.text.toString().trim()
 
             if (presenter.checkEmptyNombre(nombre)){
                 etxt_nombre.error="Ingrese el nombre el parque"
@@ -219,12 +233,42 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
                 etxt_descripcion.error="Ingrese la descripcion del parque"
                 return
             }
+            if (presenter.checkEmptyCedulaAdmin(cedulaAdmin)){
+                verificado=null
+            }
+            var parqueEnv=Parque()
+            parqueEnv.idAdmin=parque!!.idAdmin
+            if (parque!!.cedula!=cedulaAdmin){
+                if (verificado!=null){
+                    if (!parque!!.idAdmin.equals("DEFAULT IDADMIN")){
 
-            parque?.nombre=nombre
-            parque?.tipo=tipo
-            parque?.ubicacion=ubicacion
-            parque?.horario=horario
-            parque?.descripcion=descripcion
+                        presenter.editParqueQuitarAdmin(parqueEnv)
+
+                        parque!!.idAdmin=verificado!!.id
+                        parque!!.cedula=verificado!!.cedula
+                        parque!!.nombreAdmin=verificado!!.nombre
+                        presenter.editParqueCambiarAdmin(parque!!)
+                    }else{
+                        parque!!.idAdmin=verificado!!.id
+                        parque!!.cedula=verificado!!.cedula
+                        parque!!.nombreAdmin=verificado!!.nombre
+                        presenter.editParqueCambiarAdmin(parque!!)
+                    }
+                }else{
+                    if (parque!!.idAdmin!="DEFAULT IDADMIN"){
+                        presenter.editParqueQuitarAdmin(parqueEnv)
+                        parque!!.idAdmin= "DEFAULT IDADMIN"
+                        parque!!.cedula="DEFAULT CEDULA"
+                        parque!!.nombreAdmin="DEFAULT NOMBRE ADMIN"
+
+                    }
+                }
+            }
+            parque!!.nombre=nombre
+            parque!!.tipo=tipo
+            parque!!.ubicacion=ubicacion
+            parque!!.horario=horario
+            parque!!.descripcion=descripcion
 
 
 
@@ -233,8 +277,11 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
             }else{
                 presenter.editarFoto(parque!!,filepath!!)
             }
+
+
             observeData()
             parque=null
+            verificado=null
         }
 
 
@@ -244,6 +291,10 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
     override fun borrar() {
         if (parque!=null){
             presenter.borrar(parque!!)
+            if (parque!!.idAdmin!="DEFAULT IDADMIN"){
+                presenter.editParqueQuitarAdmin(parque!!)
+            }
+
             observeData()
             parque=null
         }
@@ -252,6 +303,7 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
     override fun cancelarV() {
         mostrarParque.visibility= View.GONE
         parque=null
+        verificado=null
     }
 
     override fun addFoto() {
@@ -266,7 +318,9 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         ubicacion.setText("")
         horario.setText("")
         descripcion.setText("")
+        idAdmin.setText("")
         parque=null
+        verificado=null
         Toast.makeText(context,msgSuccess, Toast.LENGTH_SHORT).show()
         mostrarParque.visibility= View.GONE
 

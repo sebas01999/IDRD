@@ -20,4 +20,16 @@ class RepoUser {
         }
         return mutableData
     }
+    fun getUserIDData(id: String): LiveData<MutableList<Users>> {
+        val mutableData = MutableLiveData<MutableList<Users>>()
+        FirebaseFirestore.getInstance().collection("Users").whereEqualTo("id", id).get().addOnSuccessListener { result->
+            val listData = mutableListOf<Users>()
+            for (document in result){
+                val user:Users = document.toObject(Users::class.java)
+                listData.add(user)
+            }
+            mutableData.value=listData
+        }
+        return mutableData
+    }
 }

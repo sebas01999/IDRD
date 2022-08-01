@@ -8,4 +8,6 @@ interface CrudParqueInteractor {
     suspend fun editParque(parque: Parque)
     suspend fun editParqueFoto(parque: Parque , uri: Uri)
     suspend fun borarParque(parque: Parque)
+    suspend fun editParqueQuitarAdmin(parque: Parque)
+    suspend fun editParqueCambiarAdmin(parque: Parque)
 }

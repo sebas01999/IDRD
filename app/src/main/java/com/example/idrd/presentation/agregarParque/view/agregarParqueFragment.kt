@@ -157,12 +157,14 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
         if (!presenter.checkEmptyCedulaAdmin(cedulaAdmin) && verificado==null){
             verificar()
             if (verificado!=null){
-                parque.idAdmin=cedulaAdmin
-                parque.nombreAdmin= (verificado!!.nombre)
+                parque.idAdmin=verificado!!.id
+                parque.cedula=verificado!!.cedula
+                parque.nombreAdmin= verificado!!.nombre
             }
         }
         if (verificado!=null){
-            parque.idAdmin=verificado!!.cedula
+            parque.idAdmin=verificado!!.id
+            parque.cedula=verificado!!.cedula
             parque.nombreAdmin=verificado!!.nombre
         }
         parque.nombre=nombre
@@ -184,6 +186,10 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
                 nombre_Admin.text= user?.get(0)?.nombre
                 nombre_Admin.visibility=View.VISIBLE
                 verificado=user?.get(0)
+                if(verificado?.rol!="USER"){
+                    etxt_idAdmin.error="El usuario ya es administrador"
+                    verificado=null
+                }
             }else{
                 nombre_Admin.setText("")
                 nombre_Admin.visibility=View.GONE
