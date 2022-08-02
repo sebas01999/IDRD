@@ -8,9 +8,9 @@ import com.example.idrd.data.model.Evento
 
 class EventosViewModelAdmin: ViewModel() {
     private val repo= RepoEventos()
-    fun fetchEventosDataAdmin(): LiveData<MutableList<Evento>> {
+    fun fetchEventosDataAdmin(idAdmin:String): LiveData<MutableList<Evento>> {
         val mutableData= MutableLiveData<MutableList<Evento>>()
-        repo.getEventosDataAdmin().observeForever {
+        repo.getEventosDataAdmin(idAdmin).observeForever {
             mutableData.value=it
         }
         return mutableData

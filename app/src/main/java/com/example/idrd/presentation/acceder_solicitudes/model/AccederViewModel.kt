@@ -9,9 +9,16 @@ import com.example.idrd.data.model.Solicitud
 class AccederViewModel: ViewModel() {
 
     private val reposolcitud= Reposolicitud()
-    fun fetchSolicitudData() : LiveData<MutableList<Solicitud>>{
+    fun fetchSolicitudUserData(idUser:String) : LiveData<MutableList<Solicitud>>{
         val mutableData= MutableLiveData<MutableList<Solicitud>>()
-        reposolcitud.getSolicitudData().observeForever { listasol->
+        reposolcitud.getSolicitudUserData(idUser).observeForever { listasol->
+            mutableData.value=listasol
+        }
+        return mutableData
+    }
+    fun fetchSolicitudAdminData(idParque:String) : LiveData<MutableList<Solicitud>>{
+        val mutableData= MutableLiveData<MutableList<Solicitud>>()
+        reposolcitud.getSolicitudAdminData(idParque).observeForever { listasol->
             mutableData.value=listasol
         }
         return mutableData

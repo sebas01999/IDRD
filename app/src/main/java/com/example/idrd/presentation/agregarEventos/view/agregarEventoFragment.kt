@@ -12,11 +12,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.idrd.R
 import com.example.idrd.data.model.Evento
+import com.example.idrd.data.model.Users
 import com.example.idrd.domain.interactor.crudEventos.CrudEventosInteractorImpl
 import com.example.idrd.presentation.agregarEventos.AgregarEventoContract
 import com.example.idrd.presentation.agregarEventos.AgregarEventoPresenter.AgregarEventoPresenter
+import com.example.idrd.presentation.agregarEventos.model.ViewModelParqueID
 import com.example.idrd.presentation.form.model.DatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -36,6 +39,7 @@ class agregarEventoFragment : DialogFragment(), AgregarEventoContract.AgregarEve
     lateinit var filepath : Uri
     var colorcard:Int=-1
     lateinit var presenter:AgregarEventoPresenter
+    private val vieModel by lazy { ViewModelProvider(this).get(ViewModelParqueID::class.java) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -161,6 +165,7 @@ class agregarEventoFragment : DialogFragment(), AgregarEventoContract.AgregarEve
     }
 
     override fun addEvento() {
+
         val descripcionEvento:String=etxt_descripcionEvento.editText?.text.toString().trim()
         val duracionH:String=num_horas.text.toString().trim()
         val hour:String=time.text.toString().trim()
@@ -188,6 +193,14 @@ class agregarEventoFragment : DialogFragment(), AgregarEventoContract.AgregarEve
         evento.eventoDes=descripcionEvento
         evento.fecha= presenter.formatedDate(date, hour)
         Integer.parseInt(duracionH).also { evento.duracionH= it }
+        if (arguments!=null){
+            val user: Users = arguments?.getSerializable("user") as Users
+            vieModel.fetchParqueData(user.rol).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                evento.idParque=it.get(0).id
+                evento.nombreParque=it.get(0).nombre
+            })
+        }
+
         presenter.addEvento(evento, filepath)
     }
 

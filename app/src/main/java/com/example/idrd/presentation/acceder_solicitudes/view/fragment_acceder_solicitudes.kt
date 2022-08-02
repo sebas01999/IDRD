@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.idrd.R
 import com.example.idrd.data.model.Solicitud
+import com.example.idrd.data.model.Users
 import com.example.idrd.presentation.acceder_solicitudes.model.AccederViewModel
 import com.example.idrd.presentation.aceptar_rechazar.view.aceptar_rechazarFragment
 import kotlinx.android.synthetic.main.fragment_acceder_solicitudes.view.*
@@ -56,14 +57,29 @@ class fragment_acceder_solicitudes : Fragment(),AccederAdapter.OnItemClickListen
 
     fun observeData(){
         //shimmer_view_container.startShimmer()
-        viewModel.fetchSolicitudData().observe(viewLifecycleOwner , Observer {
-            //shimmer_view_container.stopShimmer()
-           // shimmer_view_container.visibility=View.GONE
+        if (arguments!=null){
+            val user: Users = arguments?.getSerializable("user") as Users
+            if (user.rol.equals("USER")){
+                viewModel.fetchSolicitudUserData(user.id).observe(viewLifecycleOwner , Observer {
+                    //shimmer_view_container.stopShimmer()
+                    // shimmer_view_container.visibility=View.GONE
 
-            adapter.setListData(it)
-            adapter.notifyDataSetChanged()
+                    adapter.setListData(it)
+                    adapter.notifyDataSetChanged()
 
-        })
+                })
+            }else{
+                viewModel.fetchSolicitudAdminData(user.rol).observe(viewLifecycleOwner , Observer {
+                    //shimmer_view_container.stopShimmer()
+                    // shimmer_view_container.visibility=View.GONE
+
+                    adapter.setListData(it)
+                    adapter.notifyDataSetChanged()
+
+                })
+            }
+        }
+
 
     }
 

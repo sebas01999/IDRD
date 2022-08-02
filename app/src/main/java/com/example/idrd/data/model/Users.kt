@@ -2,7 +2,7 @@ package com.example.idrd.data.model
 
 import java.io.Serializable
 
-class Users  {
+class Users : Serializable {
     var id:String = "DEFAULT ID"
     var correo:String = "DEFAULT CORREO"
     var nombre: String = "DEFAULT NOMBRE"

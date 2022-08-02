@@ -19,9 +19,9 @@ class RepoEventos {
         }
         return mutableData
     }
-    fun getEventosDataAdmin():LiveData<MutableList<Evento>>{
+    fun getEventosDataAdmin(idAdmin:String):LiveData<MutableList<Evento>>{
         val mutableData=MutableLiveData<MutableList<Evento>>()
-        FirebaseFirestore.getInstance().collection("Eventos").get().addOnSuccessListener { result->
+        FirebaseFirestore.getInstance().collection("Eventos").whereEqualTo("idParque",idAdmin).get().addOnSuccessListener { result->
             val listData= mutableListOf<Evento>()
             for (document in result){
                 val evento:Evento=document.toObject(Evento::class.java)

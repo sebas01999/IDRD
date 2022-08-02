@@ -55,7 +55,7 @@
                     >
 
                     <TextView
-                        android:id="@+id/nombreadming"
+                        android:id="@+id/nombreadminP"
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                         android:textStyle="bold"></TextView>
 
                     <TextView
-                        android:id="@+id/correoadming"
+                        android:id="@+id/correoadminP"
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                         ></TextView>
 
                     <TextView
-                        android:id="@+id/direcadmingv"
+                        android:id="@+id/direcadminP"
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
             >
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/botonnotificacionesadming"
+                android:id="@+id/botonnotificacionesadminP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
@@ -116,7 +116,7 @@
                 ></com.google.android.material.button.MaterialButton>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/botonconfigadming"
+                android:id="@+id/botonconfigadminP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -155,7 +155,27 @@
 
         </com.google.android.material.button.MaterialButton>
 
+        <com.google.android.material.button.MaterialButton
 
+            android:id="@+id/botonSolicitudesAdminP"
+            android:textAlignment="textStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/white"
+            android:elevation="8dp"
+            android:padding="12dp"
+            android:text="Tus Solicitudes"
+            android:textAllCaps="false"
+            android:textColor="@color/principal"
+            android:textSize="18dp"
+            app:cornerRadius="10dp"
+            android:drawableRight="@drawable/ic_ir"
+
+            >
+
+        </com.google.android.material.button.MaterialButton>
 
         <com.google.android.material.button.MaterialButton
 

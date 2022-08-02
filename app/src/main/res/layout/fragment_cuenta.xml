@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.cuenta.view.cuentaFragment">
 
@@ -12,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp"
-
+        android:background="#F5F5F8"
         >
 
         <TextView
@@ -37,49 +38,56 @@
             >
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="94dp"
                     android:layout_height="94dp"
-                    android:layout_margin="10dp"></ImageView>
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_user"></ImageView>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+
+                    >
 
                     <TextView
-                        android:id="@+id/nombreusuario"
+                        android:id="@+id/nombreUser"
+                        android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nombre"
+                        android:text="Sebastian Salamanca"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="15dp"
                         android:textStyle="bold"></TextView>
 
                     <TextView
-                        android:id="@+id/correousuario"
+                        android:id="@+id/correoUser"
+                        android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Correo"
+                        android:text="sebastian123@gmail.com"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
-                        android:textStyle="bold"></TextView>
+                        android:textSize="15dp"
+                        ></TextView>
 
                     <TextView
-                        android:id="@+id/direcusuario"
+                        android:id="@+id/direcUser"
+                        android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dirección"
+                        android:text="Carrera 15# 11- 49"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
-                        android:textStyle="bold"></TextView>
+                        android:textSize="15dp"
+                        ></TextView>
 
                 </LinearLayout>
             </LinearLayout>
@@ -96,7 +104,7 @@
             >
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/botonnotificacionesusuario"
+                android:id="@+id/botonnotificacionesUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
@@ -110,7 +118,7 @@
                 ></com.google.android.material.button.MaterialButton>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/botonconfigusuario"
+                android:id="@+id/botonconfigUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -129,14 +137,16 @@
 
         <com.google.android.material.button.MaterialButton
 
-            android:id="@+id/botonsolicitudesusuario"
+            android:id="@+id/botonSolicitudes"
+            android:textAlignment="textStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/white"
             android:elevation="8dp"
-            android:text="Tus solicitudes"
+            android:padding="12dp"
+            android:text="Tus Solicitudes"
             android:textAllCaps="false"
             android:textColor="@color/principal"
             android:textSize="18dp"
@@ -148,15 +158,18 @@
         </com.google.android.material.button.MaterialButton>
 
 
+
         <com.google.android.material.button.MaterialButton
 
-            android:id="@+id/ayudausuario"
-            android:layout_width="wrap_content"
+            android:id="@+id/ayudaUser"
+            android:layout_width="match_parent"
+            android:textAlignment="textStart"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="8dp"
             android:backgroundTint="@color/white"
             android:elevation="8dp"
+            android:padding="12dp"
             android:text="Ayuda"
             android:textAllCaps="false"
             android:textColor="@color/principal"
@@ -174,7 +187,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/principal"
             android:elevation="8dp"
@@ -186,4 +198,4 @@
             ></com.google.android.material.button.MaterialButton>
 
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.idrd.R
 import com.example.idrd.data.model.Evento
+import com.example.idrd.data.model.Users
 import com.example.idrd.domain.interactor.crudEventos.CrudEventosInteractorImpl
 import com.example.idrd.presentation.agregarEventos.view.agregarEventoFragment
 
@@ -40,6 +41,7 @@ class crudEventosFragment : Fragment(), EventosAdapter.OnItemClickListener, Crud
     private var evento:Evento?=null
     var filepath : Uri?=null
     var colorcard:Int=-1
+    var selecciono:Boolean=false
     lateinit var presenter:CrudEventosPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +66,7 @@ class crudEventosFragment : Fragment(), EventosAdapter.OnItemClickListener, Crud
             when(it.itemId){
                 R.id.menu_agregar -> {
                     val dialog= agregarEventoFragment()
+                    dialog.arguments=arguments
                     //dialog.dialog?.window?.setLayout(500, 500)
                     dialog.show(childFragmentManager, "SimpleDialog")
                     true
@@ -97,7 +100,7 @@ class crudEventosFragment : Fragment(), EventosAdapter.OnItemClickListener, Crud
                 .show(view, object : ColorPickerPopup.ColorPickerObserver {
                     override fun onColorPicked(color: Int) {
                         colorcard= color
-
+                        selecciono=true
                     }
 
                     override fun onColor(color: Int, fromUser: Boolean) {}
@@ -200,8 +203,9 @@ class crudEventosFragment : Fragment(), EventosAdapter.OnItemClickListener, Crud
             evento?.eventoDes=descripcionEvento
             evento?.duracionH=Integer.parseInt(duracionH)
             evento?.fecha=presenter.formatedDate(date, hour)
-            evento?.color=colorcard
-
+            if (selecciono){
+                evento?.color=colorcard
+            }
 
             if (filepath==null){
                 presenter.editar(evento!!)
@@ -241,14 +245,18 @@ class crudEventosFragment : Fragment(), EventosAdapter.OnItemClickListener, Crud
         mostrarEvento.visibility= View.GONE
     }
     fun observeData(){
-        viewModel.fetchEventosDataAdmin().observe(viewLifecycleOwner, Observer {
-            shimmer_view_container.stopShimmer()
-            shimmer_view_container.visibility=View.GONE
+        if (arguments!=null){
+            val user: Users = arguments?.getSerializable("user") as Users
+            viewModel.fetchEventosDataAdmin(user.rol).observe(viewLifecycleOwner, Observer {
+                shimmer_view_container.stopShimmer()
+                shimmer_view_container.visibility=View.GONE
 
-            adapter.setListData(it)
-            adapter.notifyDataSetChanged()
+                adapter.setListData(it)
+                adapter.notifyDataSetChanged()
 
-        })
+            })
+        }
+
     }
 
     override fun onItemClick(item: Evento) {
