@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".presentation.info_mapa.view.Fragment_infomapa">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_direccion"
+                android:layout_marginRight="10dp"
+                >
+            </ImageView>
+            <TextView
+                android:id="@+id/direcmapa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dirección parque"
+                android:textColor="@color/location_park"
+                >
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_nommapa"
+                android:layout_marginRight="10dp"
+                >
+            </ImageView>
+            <TextView
+                android:id="@+id/nommapa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre parque"
+                android:textColor="@color/location_park"
+                >
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_horamap"
+                android:layout_marginRight="10dp"
+                >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/horamapa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora parque"
+                android:textColor="@color/location_park"
+                >
+            </TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_aforomap"
+                android:layout_marginRight="10dp"
+                >
+            </ImageView>
+
+            <TextView
+                android:id="@+id/aforomapa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aforo parque"
+                android:textColor="@color/location_park"
+                >
+            </TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
