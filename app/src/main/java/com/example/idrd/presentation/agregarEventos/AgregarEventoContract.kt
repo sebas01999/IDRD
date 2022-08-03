@@ -2,7 +2,6 @@ package com.example.idrd.presentation.agregarEventos
 
 import android.net.Uri
 import com.example.idrd.data.model.Evento
-import com.example.idrd.data.model.Parque
 import java.util.*
 
 interface AgregarEventoContract {

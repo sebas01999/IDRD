@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".presentation.agregarCalificacion.view.agregarCalificacionFragment">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tu calificación"
+        android:textSize="25dp"
+        android:textColor="@color/principal"
+        android:layout_margin="25dp"></TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Escriba el nivel general de satisfacción con este parque o escenario publico"
+        android:textSize="14dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_margin="16dp"></TextView>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="16dp">
+
+
+        <ImageButton
+            android:id="@+id/unaEstrella"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_estrellabgfondo"
+            android:backgroundTint="@color/white"
+            android:layout_margin="5dp"
+
+            ></ImageButton>
+        <ImageButton
+            android:id="@+id/dosEstrella"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_estrellabgfondo"
+            android:backgroundTint="@color/white"
+            android:layout_margin="5dp"
+
+            ></ImageButton>
+        <ImageButton
+            android:id="@+id/tresEstrella"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_estrellabgfondo"
+            android:backgroundTint="@color/white"
+            android:layout_margin="5dp"
+            ></ImageButton>
+        <ImageButton
+            android:id="@+id/cuatroEstrella"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_estrellabgfondo"
+            android:backgroundTint="@color/white"
+            android:layout_margin="5dp"
+            ></ImageButton>
+        <ImageButton
+            android:id="@+id/cincoEstrella"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_estrellabgfondo"
+            android:backgroundTint="@color/white"
+            android:layout_margin="5dp"
+            ></ImageButton>
+        <TextView
+            android:id="@+id/estrellas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1/5"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/hour_park"
+            android:textSize="15dp"></TextView>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Escribe tu comentario
+"
+        android:textSize="14dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_margin="10dp"></TextView>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etxt_comentario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+
+        android:layout_marginTop="7dp"
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+
+            android:id="@+id/comentario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="6"
+            android:maxLines="6"
+            android:inputType="textMultiLine"
+            >
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.card.MaterialCardView
+
+            android:id="@+id/envcCalificar"
+            android:layout_width="154dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/principal"
+            android:clickable="true"
+            android:elevation="15dp"
+            app:cardCornerRadius="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Enviar Calificacion"
+                android:textColor="@color/white"
+                android:textSize="14dp"></TextView>
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/progressBar_Calificacion"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        style="?android:attr/progressBarStyle"
+        android:indeterminateDrawable="@drawable/progressbar"
+        android:indeterminateDuration="@android:integer/config_longAnimTime"
+        android:layout_marginTop="21dp"
+        android:visibility="gone"></ProgressBar>
+
+</LinearLayout>

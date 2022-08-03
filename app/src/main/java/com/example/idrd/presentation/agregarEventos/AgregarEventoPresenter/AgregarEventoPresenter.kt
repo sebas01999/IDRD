@@ -75,6 +75,4 @@ class AgregarEventoPresenter(crudEventoInteractor: CrudEventoInteractor):Agregar
         val obtenida= SimpleDateFormat("dd/MM/yyyy hh:mm").parse(date+" "+hour);
         return obtenida
     }
-
-
 }
