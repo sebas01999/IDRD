@@ -43,8 +43,6 @@ class aceptar_rechazarFragment : Fragment() {
 
         }
 
-
-
         return view
     }
 
