@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -22,11 +23,11 @@ import com.example.idrd.presentation.agregarParque.view.agregarParqueFragment
 import com.example.idrd.presentation.crud_parques.CrudParqueContract
 import com.example.idrd.presentation.crud_parques.CrudParquesPresenter.CrudParquesPresenter
 import com.example.idrd.presentation.inicio.model.MainViewModel
+import com.example.idrd.presentation.inicio.model.TiposViewModel
 import com.example.idrd.presentation.inicio.view.MainAdapter
 import kotlinx.android.synthetic.main.fragment_crud_parques.*
 import kotlinx.android.synthetic.main.fragment_crud_parques.cancelar
 import kotlinx.android.synthetic.main.fragment_crud_parques.descripcion
-import kotlinx.android.synthetic.main.fragment_crud_parques.drop_items
 import kotlinx.android.synthetic.main.fragment_crud_parques.etxt_descripcion
 import kotlinx.android.synthetic.main.fragment_crud_parques.etxt_horario
 import kotlinx.android.synthetic.main.fragment_crud_parques.etxt_nombre
@@ -45,9 +46,12 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
     private lateinit var adapter: MainAdapter
     private val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
     private val viewModelUser by lazy { ViewModelProvider(this).get(UserViewModel::class.java) }
+    private val viewModelTipos by lazy { ViewModelProvider(this).get(TiposViewModel::class.java) }
     private var parque:Parque?= null
+    var tipoP: String?=null
     var filepath : Uri?=null
     var verificado:Users?=null
+    private var dataListTipos = mutableListOf<String>()
     lateinit var presenter: CrudParquesPresenter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,17 +65,22 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         view.rv.layoutManager=LinearLayoutManager(context)
         view.rv.adapter=adapter
         observeData()
-        val tipos = resources.getStringArray(R.array.tipos)
-        val adapter= context?.let {
-            ArrayAdapter(
-                it,
-                R.layout.item_tipos_parque,
-                tipos
-            )
-        }
-        with(view.drop_items){
-            setAdapter(adapter)
-        }
+
+        viewModelTipos.fetchTiposParqueData().observe(viewLifecycleOwner, Observer { lista ->
+            for (item in lista){
+                dataListTipos.add(item.tipo)
+            }
+            val adapter= context?.let {
+                ArrayAdapter(
+                    it,
+                    R.layout.item_tipos_parque,
+                    dataListTipos
+                )
+            }
+            view.spiner.adapter=adapter
+        })
+
+
         view.cancelar.setOnClickListener {
             parque=null
             cancelarV()
@@ -102,6 +111,18 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
                 else -> false
             }
         }
+
+        view.spiner.onItemSelectedListener=object :
+            AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                tipoP=dataListTipos.get(p2)
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
         return view
     }
 
@@ -113,6 +134,9 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         ubicacion.setText(parque!!.ubicacion)
         horario.setText(parque!!.horario)
         descripcion.setText(parque!!.descripcion)
+        spiner.setSelection(dataListTipos.indexOf(parque!!.tipo))
+        tipoP=parque!!.tipo
+
         if (parque!!.idAdmin!="DEFAULT IDADMIN"){
             idAdmin.setText(parque!!.cedula)
             nombre_Admin.text=parque!!.nombreAdmin
@@ -214,7 +238,6 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
             val ubicacion:String= etxt_ubicacion.editText?.text.toString().trim()
             val horario:String= etxt_horario.editText?.text.toString().trim()
             val descripcion:String= etxt_descripcion.editText?.text.toString().trim()
-            val tipo:String= drop_items.text.toString()
             val cedulaAdmin:String=etxt_idAdmin.editText?.text.toString().trim()
 
             if (presenter.checkEmptyNombre(nombre)){
@@ -265,7 +288,7 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
                 }
             }
             parque!!.nombre=nombre
-            parque!!.tipo=tipo
+            parque!!.tipo=tipoP!!
             parque!!.ubicacion=ubicacion
             parque!!.horario=horario
             parque!!.descripcion=descripcion

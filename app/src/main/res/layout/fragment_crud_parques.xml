@@ -58,24 +58,11 @@
 
                         </com.google.android.material.textfield.TextInputEditText>
                     </com.google.android.material.textfield.TextInputLayout>
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/dropdown_menu"
+                    <Spinner
+                        android:id="@+id/spiner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Seleccione el tipo"
-                        android:layout_marginTop="7dp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                        android:backgroundTintMode="@color/white"
-                        >
-                        <AutoCompleteTextView
-                            android:id="@+id/drop_items"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="none"
-                            >
-
-                        </AutoCompleteTextView>
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="60dp"
+                        android:layout_marginTop="7dp"></Spinner>
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/etxt_ubicacion"
                         android:layout_width="match_parent"

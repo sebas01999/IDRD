@@ -15,43 +15,44 @@
             android:orientation="vertical"
             android:layout_margin="10dp"
             android:minWidth="800dp">
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etxt_nombre"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre"
-                android:layout_marginTop="7dp"
-
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nombre"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etxt_nombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    >
+                    android:layout_weight="1"
+                    android:hint="Nombre"
+                    android:layout_marginTop="7dp"
 
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/dropdown_menu"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        >
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/borrar"
+                    android:visibility="gone"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_close_icon"></ImageButton>
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/spiner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                android:backgroundTintMode="@color/white"
-                >
-                <AutoCompleteTextView
-                    android:id="@+id/drop_items"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:hint="Seleccione el tipo"
-                    >
-
-                </AutoCompleteTextView>
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="60dp"
+                android:layout_marginTop="7dp"></Spinner>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etxt_ubicacion"
                 android:layout_width="match_parent"
@@ -206,6 +207,7 @@
                 </com.google.android.material.button.MaterialButton>
 
             </LinearLayout>
+
             <ProgressBar
                 android:id="@+id/progressBar_guardar"
                 android:layout_width="55dp"

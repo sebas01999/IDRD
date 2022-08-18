@@ -17,7 +17,10 @@ class MainAdapter(private val context: Context, private var itemClickListener:On
     public interface OnItemClickListener{
         fun onItemClick(item:Parque)
     }
-
+    fun setFilterList(data:MutableList<Parque>){
+        dataList=data
+        notifyDataSetChanged()
+    }
     fun setListData(data:MutableList<Parque>){
         dataList= data
     }

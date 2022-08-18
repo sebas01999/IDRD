@@ -5,37 +5,144 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.inicio.view.InicioFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_home"
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_view_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@+id/rv"
-        app:layout_constraintTop_toTopOf="@+id/rv">
+                android:layout_marginLeft="12dp">
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicio"
+                android:layout_margin="6dp"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"></TextView>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="21dp"
+            android:orientation="horizontal">
 
-            <include layout="@layout/item_row_load" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <include layout="@layout/item_row_load" />
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="323dp"
+                    android:layout_height="wrap_content"
 
-            <include layout="@layout/item_row_load" />
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@drawable/buscar_bg"
+                    app:iconifiedByDefault="false"
+                    app:queryHint="Busca un parque"></androidx.appcompat.widget.SearchView>
+
+                <ImageButton
+                    android:id="@+id/filtro"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginRight="17dp"
+                    android:backgroundTint="@color/white"
+                    android:elevation="5dp"
+                    android:src="@drawable/ic_filtro"></ImageButton>
+            </RelativeLayout>
+
         </LinearLayout>
+        <HorizontalScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginHorizontal="16dp"
+            android:padding="3dp"
+            android:visibility="gone">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_Group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ></com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+        </HorizontalScrollView>
 
 
-    </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@+id/rv"
+            app:layout_constraintTop_toTopOf="@+id/rv">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_row_load" />
+
+                <include layout="@layout/item_row_load" />
+
+                <include layout="@layout/item_row_load" />
+            </LinearLayout>
 
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rv"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:id="@+id/noEncontrado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_margin="30dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_tristeemoji"
+                ></ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No se han encontrado parques o escenarios"
+                android:layout_gravity="center"
+                android:textColor="@color/hour_park"
+                android:textStyle="bold"
+                android:textSize="15dp"></TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+
 </FrameLayout>

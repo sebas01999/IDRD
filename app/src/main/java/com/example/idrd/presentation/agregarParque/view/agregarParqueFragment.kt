@@ -2,14 +2,17 @@ package com.example.idrd.presentation.agregarParque.view
 
 import android.app.Activity
 import android.content.ContentResolver
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.get
@@ -18,11 +21,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.idrd.R
 import com.example.idrd.data.model.Parque
+import com.example.idrd.data.model.TiposParque
 import com.example.idrd.data.model.Users
 import com.example.idrd.domain.interactor.crudParques.CrudParqueInteractorImpl
 import com.example.idrd.presentation.agregarParque.AgregarParqueContract
 import com.example.idrd.presentation.agregarParque.AgregarParquePresenter.AgregarParquePresenter
 import com.example.idrd.presentation.agregarParque.model.UserViewModel
+import com.example.idrd.presentation.inicio.model.TiposViewModel
+import com.google.android.gms.common.api.Status
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.AutocompleteActivity
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
+import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.fragment_agregar_parque.*
 import kotlinx.android.synthetic.main.fragment_agregar_parque.view.*
@@ -32,11 +46,16 @@ import kotlinx.android.synthetic.main.fragment_form.*
 class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarView {
     lateinit var filepath : Uri
     lateinit var presenter: AgregarParquePresenter
+    var encontrado=false
     var verificado:Users?=null
+    var tipoP: String?=null
+    var ubicacionp:GeoPoint?=null
+    private val AUTOCOMPLETE_REQUEST_CODE = 1
+    private var dataListTipos = mutableListOf<String>()
     private val viewModel by lazy { ViewModelProvider(this).get(UserViewModel::class.java) }
+    private val viewModelTipos by lazy { ViewModelProvider(this).get(TiposViewModel::class.java) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -47,17 +66,43 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
         val view:View= inflater!!.inflate(R.layout.fragment_agregar_parque, container, false)
         presenter= AgregarParquePresenter(CrudParqueInteractorImpl())
         presenter.attachView(this)
-        val tipos = resources.getStringArray(R.array.tipos)
-        val adapter= context?.let {
-            ArrayAdapter(
-                it,
-                R.layout.item_tipos_parque,
-                tipos
-            )
-        }
 
-        with(view.drop_items){
-            setAdapter(adapter)
+
+        viewModelTipos.fetchTiposParqueData().observe(viewLifecycleOwner, Observer {lista->
+            dataListTipos.add("Seleccione un tipo")
+            for (item in lista){
+                dataListTipos.add(item.tipo)
+            }
+            val adapter= context?.let {
+                ArrayAdapter(
+                    it,
+                    R.layout.item_tipos_parque,
+                    dataListTipos
+                )
+            }
+            view.spiner.adapter=adapter
+
+        })
+
+        Places.initialize(context, getString(R.string.placeKey))
+
+        view.spiner.onItemSelectedListener=object :
+            AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                tipoP= dataListTipos.get(p2)
+
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        view.spiner.setSelection(3)
+        view.etxt_nombre.addOnEditTextAttachedListener {
+            if (encontrado==false){
+                prueba()
+            }
         }
         view.agregar_foto.setOnClickListener {
             addFoto()
@@ -71,6 +116,13 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
         view.verificar.setOnClickListener {
             verificar()
         }
+        view.borrar.setOnClickListener {
+            nombre.setText("")
+            ubicacion.setText("")
+            horario.setText("")
+            borrar.visibility=View.GONE
+            encontrado=false
+        }
         return view
     }
 
@@ -83,8 +135,49 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
         if (requestCode==111 && resultCode== Activity.RESULT_OK && data != null){
             filepath=data.data!!
         }
-    }
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    data?.let {
+                        val place = Autocomplete.getPlaceFromIntent(data)
+                        if (!place.name.isEmpty()){
+                            nombre.setText(place.name)
+                        }
+                        if (!place.address.isEmpty()){
+                            ubicacion.setText(place.address)
+                        }
+                        if (!place.openingHours.weekdayText.isEmpty()){
+                            horario.setText(place.openingHours.weekdayText.toString())
+                        }
+                        ubicacionp= GeoPoint(place.latLng.latitude, place.latLng.longitude)
 
+                        encontrado=true
+                        borrar.visibility=View.VISIBLE
+                    }
+                }
+                AutocompleteActivity.RESULT_ERROR -> {
+                    // TODO: Handle the error.
+                    data?.let {
+                        val status = Autocomplete.getStatusFromIntent(data)
+                        Log.i(TAG, status.statusMessage ?: "")
+                    }
+                }
+                Activity.RESULT_CANCELED -> {
+                    // The user canceled the operation.
+                }
+            }
+            return
+        }
+    }
+    fun prueba(){
+
+        val fields= listOf(Place.Field.ID , Place.Field.NAME, Place.Field.OPENING_HOURS,Place.Field.ADDRESS, Place.Field.LAT_LNG)
+        val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
+            .build(context)
+
+        startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
+
+    }
     override fun showError(msgError: String?) {
         Toast.makeText(context,msgError, Toast.LENGTH_SHORT).show()
     }
@@ -127,7 +220,6 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
 
     override fun addParque() {
         val nombre:String=etxt_nombre.editText?.text.toString().trim()
-        val tipo: String=drop_items.text.toString()
         val ubicacion:String=etxt_ubicacion.editText?.text.toString().trim()
         val horario: String= etxt_horario.editText?.text.toString().trim()
         val descripcion:String=etxt_descripcion.editText?.text.toString().trim()
@@ -148,10 +240,19 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
             etxt_descripcion.error="Ingrese la descripcion del parque"
             return
         }
+        if (tipoP==null){
+            showError("Seleccione un tipo de parque")
+            return
+        }
+        if (tipoP==null || tipoP.equals("Seleccione un tipo")){
+            showError("Seleccione un tipo de parque")
+            return
+        }
         if (filepath==null){
             showError("Seleccione una imagen")
             return
         }
+
         var parque=Parque()
 
         if (!presenter.checkEmptyCedulaAdmin(cedulaAdmin) && verificado==null){
@@ -168,11 +269,12 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
             parque.nombreAdmin=verificado!!.nombre
         }
         parque.nombre=nombre
-        parque.tipo=tipo
+        parque.tipo=tipoP!!
         parque.ubicacion=ubicacion
         parque.horario=horario
         parque.descripcion=descripcion
         parque.calificacion="0.0"
+        parque.locali=ubicacionp!!
 
         presenter.addParque(parque, filepath)
     }
