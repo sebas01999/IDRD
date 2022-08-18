@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.cambiar_datospersonales.view.fragment_cambiardatosp">
+
+    <!-- TODO: Update blank fragment layout -->
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:padding="28dp"
+       android:orientation="vertical"
+       >
+       <ImageButton
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="27dp"
+           android:background="@drawable/ic_volver"
+           ></ImageButton>
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Cambia tus datos personales"
+           android:layout_marginTop="35dp"
+           android:textSize="18dp"
+           android:textColor="@color/principal"
+           android:textStyle="bold"
+           android:textAlignment="center"
+           ></TextView>
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="23dp"
+           android:text="Cedula o NIT"
+           android:textColor="@color/principal"
+           android:textStyle="bold"
+           android:textSize="18dp"
+           ></TextView>
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/cedula"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Cedula o NIT"
+           android:layout_marginTop="10dp"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           app:startIconDrawable="@drawable/ic_cedula"
+
+           >
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="text"
+               >
+
+           </com.google.android.material.textfield.TextInputEditText>
+       </com.google.android.material.textfield.TextInputLayout>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="18dp"
+           android:text="Nombre o razon social"
+           android:textColor="@color/principal"
+           android:textStyle="bold"
+           android:textSize="18dp"
+           ></TextView>
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/nom_razons"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Nombre o razón social"
+           android:layout_marginTop="10dp"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           app:startIconDrawable="@drawable/ic_name"
+
+           >
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="text"
+               >
+           </com.google.android.material.textfield.TextInputEditText>
+       </com.google.android.material.textfield.TextInputLayout>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="18dp"
+           android:text="Telefono"
+           android:textColor="@color/principal"
+           android:textStyle="bold"
+           android:textSize="18dp"
+           ></TextView>
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/telefono"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Telefono"
+           android:layout_marginTop="10dp"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           app:startIconDrawable="@drawable/ic_phone"
+
+           >
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="text"
+               >
+           </com.google.android.material.textfield.TextInputEditText>
+       </com.google.android.material.textfield.TextInputLayout>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="18dp"
+           android:text="Dirección"
+           android:textColor="@color/principal"
+           android:textStyle="bold"
+           android:textSize="18dp"
+           ></TextView>
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/direc"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Dirección"
+           android:layout_marginTop="10dp"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           app:startIconDrawable="@drawable/ic_adress"
+           >
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="text"
+               >
+           </com.google.android.material.textfield.TextInputEditText>
+       </com.google.android.material.textfield.TextInputLayout>
+
+
+       <com.google.android.material.button.MaterialButton
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+           android:layout_gravity="center"
+           android:textAllCaps="false"
+           android:backgroundTint="@color/principal"
+           android:elevation="8dp"
+           android:text="Cambiar datos personales"
+           android:textSize="18dp"
+           app:cornerRadius="10dp"
+           ></com.google.android.material.button.MaterialButton>
+   </LinearLayout>
+
+</FrameLayout>
