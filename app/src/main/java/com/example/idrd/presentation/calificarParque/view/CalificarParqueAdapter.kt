@@ -42,20 +42,25 @@ class CalificarParqueAdapter(private val context:Context ):RecyclerView.Adapter<
             val salida= formatter.format(calificacion.fecha)
             itemView.fecha.text=salida
             if (calificacion.estrellas==1){
+                limpiar()
                 itemView.unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
             }else  if (calificacion.estrellas==2){
+                limpiar()
                 itemView.unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
                 itemView.dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
             }else if (calificacion.estrellas==3){
+                limpiar()
                 itemView.unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
                 itemView.dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
                 itemView.tresEstrella.setColorFilter(Color.parseColor("#FFC833"))
             }else if (calificacion.estrellas==4){
+                limpiar()
                 itemView.unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
                 itemView.dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
                 itemView.tresEstrella.setColorFilter(Color.parseColor("#FFC833"))
                 itemView.cuatroEstrella.setColorFilter(Color.parseColor("#FFC833"))
             }else if (calificacion.estrellas==5){
+                limpiar()
                 itemView.unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
                 itemView.dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
                 itemView.tresEstrella.setColorFilter(Color.parseColor("#FFC833"))
@@ -64,6 +69,14 @@ class CalificarParqueAdapter(private val context:Context ):RecyclerView.Adapter<
             }
             itemView.comentario.text=calificacion.comentario
         }
+        fun limpiar(){
+            itemView.unaEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
+            itemView.dosEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
+            itemView.tresEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
+            itemView.cuatroEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
+            itemView.cincoEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
+        }
+
     }
 
 

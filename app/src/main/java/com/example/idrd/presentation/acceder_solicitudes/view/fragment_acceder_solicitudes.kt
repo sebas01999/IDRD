@@ -35,7 +35,8 @@ class fragment_acceder_solicitudes : Fragment(),AccederAdapter.OnItemClickListen
     ): View? {
 
         val view:View= inflater.inflate(R.layout.fragment_acceder_solicitudes, container, false)
-        adapter=context?.let { AccederAdapter(it,this) }!!
+        val user: Users = arguments?.getSerializable("user") as Users
+        adapter=context?.let { AccederAdapter(it,this, user.rol) }!!
         view.rv.layoutManager=LinearLayoutManager(context)
         view.rv.adapter=adapter
         observeData()
@@ -44,15 +45,21 @@ class fragment_acceder_solicitudes : Fragment(),AccederAdapter.OnItemClickListen
     }
 
     override fun onItemClick(item: Solicitud) {
-        val bundle=Bundle()
-        bundle.putSerializable("solicitud",item)
-        val transaction = fragmentManager?.beginTransaction()
-        val fragmento= aceptar_rechazarFragment()
-        fragmento.arguments=bundle
-        transaction?.replace(R.id.container,fragmento)
-        transaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-        transaction?.addToBackStack(null)
-        transaction?.commit()
+        if (arguments!=null) {
+            val user: Users = arguments?.getSerializable("user") as Users
+            if(!user.rol.equals("USER")) {
+                val bundle = Bundle()
+                bundle.putSerializable("solicitud", item)
+                val transaction = fragmentManager?.beginTransaction()
+                val fragmento = aceptar_rechazarFragment()
+                fragmento.arguments = bundle
+                transaction?.replace(R.id.container, fragmento)
+                transaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                transaction?.addToBackStack(null)
+                transaction?.commit()
+            }
+        }
+
     }
 
     fun observeData(){

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        android:id="@+id/item_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="13dp"
+        app:cardElevation="5dp"
+        app:strokeColor="@color/principal"
+        app:strokeWidth="2dp"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        tools:ignore="SpeakableTextPresentCheck"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:id="@+id/botones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="right"
+                    android:layout_margin="3dp">
+                    <ImageButton
+                        android:id="@+id/borrarSolicitud"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_delete"
+                        android:backgroundTint="@color/white"
+                        app:tint="@color/principal"></ImageButton>
+                    <ImageButton
+                        android:id="@+id/EditarSolicitud"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_edit"
+                        android:backgroundTint="@color/white"
+                        app:tint="@color/principal"
+                        android:layout_gravity="right"></ImageButton>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+
+                >
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="85dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/imagen_parque"
+                    ></ImageView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/parque"
+                        android:layout_width="match_parent"
+                        android:layout_height="62dp"
+                        android:layout_marginRight="9dp"
+                        android:text=" PARQUE NACIONAL ENRIQUE OLAYA HERRERA"
+                        android:textSize="17dp"
+                        android:textAlignment="center"
+
+                        ></TextView>
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_linea"
+                ></ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:layout_margin="10dp"
+                android:text="Solicitud de prestamo para el 19 NOV a las 9:00 am con duracion 2 horas"
+                android:id="@+id/infor_des"
+
+                ></TextView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_linea"
+                ></ImageView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/hour_park"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:text="Estado"
+                android:id="@+id/estado"
+
+                ></TextView>
+        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progressBar_Bsolicutud"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            style="?android:attr/progressBarStyle"
+            android:indeterminateDrawable="@drawable/progressbar"
+            android:indeterminateDuration="@android:integer/config_longAnimTime"
+            android:layout_marginTop="21dp"
+            android:visibility="gone"></ProgressBar>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

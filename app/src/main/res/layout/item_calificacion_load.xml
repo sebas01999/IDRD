@@ -11,6 +11,7 @@
         android:foreground="?selectableItemBackground"
         app:cardCornerRadius="13dp"
         app:cardElevation="5dp"
+        android:layout_margin="10dp"
         tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout

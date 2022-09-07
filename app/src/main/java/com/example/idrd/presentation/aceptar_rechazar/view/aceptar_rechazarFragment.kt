@@ -93,6 +93,10 @@ class aceptar_rechazarFragment : Fragment() , Aceptar_rechazarContract.Aceptar_r
             presenter.editarsolicitud(estado!!, solicitud.id)
         }
     }
-
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.dettachView()
+        presenter.dettachJob()
+    }
 
 }

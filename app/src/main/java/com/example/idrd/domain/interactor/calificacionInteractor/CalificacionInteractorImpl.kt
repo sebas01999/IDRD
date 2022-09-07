@@ -36,4 +36,15 @@ class CalificacionInteractorImpl:CalificacionInteractor {
             }
         }
     }
+
+    override suspend fun EditCalificacionParque(calificacion: String, idParque: String):Unit= suspendCancellableCoroutine{ continuation->
+        val db = Firebase.firestore
+        db.collection("Parques").document(idParque).update("calificacion", calificacion).addOnCompleteListener {
+            if (it.isSuccessful){
+                continuation.resume(Unit)
+            }else{
+                continuation.resumeWithException(FirebaseCalificacionExceptiones(it.exception?.message))
+            }
+        }
+    }
 }

@@ -5,4 +5,5 @@ import com.example.idrd.data.model.Calificacion
 interface CalificacionInteractor {
     suspend fun sendCalificacion(calificacion: Calificacion)
     suspend fun EditCalificacion(calificacion: Calificacion)
+    suspend fun EditCalificacionParque(calificacion: String, idParque:String)
 }

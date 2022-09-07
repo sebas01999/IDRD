@@ -26,6 +26,7 @@ interface AgregarCalificacionContract {
         fun isViewAttached():Boolean
         fun addCalificacion(calificacion: Calificacion)
         fun editCalificacion(calificacion: Calificacion)
+        fun editCalificacionParque(calificacion: String, idParque:String)
         fun checkEmptyComent(comentario: String):Boolean
     }
 

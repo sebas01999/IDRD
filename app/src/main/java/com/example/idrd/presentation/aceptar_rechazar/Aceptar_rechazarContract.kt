@@ -1,7 +1,5 @@
 package com.example.idrd.presentation.aceptar_rechazar
 
-import com.example.idrd.data.model.Calificacion
-
 interface Aceptar_rechazarContract {
 
     interface Aceptar_rechazarView{

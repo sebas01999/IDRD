@@ -72,6 +72,24 @@ class AgregarCalificacionPresenter(calificacionInteractor: CalificacionInteracto
         }
     }
 
+    override fun editCalificacionParque(calificacion: String, idParque: String) {
+        launch {
+            try {
+                view?.showProgressDialog()
+                calificacionInteractor?.EditCalificacionParque(calificacion,idParque)
+                if (isViewAttached()){
+                    view?.hideProgressDialog()
+                    view?.showSuccess()
+                }
+            }catch (e:FirebaseCalificacionExceptiones){
+                if (isViewAttached()){
+                    view?.showError(e.message)
+                    view?.hideProgressDialog()
+                }
+            }
+        }
+    }
+
     override fun checkEmptyComent(comentario: String): Boolean {
         return comentario.isEmpty()
     }
