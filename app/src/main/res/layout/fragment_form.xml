@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rounded_form"
     android:orientation="vertical"
-    tools:context=".presentation.form.view.fragment_form">
+    tools:context=".presentation.form.view.fragment_form"
+    android:minWidth="800dp">
 
 
     <LinearLayout
@@ -35,6 +36,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/naturalezaedit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text">
@@ -321,6 +323,7 @@
             android:layout_marginTop="25dp">
 
             <TextView
+                android:id="@+id/textoBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"

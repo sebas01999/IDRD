@@ -73,7 +73,6 @@ class AccederAdapter( private val context: Context, private var itemClickListene
             if (rol=="USER") {
                 val formatter = SimpleDateFormat("EEE, dd 'de' MMMM 'del' yyyy 'a las' hh:mm a")
                 val salida = formatter.format(solicitud.fecha)
-                itemView.item_card.setOnClickListener { itemClickListener.onItemClick(solicitud) }
                 Glide.with(context).load(solicitud.url).into(itemView.imagen_parque)
                 itemView.parque.text = solicitud.nombre
                 itemView.infor_des.text = "Solicitud de prestamo para el dia " + salida +
@@ -85,7 +84,7 @@ class AccederAdapter( private val context: Context, private var itemClickListene
                     notifyDataSetChanged()
                 }
                 itemView.EditarSolicitud.setOnClickListener {
-                    val bottomSheetFragment= fragment_editar_solicitud()
+                    itemClickListener.onItemClick(solicitud)
 
                 }
             }else{

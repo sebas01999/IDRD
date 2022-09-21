@@ -14,6 +14,8 @@ import com.example.idrd.data.model.Solicitud
 import com.example.idrd.data.model.Users
 import com.example.idrd.presentation.acceder_solicitudes.model.AccederViewModel
 import com.example.idrd.presentation.aceptar_rechazar.view.aceptar_rechazarFragment
+import com.example.idrd.presentation.agregarParque.view.agregarParqueFragment
+import com.example.idrd.presentation.editar_solicitud.view.fragment_editar_solicitud
 import kotlinx.android.synthetic.main.fragment_acceder_solicitudes.view.*
 import kotlinx.android.synthetic.main.fragment_inicio.*
 
@@ -46,10 +48,11 @@ class fragment_acceder_solicitudes : Fragment(),AccederAdapter.OnItemClickListen
 
     override fun onItemClick(item: Solicitud) {
         if (arguments!=null) {
+            val bundle = Bundle()
+            bundle.putSerializable("solicitud", item)
             val user: Users = arguments?.getSerializable("user") as Users
             if(!user.rol.equals("USER")) {
-                val bundle = Bundle()
-                bundle.putSerializable("solicitud", item)
+
                 val transaction = fragmentManager?.beginTransaction()
                 val fragmento = aceptar_rechazarFragment()
                 fragmento.arguments = bundle
@@ -57,6 +60,10 @@ class fragment_acceder_solicitudes : Fragment(),AccederAdapter.OnItemClickListen
                 transaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 transaction?.addToBackStack(null)
                 transaction?.commit()
+            }else{
+                val dialog= fragment_editar_solicitud()
+                dialog.arguments=bundle
+                dialog.show(childFragmentManager, "SimpleDialog")
             }
         }
 

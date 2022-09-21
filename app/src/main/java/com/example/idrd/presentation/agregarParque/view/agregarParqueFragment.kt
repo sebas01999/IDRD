@@ -120,6 +120,7 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
             nombre.setText("")
             ubicacion.setText("")
             horario.setText("")
+            descripcion.setText("")
             borrar.visibility=View.GONE
             encontrado=false
         }
@@ -146,8 +147,10 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
                         if (!place.address.isEmpty()){
                             ubicacion.setText(place.address)
                         }
-                        if (!place.openingHours.weekdayText.isEmpty()){
-                            horario.setText(place.openingHours.weekdayText.toString())
+                        if (place.openingHours != null){
+                            var horarios=place.openingHours.weekdayText
+
+                            horario.setText(horarios.toString())
                         }
                         ubicacionp= GeoPoint(place.latLng.latitude, place.latLng.longitude)
 

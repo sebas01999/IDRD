@@ -18,6 +18,7 @@ interface FormContract {
         fun dettachJob()
         fun isViewAttached():Boolean
         fun sendRequest(solicitud: Solicitud )
+        fun editRequest(solicitud: Solicitud)
         fun checkEmptyNature(nature: String):Boolean
         fun checkEmptyDate(date: String):Boolean
         fun checkEmptyHour(hour: String):Boolean

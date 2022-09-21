@@ -56,6 +56,24 @@ CoroutineScope{
         }
     }
 
+    override fun editRequest(solicitud: Solicitud) {
+        launch {
+            try {
+                view?.showProgressDialog()
+                formInteractor?.editRequest(solicitud)
+                if (isViewAttached()){
+                    view?.hideProgressDialog()
+                    view?.showSuccess()
+                }
+            }catch (e: FirebaseFormExceptions){
+                if (isViewAttached()){
+                    view?.showError(e.message)
+                    view?.hideProgressDialog()
+                }
+            }
+        }
+    }
+
     override fun checkEmptyNature(nature: String): Boolean {
         return nature.isEmpty()
     }
