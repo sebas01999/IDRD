@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import com.example.idrd.R
+import com.example.idrd.presentation.configuración_cuenta.view.fragment_configuracion_cuenta
 import com.example.idrd.presentation.crud_parques.view.CrudParquesFragment
 import com.example.idrd.presentation.descripcion.view.descripcionFragment
+import kotlinx.android.synthetic.main.fragment_cuenta__admin_parque.view.*
 import kotlinx.android.synthetic.main.fragment_cuenta__admingeneral.view.*
 
 class cuenta_AdmingeneralFragment : Fragment() {
@@ -29,6 +31,18 @@ class cuenta_AdmingeneralFragment : Fragment() {
             transaction?.addToBackStack(null)
             transaction?.commit()
         }
+
+        view.botonconfigadming.setOnClickListener {
+            val transaction=fragmentManager?.beginTransaction()
+            val fragmento = fragment_configuracion_cuenta()
+            fragmento.arguments=arguments
+            transaction?.replace(R.id.container, fragmento)
+
+            transaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            transaction?.addToBackStack(null)
+            transaction?.commit()
+        }
+
         return view
     }
 

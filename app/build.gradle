@@ -32,8 +32,10 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
-        viewBinding true
+        viewBinding true // para acceder a las vistas de forma optima
     }
+
+
 }
 
 dependencies {
@@ -45,8 +47,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.1.1'
-    implementation 'com.google.firebase:firebase-database-ktx:20.0.4'
-    implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.6'
     implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
     testImplementation 'junit:junit:4.+'
@@ -65,4 +66,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
     implementation 'com.github.duanhong169:colorpicker:1.1.5'
     implementation 'com.google.android.libraries.places:places:2.6.0'
+    implementation 'com.google.zxing:core:3.3.0'
+    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
+
 }

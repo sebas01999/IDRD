@@ -93,6 +93,7 @@
             android:drawableRight="@drawable/ic_ir"
             android:drawableLeft="@drawable/ic_editar_datos"
             android:drawableTint="@color/principal"
+            android:textAllCaps="false"
 
             ></com.google.android.material.button.MaterialButton>
     </LinearLayout>

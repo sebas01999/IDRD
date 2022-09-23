@@ -47,11 +47,15 @@
 
 
         </androidx.cardview.widget.CardView>
+
+
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnentrada"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:cardCornerRadius="40dp"
+            android:clickable="true"
 
             >
             <LinearLayout
@@ -78,58 +82,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NUMERO"
-                        android:textSize="24dp"
-                        android:textStyle="bold"
-                        ></TextView>
-
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_entrada"
-                    android:layout_margin="30dp"
-
-                    ></ImageView>
-
-            </LinearLayout>
-
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="40dp"
-
-            >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="20dp"
-                >
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="20dp"
-                    >
-                    <TextView
-                        android:layout_marginTop="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ENTRADA"
-                        android:textSize="24dp"
-                        ></TextView>
-                    <TextView
-                        android:id="@+id/numsalidas"
-                        android:layout_marginTop="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NUMERO"
+                        android:text="0"
                         android:textSize="24dp"
                         android:textStyle="bold"
                         ></TextView>

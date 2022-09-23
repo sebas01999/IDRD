@@ -34,12 +34,15 @@ class aceptar_rechazarFragment : Fragment() , Aceptar_rechazarContract.Aceptar_r
     ): View? {
         // Inflate the layout for this fragment
         val view: View = inflater!!.inflate(R.layout.fragment_aceptar_rechazar, container, false)
+
         presenter= aceptar_rechazarPresenter(AceptarrechazarInteractorImpl())
         presenter.attachView(this)
 
 
 
+
         if(arguments!=null){
+
             val solicitud: Solicitud = arguments?.getSerializable("solicitud") as Solicitud
             view.nombre.text=solicitud.nombre
             Glide.with(this).load(solicitud.url).into(view.image)

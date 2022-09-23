@@ -90,6 +90,16 @@
         ></com.google.android.material.button.MaterialButton>
 
 
+        <ProgressBar
+            android:id="@+id/progressBar_cambiar_correo"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            style="?android:attr/progressBarStyle"
+            android:indeterminateDrawable="@drawable/progressbar"
+            android:indeterminateDuration="@android:integer/config_longAnimTime"
+            android:layout_marginTop="21dp"
+            android:visibility="gone"></ProgressBar>
 
 
 

@@ -11,6 +11,7 @@ interface Aceptar_rechazarContract {
     }
 
     interface Aceptar_rechazarPresenter{
+
         fun attachView(view:Aceptar_rechazarView)
         fun dettachView()
         fun dettachJob()

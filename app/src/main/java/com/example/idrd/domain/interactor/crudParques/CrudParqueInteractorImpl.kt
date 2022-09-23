@@ -16,8 +16,7 @@ import kotlin.coroutines.resumeWithException
 
 
 class CrudParqueInteractorImpl:CrudParqueInteractor {
-    override suspend fun addParque(parque: Parque, uri: Uri): Unit =
-        suspendCancellableCoroutine { continuacion ->
+    override suspend fun addParque(parque: Parque, uri: Uri): Unit = suspendCancellableCoroutine { continuacion ->
             val db = Firebase.firestore
             var imagen = FirebaseStorage.getInstance().reference.child(parque.nombre)
             imagen.putFile(uri).addOnSuccessListener(OnSuccessListener {
