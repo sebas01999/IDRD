@@ -64,6 +64,8 @@ class cuenta_AdminParqueFragment : Fragment() {
             transaction?.addToBackStack(null)
             transaction?.commit()
         }
+
+
         return view
     }
 
