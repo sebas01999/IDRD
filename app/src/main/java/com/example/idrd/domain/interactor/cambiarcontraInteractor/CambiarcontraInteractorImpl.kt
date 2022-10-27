@@ -9,17 +9,17 @@ import kotlin.coroutines.resumeWithException
 
 class CambiarcontraInteractorImpl: CambiarcontraInteractor {
 
-    override suspend fun Cambiarcon(contranueva: String): Unit= suspendCancellableCoroutine{ continuation->
+    override suspend fun Cambiarcon(): Unit= suspendCancellableCoroutine{ continuation->
 
         val user = Firebase.auth.currentUser
 
-        user!!.updatePassword(contranueva).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    continuation.resume(Unit)
-                }else{
-                    continuation.resumeWithException(Firebasecambiar_contraseñaExceptions(task.exception?.message))
-                }
+        Firebase.auth.sendPasswordResetEmail(user?.email.toString()).addOnCompleteListener {
+            if(it.isSuccessful){
+                continuation.resume(Unit)
+            }else{
+                continuation.resumeWithException(Firebasecambiar_contraseñaExceptions(it.exception?.message))
             }
+        }
 
     }
 

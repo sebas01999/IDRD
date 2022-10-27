@@ -18,10 +18,8 @@ interface Cambiar_contraContract {
         fun dettachView()
         fun dettachJob()
         fun isViewAttached():Boolean
-        fun cambiarcontraseña(contranueva:String)
-        fun checkemptyfields(campo:String ) : Boolean
-        fun valcontra(contra:String) : Boolean
-        fun valcontrarep(repcontra: String, contra: String) : Boolean
+        fun cambiarcontraseña()
+
 
     }
 }

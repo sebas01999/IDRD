@@ -42,11 +42,11 @@ class Cambiar_contraseñaPresenter(cambiarcontraInteractor: CambiarcontraInterac
         return view!=null
     }
 
-    override fun cambiarcontraseña(contranueva: String) {
+    override fun cambiarcontraseña() {
         launch {
             try {
                 view?.showProgressDialog()
-                cambiarcontraInteractor?.Cambiarcon(contranueva)
+                cambiarcontraInteractor?.Cambiarcon()
                 if(isViewAttached()){
                     view?.hideProgressDialog()
                     view?.showSuccess()
@@ -62,18 +62,7 @@ class Cambiar_contraseñaPresenter(cambiarcontraInteractor: CambiarcontraInterac
 
     }
 
-    override fun checkemptyfields(campo: String): Boolean {
-        return campo.isEmpty()
-    }
 
-    override fun valcontra(contra: String): Boolean {
-        val user = FirebaseAuth.getInstance()
-        return false
-    }
-
-    override fun valcontrarep(repcontra: String, contra: String): Boolean {
-        TODO("Not yet implemented")
-    }
 
 
 
