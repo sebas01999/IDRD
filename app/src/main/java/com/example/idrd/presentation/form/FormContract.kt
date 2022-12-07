@@ -23,5 +23,6 @@ interface FormContract {
         fun checkEmptyDate(date: String):Boolean
         fun checkEmptyHour(hour: String):Boolean
         fun formatedDate(date: String, hour: String):Date
+        fun checkDate(date: Date, date2: Date?): Boolean
     }
 }

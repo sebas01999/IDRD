@@ -14,7 +14,6 @@ class RepoAforo {
         val ref= FirebaseDatabase.getInstance().getReference("Parques").child(idParque)
         val listener =object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.i("pruebuita", snapshot.value.toString())
                 val aforo:Int= Integer.parseInt(snapshot.value.toString())
                 mutableData.value=aforo
             }

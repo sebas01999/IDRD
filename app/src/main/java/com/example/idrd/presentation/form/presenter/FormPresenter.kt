@@ -4,8 +4,7 @@ import com.example.idrd.data.model.Solicitud
 import com.example.idrd.domain.interactor.FormInteractor.FormInteractor
 import com.example.idrd.presentation.form.FormContract
 import com.example.idrd.presentation.form.exceptions.FirebaseFormExceptions
-import com.example.idrd.presentation.register.RegisterContract
-import com.example.idrd.presentation.register.exceptions.FirebaseRegisterException
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -91,5 +90,13 @@ CoroutineScope{
         return obtenida
     }
 
+    override fun checkDate(date: Date, date2: Date?): Boolean {
+
+        if (date.compareTo(date2)==0){
+                return true
+        }else{
+            return false
+        }
+    }
 
 }
