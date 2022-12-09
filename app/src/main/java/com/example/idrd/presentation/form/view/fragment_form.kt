@@ -13,25 +13,31 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.example.idrd.R
+import com.example.idrd.data.model.Notificacion
 import com.example.idrd.data.model.Parque
 import com.example.idrd.data.model.Solicitud
 import com.example.idrd.domain.interactor.FormInteractor.FormInteractorImpl
+import com.example.idrd.domain.interactor.notificaciones_Interactor.Notificaciones_InteractorImpl
 import com.example.idrd.presentation.acceder_solicitudes.model.AccederViewModel
 import com.example.idrd.presentation.crud_eventos.model.EventosViewModelAdmin
 import com.example.idrd.presentation.eventos.model.EventosViewModel
 import com.example.idrd.presentation.form.FormContract
 import com.example.idrd.presentation.form.model.DatePicker
 import com.example.idrd.presentation.form.presenter.FormPresenter
+import com.example.idrd.presentation.notificaciones.notificaciones_Presenter.Notificaciones_Presenter
+import com.example.idrd.presentation.notificaciones.view.Notificaciones_Contract
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_form.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class fragment_form : BottomSheetDialogFragment(), FormContract.FormView {
+class fragment_form : BottomSheetDialogFragment(), FormContract.FormView, Notificaciones_Contract.NotificacionesView {
     lateinit var presenter: FormPresenter
+    lateinit var presenternoti: Notificaciones_Contract.NotificacionesPresenter
     private val viewModel by lazy { ViewModelProvider(this).get(AccederViewModel::class.java)}
     private val viewModel2 by lazy { ViewModelProvider(this).get(EventosViewModelAdmin::class.java)}
     override fun onCreateView(
@@ -44,7 +50,9 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter= FormPresenter(FormInteractorImpl())
+        presenternoti=Notificaciones_Presenter(Notificaciones_InteractorImpl())
         presenter.attachView(this)
+        presenternoti.attachView(this)
 
         btn_menos.setOnClickListener {
             var nume=Integer.parseInt(num_usuarios.text.toString())
@@ -205,10 +213,20 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView {
                     solicitud.nombre=parque.nombre
                     solicitud.url=parque.imageUrl
                     solicitud.naturaleza=nature
-
-
                     presenter.sendRequest(solicitud)
 
+                    var id=FirebaseAuth.getInstance().currentUser?.uid.toString()
+                    var notificacion=Notificacion()
+
+                    notificacion.Titulo= "Solicitud de prestamo enviada"
+                    notificacion.Texto= "Notificaremos la respuesta"
+                    presenternoti.notificacion(notificacion,id)
+
+                    if (parque.idAdmin != "DEFAULT IDADMIN"){
+                        notificacion.Titulo="SOLICITUD NUEVA"
+                        notificacion.Texto="Ha recibido una nueva solicitud"
+                        presenternoti.notificacion(notificacion,parque.idAdmin)
+                    }
                 }
             })
 
@@ -221,6 +239,11 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView {
         Toast.makeText(context,"solicitud enviada", Toast.LENGTH_SHORT).show()
         activity?.onBackPressed()
     }
+
+    override fun notificacion() {
+
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         presenter.dettachView()

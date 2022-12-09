@@ -1,0 +1,24 @@
+package com.example.idrd.presentation.notificaciones.view
+
+import com.example.idrd.data.model.Notificacion
+
+interface Notificaciones_Contract {
+
+    interface NotificacionesView {
+
+        fun showError(msgError:String?)
+        fun showProgressDialog()
+        fun hideProgressDialog()
+        fun showSuccess()
+        fun notificacion()
+    }
+    interface NotificacionesPresenter{
+
+        fun attachView(view: NotificacionesView)
+        fun dettachView()
+        fun dettachJob()
+        fun isViewAttached():Boolean
+        fun notificacion(notificacion:Notificacion,Id:String)
+    }
+
+}
