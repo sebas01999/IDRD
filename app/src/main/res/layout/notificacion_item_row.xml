@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:background="@color/principalClaro"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+    android:id="@+id/tarjeta"
+    android:clickable="true">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="62dp"
+        android:src="@drawable/logo"></ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tituloNoti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Titulo Notificacion"
+            android:textAlignment="center"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/textoNoti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="Texto Notificacion"></TextView>
+
+        <TextView
+            android:id="@+id/fechaNoti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fecha Notificacion"
+            android:textColor="@color/hour_park"
+            android:textStyle="italic"></TextView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_linea"
+            ></ImageView>
+
+    </LinearLayout>
+
+</LinearLayout>

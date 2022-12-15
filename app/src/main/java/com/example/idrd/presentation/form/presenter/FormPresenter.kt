@@ -90,13 +90,10 @@ CoroutineScope{
         return obtenida
     }
 
-    override fun checkDate(date: Date, date2: Date?): Boolean {
+    override fun checkDate(date: Date, date2: Date?): Int {
 
-        if (date.compareTo(date2)==0){
-                return true
-        }else{
-            return false
-        }
+         return date.compareTo(date2)
+
     }
 
 }

@@ -39,18 +39,11 @@ class Notificaciones_Presenter(notificacionesInteractor: Notificaciones_Interact
     override fun notificacion(notificacion: Notificacion, Id: String) {
         launch {
             try{
-                view?.showProgressDialog()
-                notificacionesInteractor?.notificacion(notificacion, Id)
-                if (isViewAttached()){
-                    view?.hideProgressDialog()
-                    view?.showSuccess()
-                }
-            }catch (e: Firebasecambiar_correoExceptions){
-                if(isViewAttached()){
-                    view?.showError(e.message)
-                    view?.hideProgressDialog()
 
-                }
+                notificacionesInteractor?.notificacion(notificacion, Id)
+
+            }catch (e: Firebasecambiar_correoExceptions){
+
             }
         }
     }

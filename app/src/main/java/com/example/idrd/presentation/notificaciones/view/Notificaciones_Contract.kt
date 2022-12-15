@@ -6,11 +6,6 @@ interface Notificaciones_Contract {
 
     interface NotificacionesView {
 
-        fun showError(msgError:String?)
-        fun showProgressDialog()
-        fun hideProgressDialog()
-        fun showSuccess()
-        fun notificacion()
     }
     interface NotificacionesPresenter{
 

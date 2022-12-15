@@ -13,4 +13,5 @@
     <color name="placeholder_bg">#dddddd</color>
     <color name="principal">#5D4395</color>
     <color name="bg_loginRegister">#F2F2F2</color>
+    <color name="principalClaro">#FAF6FF</color>
 </resources>

@@ -178,28 +178,51 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView, Notifi
             val dateF:Date=presenter.formatedDate(date, hour)
             var horas1:Int
             Integer.parseInt(duracionH).also { horas1 = it }
-            val dateDuracion= presenter.formatedDate(date,(dateF.hours+horas1).toString()+':'+dateF.minutes.toString())
-            Log.d("prueba", dateDuracion.toString())
+            val dateDuracion= presenter.formatedDate(date, (dateF.hours+horas1).toString()+':'+dateF.minutes.toString())
             if (!it.isEmpty()){
 
                 for (item in it){
-                    if(presenter.checkDate(dateF, item.fecha)){
+                    if(presenter.checkDate(dateF, item.fecha)==0){
                         showError("Esta fecha ya esta reservada")
                         return@Observer
 
                     }
-                    val fechaDuracion=item.fecha
-                    fechaDuracion?.hours= fechaDuracion?.hours!! + item.duracionH
-                    Log.d("prueba", fechaDuracion.toString())
+
+                    val fechaDuracion= presenter.formatedDate(date, (item.fecha?.hours!!+item.duracionH).toString()+':'+item.fecha?.minutes.toString())
+
+                    if (dateF.date == item.fecha!!.date  && dateF.month == item.fecha!!.month  && dateF.year == item.fecha!!.year ){
+                        if (presenter.checkDate(dateF,item.fecha)>0 && presenter.checkDate(dateF, fechaDuracion)<0){
+                            showError("Esta fecha ya esta reservada")
+                            return@Observer
+                        }
+                        if (presenter.checkDate(dateDuracion,item.fecha)>0 && presenter.checkDate(dateDuracion, fechaDuracion)<0){
+                            showError("Esta fecha ya esta reservada")
+                            return@Observer
+                        }
+                    }
+
                 }
 
             }
             viewModel2.fetchEventosDataAdmin(parque.id).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
                 for (item in it){
-                    if(presenter.checkDate(dateF, item.fecha)){
+                    if(presenter.checkDate(dateF, item.fecha)==0){
                         showError("Esta fecha ya esta reservada para un evento")
                         return@Observer
 
+                    }
+
+                    val fechaDuracion= presenter.formatedDate(date, (item.fecha?.hours!!+item.duracionH).toString()+':'+item.fecha?.minutes.toString())
+
+                    if (dateF.date == item.fecha!!.date  && dateF.month == item.fecha!!.month  && dateF.year == item.fecha!!.year ){
+                        if (presenter.checkDate(dateF,item.fecha)>0 && presenter.checkDate(dateF, fechaDuracion)<0){
+                            showError("Esta fecha ya esta reservada para un evento")
+                            return@Observer
+                        }
+                        if (presenter.checkDate(dateDuracion,item.fecha)>0 && presenter.checkDate(dateDuracion, fechaDuracion)<0){
+                            showError("Esta fecha ya esta reservada para un evento")
+                            return@Observer
+                        }
                     }
                 }
                 if(arguments!=null){
@@ -217,10 +240,11 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView, Notifi
 
                     var id=FirebaseAuth.getInstance().currentUser?.uid.toString()
                     var notificacion=Notificacion()
+                    var notificacionUser=Notificacion()
 
-                    notificacion.Titulo= "Solicitud de prestamo enviada"
-                    notificacion.Texto= "Notificaremos la respuesta"
-                    presenternoti.notificacion(notificacion,id)
+                    notificacionUser.Titulo= "Solicitud de prestamo enviada"
+                    notificacionUser.Texto= "Notificaremos la respuesta"
+                    presenternoti.notificacion(notificacionUser,id)
 
                     if (parque.idAdmin != "DEFAULT IDADMIN"){
                         notificacion.Titulo="SOLICITUD NUEVA"
@@ -240,9 +264,7 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView, Notifi
         activity?.onBackPressed()
     }
 
-    override fun notificacion() {
 
-    }
 
     override fun onDestroy() {
         super.onDestroy()

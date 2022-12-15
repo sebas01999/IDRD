@@ -7,86 +7,92 @@
     tools:context=".presentation.login.view.LoginFragment"
 
     >
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="48dp">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editTextEmail"
+        >
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Correo electronico"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:startIconDrawable="@drawable/ic_email"
-            >
-            <com.google.android.material.textfield.TextInputEditText
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="48dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
+                android:hint="Correo electronico"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:startIconDrawable="@drawable/ic_email"
                 >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    >
 
-            </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editTextTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Contraseña"
-            android:layout_marginTop="18dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:startIconDrawable="@drawable/ic_lock"
-            app:passwordToggleEnabled="true"
-            >
-            <com.google.android.material.textfield.TextInputEditText
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editTextTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
+                android:hint="Contraseña"
+                android:layout_marginTop="18dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:startIconDrawable="@drawable/ic_lock"
+                app:passwordToggleEnabled="true"
                 >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    >
 
-            </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/txt_recover_pw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="¿Olvidaste tu contraseña?"
-            android:textColor="@color/principal"
-            android:textStyle="bold"
-            android:textSize="14dp"
-            android:layout_marginTop="22dp"
-            android:clickable="true">
-        </TextView>
+            <TextView
+                android:id="@+id/txt_recover_pw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Olvidaste tu contraseña?"
+                android:textColor="@color/principal"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:layout_marginTop="22dp"
+                android:clickable="true">
+            </TextView>
 
-       <ProgressBar
-           android:id="@+id/progressBar_singIn"
-           android:layout_width="55dp"
-           android:layout_height="55dp"
-           android:layout_gravity="center"
-           style="?android:attr/progressBarStyle"
-           android:indeterminateDrawable="@drawable/progressbar"
-           android:indeterminateDuration="@android:integer/config_longAnimTime"
-           android:layout_marginTop="21dp"
-           android:visibility="gone">
-       </ProgressBar>
+            <ProgressBar
+                android:id="@+id/progressBar_singIn"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                style="?android:attr/progressBarStyle"
+                android:indeterminateDrawable="@drawable/progressbar"
+                android:indeterminateDuration="@android:integer/config_longAnimTime"
+                android:layout_marginTop="21dp"
+                android:visibility="gone">
+            </ProgressBar>
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corner"
-            android:textStyle="bold"
-            android:text="Inicio Sesión"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="17dp"
-            android:layout_marginTop="21dp"></Button>
-
-
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner"
+                android:textStyle="bold"
+                android:text="Inicio Sesión"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17dp"
+                android:layout_marginTop="21dp"></Button>
 
 
-    </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>
