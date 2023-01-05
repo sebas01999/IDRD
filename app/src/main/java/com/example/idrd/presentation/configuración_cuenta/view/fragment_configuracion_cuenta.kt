@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import com.example.idrd.R
+import com.example.idrd.presentation.cambiar_contraseña.view.fragment_cambiarcontra
 import com.example.idrd.presentation.cambiar_correo.view.fragment_cambiarcorreo
 import com.example.idrd.presentation.cambiar_datospersonales.view.fragment_cambiardatosp
 import kotlinx.android.synthetic.main.fragment_configuracion_cuenta.view.*
@@ -40,6 +41,16 @@ class fragment_configuracion_cuenta : Fragment() {
         view.botoncambiardatosper.setOnClickListener {
             val transaction=fragmentManager?.beginTransaction()
             val fragmento = fragment_cambiardatosp()
+            fragmento.arguments=arguments
+            transaction?.replace(R.id.container, fragmento)
+
+            transaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            transaction?.addToBackStack(null)
+            transaction?.commit()
+        }
+        view.botoncambiarcontraseña.setOnClickListener {
+            val transaction=fragmentManager?.beginTransaction()
+            val fragmento = fragment_cambiarcontra()
             fragmento.arguments=arguments
             transaction?.replace(R.id.container, fragmento)
 

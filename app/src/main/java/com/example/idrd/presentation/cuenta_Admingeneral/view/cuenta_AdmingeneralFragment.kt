@@ -10,13 +10,12 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.idrd.R
+import com.example.idrd.data.model.Users
 import com.example.idrd.presentation.configuración_cuenta.view.fragment_configuracion_cuenta
 import com.example.idrd.presentation.crud_parques.view.CrudParquesFragment
-import com.example.idrd.presentation.descripcion.view.descripcionFragment
 import com.example.idrd.presentation.notificaciones.model.NotificacionesViewModel
 import com.example.idrd.presentation.notificaciones.view.NotificacionesFragment
 import com.google.firebase.auth.FirebaseAuth
-
 import kotlinx.android.synthetic.main.fragment_cuenta__admingeneral.*
 import kotlinx.android.synthetic.main.fragment_cuenta__admingeneral.view.*
 
@@ -29,6 +28,12 @@ class cuenta_AdmingeneralFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view:View= inflater!!.inflate(R.layout.fragment_cuenta__admingeneral, container, false)
+        if (arguments!=null){
+            val user: Users = arguments?.getSerializable("user") as Users
+            view.nombreadming.text=user.nombre
+            view.correoadming.text=user.correo
+            view.direcadmingv.text=user.direction
+        }
         view.botonParquesadming.setOnClickListener {
             val transaction=fragmentManager?.beginTransaction()
             val fragmento = CrudParquesFragment()

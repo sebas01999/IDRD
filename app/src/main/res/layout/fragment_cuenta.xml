@@ -102,20 +102,32 @@
             android:orientation="horizontal"
 
             >
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/botonnotificacionesUser"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:drawableTop="@drawable/ic_notificacion"
-                android:elevation="8dp"
-                android:text="Notificaciones"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="10dp"
+                >
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/botonnotificacionesUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:drawableTop="@drawable/ic_notificacion"
+                    android:elevation="8dp"
+                    android:text="Notificaciones"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
 
-                ></com.google.android.material.button.MaterialButton>
+                    ></com.google.android.material.button.MaterialButton>
+
+                <com.nex3z.notificationbadge.NotificationBadge
+                    android:id="@+id/badge"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="5dp"
+                    android:elevation="9dp" />
+            </RelativeLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/botonconfigUser"

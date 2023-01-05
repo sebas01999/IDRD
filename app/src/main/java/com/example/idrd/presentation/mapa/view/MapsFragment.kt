@@ -14,6 +14,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -37,7 +38,8 @@ class MapsFragment : Fragment(),GoogleMap.OnMarkerClickListener {
             val ubicacion = LatLng(parque.locali.latitude, parque.locali.longitude)
 
             googleMap.addMarker(MarkerOptions().position(ubicacion).title(parque.nombre))
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion))
+            val cameraPosition = CameraPosition.builder().target(ubicacion).zoom(15F).build()
+            googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
             googleMap.setOnMarkerClickListener(this)
         }
     }

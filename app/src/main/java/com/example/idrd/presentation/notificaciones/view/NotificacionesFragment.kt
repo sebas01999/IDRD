@@ -49,12 +49,8 @@ class NotificacionesFragment : Fragment(), NotificacionAdapter.OnItemClickListen
 
         viewModel.fetchNotificacionesData(auth).observe(viewLifecycleOwner, Observer {
             if (!it.isEmpty()){
-                val numerin =it.count { noti->
-                    noti.visto==false
-                }
                 adapter.setListData(it)
                 adapter.notifyDataSetChanged()
-                Log.d("prueba", numerin.toString())
             }
         })
     }

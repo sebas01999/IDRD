@@ -44,7 +44,7 @@ class EventosAdapter(private val context: Context, private var itemClickListener
             itemView.item_EventoCard.setOnClickListener { itemClickListener.onItemClick(evento) }
             itemView.item_EventoCard.setCardBackgroundColor(evento.color)
             itemView.nombre_parque.text=evento.nombreParque
-            itemView.descripcion_evento.text="El proximo "+salida+evento.eventoDes+" con una duracion de "+evento.duracionH+" horas"
+            itemView.descripcion_evento.text="El proximo "+salida+" "+evento.eventoDes+" con una duracion de "+evento.duracionH+" horas"
             Glide.with(context).load(evento.imageUrl).into(itemView.image_evento)
         }
     }
