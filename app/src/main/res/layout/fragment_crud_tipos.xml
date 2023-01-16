@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.crud_tipos_parques.view.CrudTiposFragment">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       >
+       <com.google.android.material.appbar.AppBarLayout
+
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <com.google.android.material.appbar.MaterialToolbar
+               android:id="@+id/toolbar"
+               android:layout_width="match_parent"
+               android:layout_height="?attr/actionBarSize"
+               app:title="IDRD "
+               app:titleTextColor="@color/white"
+               app:menu="@menu/menu_crud"
+               style="@style/Widget.MaterialComponents.Toolbar.Primary"></com.google.android.material.appbar.MaterialToolbar>
+       </com.google.android.material.appbar.AppBarLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           >
+           <com.google.android.material.card.MaterialCardView
+               android:layout_width="match_parent"
+               android:id="@+id/form_agregar_tipo"
+               android:layout_height="wrap_content"
+               android:layout_margin="5dp"
+               app:cardElevation="8dp"
+               app:cardCornerRadius="20dp"
+               android:visibility="gone"
+               >
+
+           <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:gravity="center"
+           android:layout_margin="10dp"
+           android:minWidth="800dp">
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/txt_tipo_parque"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:hint="Tipo de parque"
+               android:layout_marginTop="7dp"
+
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               >
+               <com.google.android.material.textfield.TextInputEditText
+                   android:id="@+id/tipo_parque"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="text"
+                   >
+
+               </com.google.android.material.textfield.TextInputEditText>
+           </com.google.android.material.textfield.TextInputLayout>
+
+           <LinearLayout
+               android:id="@+id/botones_tipo_parque"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_gravity="center"
+               >
+
+               <com.google.android.material.button.MaterialButton
+                   android:id="@+id/cancelar_tipo_parque"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:backgroundTint="@color/principal"
+                   android:text="cancelar"
+                   android:textColor="@color/white"
+                   android:layout_margin="7dp"
+                   android:layout_gravity="center"
+                   app:cornerRadius="10dp"
+
+                   >
+               </com.google.android.material.button.MaterialButton>
+
+           </LinearLayout>
+
+           <ProgressBar
+               android:id="@+id/progressBar_guardar_tipo_parque"
+               android:layout_width="55dp"
+               android:layout_height="55dp"
+               android:layout_gravity="center"
+               style="?android:attr/progressBarStyle"
+               android:indeterminateDrawable="@drawable/progressbar"
+               android:indeterminateDuration="@android:integer/config_longAnimTime"
+               android:layout_marginTop="21dp"
+               android:visibility="gone">
+
+           </ProgressBar>
+
+       </LinearLayout>
+
+           </com.google.android.material.card.MaterialCardView>
+
+       </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lista de tipos de parques"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/principal"
+                >
+            </TextView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_tipos_parque"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                ></androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+   </LinearLayout>
+
+</FrameLayout>
