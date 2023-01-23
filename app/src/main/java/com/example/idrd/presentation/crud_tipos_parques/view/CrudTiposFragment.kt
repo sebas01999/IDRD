@@ -106,6 +106,7 @@ class CrudTiposFragment : Fragment(),TiposAdapter.OnItemClickListener,CrudTiposP
             }
             tipo?.tipo=nombre
             presenter.editar(tipo!!)
+            adapter.notifyDataSetChanged()
             tipo=null
         }
 
@@ -114,6 +115,7 @@ class CrudTiposFragment : Fragment(),TiposAdapter.OnItemClickListener,CrudTiposP
     override fun borrar() {
         if(tipo!=null){
             presenter.borrar(tipo!!)
+            observerData()
             tipo=null
         }
     }

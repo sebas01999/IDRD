@@ -13,6 +13,7 @@ import com.example.idrd.R
 import com.example.idrd.data.model.Users
 import com.example.idrd.presentation.configuración_cuenta.view.fragment_configuracion_cuenta
 import com.example.idrd.presentation.crud_parques.view.CrudParquesFragment
+import com.example.idrd.presentation.crud_tipos_parques.view.CrudTiposFragment
 import com.example.idrd.presentation.notificaciones.model.NotificacionesViewModel
 import com.example.idrd.presentation.notificaciones.view.NotificacionesFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -43,7 +44,15 @@ class cuenta_AdmingeneralFragment : Fragment() {
             transaction?.addToBackStack(null)
             transaction?.commit()
         }
+        view.botonTiposParquesadming.setOnClickListener {
+            val transaction=fragmentManager?.beginTransaction()
+            val fragmento = CrudTiposFragment()
+            transaction?.replace(R.id.container, fragmento)
 
+            transaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            transaction?.addToBackStack(null)
+            transaction?.commit()
+        }
         view.botonconfigadming.setOnClickListener {
             val transaction=fragmentManager?.beginTransaction()
             val fragmento = fragment_configuracion_cuenta()

@@ -1,6 +1,7 @@
 package com.example.idrd.presentation.eventos.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.idrd.R
 import com.example.idrd.data.model.Evento
 import com.example.idrd.presentation.eventos.model.EventosViewModel
+import com.google.firebase.Timestamp
 import kotlinx.android.synthetic.main.fragment_eventos.*
 import kotlinx.android.synthetic.main.fragment_eventos.view.*
 
@@ -43,9 +45,11 @@ private val viewModel by lazy { ViewModelProvider(this).get(EventosViewModel::cl
 
     fun observeData(){
         viewModel.fetchEventosData().observe(viewLifecycleOwner, Observer {
+            var fechaActual= Timestamp.now().toDate()
             shimmer_view_container.stopShimmer()
             shimmer_view_container.visibility=View.GONE
-            adapter.setListData(it)
+            val lista=it//.filter { x-> x.fecha!!.compareTo(fechaActual)>0 }
+            adapter.setListData(lista as MutableList<Evento>)
             adapter.notifyDataSetChanged()
         })
     }
