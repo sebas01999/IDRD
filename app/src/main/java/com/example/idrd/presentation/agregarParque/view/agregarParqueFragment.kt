@@ -67,7 +67,6 @@ class agregarParqueFragment : DialogFragment(), AgregarParqueContract.AgregarVie
         presenter= AgregarParquePresenter(CrudParqueInteractorImpl())
         presenter.attachView(this)
 
-
         viewModelTipos.fetchTiposParqueData().observe(viewLifecycleOwner, Observer {lista->
             dataListTipos.add("Seleccione un tipo")
             for (item in lista){
