@@ -192,6 +192,7 @@ class agregarEventoFragment : DialogFragment(), AgregarEventoContract.AgregarEve
         evento.color=colorcard
         evento.eventoDes=descripcionEvento
         evento.fecha= presenter.formatedDate(date, hour)
+        evento.calificacion="0.0"
         Integer.parseInt(duracionH).also { evento.duracionH= it }
         if (arguments!=null){
             val user: Users = arguments?.getSerializable("user") as Users

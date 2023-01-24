@@ -6,7 +6,7 @@ import java.util.*
 class CalificacionEvento {
     var id:String="DEFAULT ID"
     var comentario:String = "DEFAULT COMENTARIO"
-    var idParque:String = "DEFAULT IDEVENTO"
+    var idEvento:String = "DEFAULT IDEVENTO"
     var idUser:String = "DEFAULT IDUSER"
     @ServerTimestamp
     var fecha: Date? = null

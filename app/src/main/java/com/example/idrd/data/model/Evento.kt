@@ -12,5 +12,6 @@ class Evento: Serializable {
     var nombreParque:String = "DEFAULT PARQUE"
     var fecha: Date? = null
     var duracionH:Int = 0
+    var calificacion:String="DEFAULT CALIFICACIÓN"
 
 }

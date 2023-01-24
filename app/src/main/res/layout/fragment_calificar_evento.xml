@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.calificarEvento.view.CalificarEventoFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calificaciones"
+        android:textColor="@color/principal"
+        android:textSize="25dp"
+        android:layout_margin="17dp"></TextView>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/todasCali"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/white"
+                android:text="Todas"
+                android:textSize="12dp"
+                android:layout_margin="5dp"
+                android:textColor="@color/location_park"></Button>
+            <Button
+                android:id="@+id/unaEstrella"
+                android:layout_width="62dp"
+                android:layout_height="50dp"
+                android:drawableLeft="@drawable/ic_estrellacalificar"
+                android:backgroundTint="@color/white"
+                android:text="1"
+                android:layout_margin="5dp"
+                android:textColor="@color/location_park"
+                ></Button>
+            <Button
+                android:id="@+id/dosEstrella"
+                android:layout_width="62dp"
+                android:layout_height="50dp"
+                android:drawableLeft="@drawable/ic_estrellacalificar"
+                android:backgroundTint="@color/white"
+                android:text="2"
+                android:layout_margin="5dp"
+                android:textColor="@color/location_park"
+                ></Button>
+            <Button
+                android:id="@+id/tresEstrella"
+                android:layout_width="62dp"
+                android:layout_height="50dp"
+                android:drawableLeft="@drawable/ic_estrellacalificar"
+                android:backgroundTint="@color/white"
+                android:text="3"
+                android:layout_margin="5dp"
+                android:textColor="@color/location_park"
+                ></Button>
+            <Button
+                android:id="@+id/cuatroEstrella"
+                android:layout_width="62dp"
+                android:layout_height="50dp"
+                android:drawableLeft="@drawable/ic_estrellacalificar"
+                android:backgroundTint="@color/white"
+                android:text="4"
+                android:layout_margin="5dp"
+                android:textColor="@color/location_park"
+                ></Button>
+            <Button
+                android:id="@+id/cincoEstrella"
+                android:layout_width="62dp"
+                android:layout_height="50dp"
+                android:drawableLeft="@drawable/ic_estrellacalificar"
+                android:backgroundTint="@color/white"
+                android:text="5"
+                android:layout_margin="5dp"
+                android:textColor="@color/location_park"
+                ></Button>
+        </LinearLayout>
+
+    </HorizontalScrollView>
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@+id/rv"
+        app:layout_constraintTop_toTopOf="@+id/rv">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/item_calificacion_load" />
+
+            <include layout="@layout/item_calificacion_load" />
+
+            <include layout="@layout/item_calificacion_load" />
+
+            <include layout="@layout/item_calificacion_load" />
+        </LinearLayout>
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_above="@+id/calificar"
+        ></androidx.recyclerview.widget.RecyclerView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.card.MaterialCardView
+
+            android:id="@+id/calificar"
+            android:layout_width="154dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/principal"
+            android:clickable="true"
+            android:elevation="15dp"
+            app:cardCornerRadius="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Calificar"
+                android:textColor="@color/white"
+                android:textSize="14dp"></TextView>
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
+
+
+</LinearLayout>
