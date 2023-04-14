@@ -16,6 +16,7 @@ import com.example.idrd.presentation.acceder_solicitudes.model.AccederViewModel
 import com.example.idrd.presentation.aceptar_rechazar.view.aceptar_rechazarFragment
 import com.example.idrd.presentation.agregarParque.view.agregarParqueFragment
 import com.example.idrd.presentation.editar_solicitud.view.fragment_editar_solicitud
+import com.google.firebase.Timestamp
 import kotlinx.android.synthetic.main.fragment_acceder_solicitudes.view.*
 import kotlinx.android.synthetic.main.fragment_inicio.*
 
@@ -78,7 +79,9 @@ class fragment_acceder_solicitudes : Fragment(),AccederAdapter.OnItemClickListen
                     //shimmer_view_container.stopShimmer()
                     // shimmer_view_container.visibility=View.GONE
 
-                    adapter.setListData(it)
+                    var fechaActual= Timestamp.now().toDate()
+                    val lista=it.filter { x -> x.fecha!!.compareTo(fechaActual)>0}
+                    adapter.setListData(lista as MutableList<Solicitud>)
                     adapter.notifyDataSetChanged()
 
                 })
@@ -87,7 +90,9 @@ class fragment_acceder_solicitudes : Fragment(),AccederAdapter.OnItemClickListen
                     //shimmer_view_container.stopShimmer()
                     // shimmer_view_container.visibility=View.GONE
 
-                    adapter.setListData(it)
+                    var fechaActual= Timestamp.now().toDate()
+                    val lista=it.filter { x -> x.fecha!!.compareTo(fechaActual)>0 && x.estado=="En espera"}
+                    adapter.setListData(lista as MutableList<Solicitud>)
                     adapter.notifyDataSetChanged()
 
                 })

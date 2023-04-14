@@ -8,21 +8,25 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.idrd.R
+import com.example.idrd.data.model.Notificacion
 import com.example.idrd.data.model.Solicitud
 import com.example.idrd.domain.interactor.aceptarrechazarInteractor.AceptarrechazarInteractorImpl
+import com.example.idrd.domain.interactor.notificaciones_Interactor.Notificaciones_InteractorImpl
 import com.example.idrd.presentation.aceptar_rechazar.Aceptar_rechazarContract
 import com.example.idrd.presentation.aceptar_rechazar.aceptar_rechazarPresenter.aceptar_rechazarPresenter
+import com.example.idrd.presentation.notificaciones.notificaciones_Presenter.Notificaciones_Presenter
+import com.example.idrd.presentation.notificaciones.view.Notificaciones_Contract
 import kotlinx.android.synthetic.main.fragment_aceptar_rechazar.*
 import kotlinx.android.synthetic.main.fragment_aceptar_rechazar.view.*
 import kotlinx.android.synthetic.main.fragment_descripcion.view.*
 import java.text.SimpleDateFormat
 
-class aceptar_rechazarFragment : Fragment() , Aceptar_rechazarContract.Aceptar_rechazarView {
+class aceptar_rechazarFragment : Fragment() , Aceptar_rechazarContract.Aceptar_rechazarView, Notificaciones_Contract.NotificacionesView  {
 
     var estado: String?=null
 
     lateinit var presenter: aceptar_rechazarPresenter
-
+    lateinit var presenternoti: Notificaciones_Contract.NotificacionesPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,10 +40,9 @@ class aceptar_rechazarFragment : Fragment() , Aceptar_rechazarContract.Aceptar_r
         val view: View = inflater!!.inflate(R.layout.fragment_aceptar_rechazar, container, false)
 
         presenter= aceptar_rechazarPresenter(AceptarrechazarInteractorImpl())
+        presenternoti= Notificaciones_Presenter(Notificaciones_InteractorImpl())
         presenter.attachView(this)
-
-
-
+        presenternoti.attachView(this)
 
         if(arguments!=null){
 
@@ -57,10 +60,18 @@ class aceptar_rechazarFragment : Fragment() , Aceptar_rechazarContract.Aceptar_r
             view.duracion.text=solicitud.duracionH.toString()+" Horas"
             view.btn_aceptar.setOnClickListener {
                 estado= "Aceptada"
+                var notificacionUser= Notificacion()
+                notificacionUser.Titulo="SOLICITUD ACEPTADA"
+                notificacionUser.Texto="La solicitud para el dia "+fechaformato+" "+horaformato+" Ha sido Aceptada"
+                presenternoti.notificacion(notificacionUser,solicitud.idUser)
                 editarsolicitud()
             }
             view.btn_rechazar.setOnClickListener {
                 estado="Rechazada"
+                var notificacionUser= Notificacion()
+                notificacionUser.Titulo="SOLICITUD RECHAZADA"
+                notificacionUser.Texto="La solicitud para el dia "+fechaformato+" "+horaformato+" Ha sido Rechazada"
+                presenternoti.notificacion(notificacionUser,solicitud.idUser)
                 editarsolicitud()
             }
         }

@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.idrd.R
+import com.example.idrd.base.ValidarSolicitud
+import com.example.idrd.data.model.Notificacion
 import com.example.idrd.data.model.Solicitud
 import com.example.idrd.domain.interactor.FormInteractor.FormInteractorImpl
 import com.example.idrd.presentation.form.FormContract
@@ -16,12 +18,21 @@ import com.example.idrd.presentation.form.presenter.FormPresenter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_form.*
 import kotlinx.android.synthetic.main.fragment_form.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import kotlin.coroutines.CoroutineContext
 
-class fragment_editar_solicitud: DialogFragment() , FormContract.FormView{
+class fragment_editar_solicitud: DialogFragment() , FormContract.FormView, CoroutineScope {
     lateinit var presenter: FormPresenter
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main +job
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,8 +142,13 @@ class fragment_editar_solicitud: DialogFragment() , FormContract.FormView{
         solicitud.fecha= presenter.formatedDate(date, hour)
         Integer.parseInt(duracionH).also { solicitud.duracionH = it }
         Integer.parseInt(numUsers).also { solicitud.numUsers= it }
-        solicitud.estado="En espera"
-        presenter.editRequest(solicitud)
+        launch {
+            val validarSolicitud=ValidarSolicitud(idParque = solicitud.idParque, fecha = solicitud.fecha, context = requireContext(), date = date, duracionH = duracionH, parque = null)
+            if(validarSolicitud.validarsolicitud() && validarSolicitud.validarevento() && validarSolicitud.validarParque(numUsers, hour)){
+                presenter.editRequest(solicitud)
+            }
+        }
+
     }
     private fun openTimePicker(){
         val isSystem24Hour= DateFormat.is24HourFormat(requireContext())

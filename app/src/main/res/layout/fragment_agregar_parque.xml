@@ -2,13 +2,16 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     app:cardElevation="8dp"
     android:minWidth="800dp"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.agregarParque.view.agregarParqueFragment">
-
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,34 +66,679 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 >
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ubicacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    >
+                    android:inputType="text">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etxt_horario"
+                android:id="@+id/etxt_aforomax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Horario"
+                android:hint="Aforo Maximo"
                 android:layout_marginTop="7dp"
 
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 >
+
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/horario"
+                    android:id="@+id/aforomax"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    >
+                    android:inputType="number">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Horario"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"></TextView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Domingo"
+                        android:textStyle="italic"></TextView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/DomingotimePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_marginHorizontal="3dp"
+                        app:cardCornerRadius="12dp"
+                        app:strokeColor="@color/principal"
+                        app:strokeWidth="2dp"
+                        android:clickable="true"
+                        android:background="#E8DCFF"
+
+                        >
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/ic_time"
+                            android:layout_marginLeft="8.7dp"
+                            android:layout_marginTop="7dp"
+                            ></ImageView>
+
+                        <TextView
+                            android:id="@+id/Domingotime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="19dp"
+                            android:layout_marginLeft="30.3dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginRight="5dp"
+                            android:text="Apertura"
+                            android:textStyle="bold"
+                            android:textColor="@color/principal"
+
+                            ></TextView>
+
+                    </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/DomingotimePickerCierre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:clickable="true"
+                        app:cardCornerRadius="12dp"
+                        app:strokeColor="@color/principal"
+                        app:strokeWidth="2dp"
+                        android:background="#E8DCFF"
+
+                        >
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/ic_time"
+                            android:layout_marginLeft="8.7dp"
+                            android:layout_marginTop="7dp"
+                            ></ImageView>
+
+                        <TextView
+                            android:id="@+id/DomingotimeCierre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="19dp"
+                            android:layout_marginLeft="30.3dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginRight="5dp"
+                            android:text="Cierre"
+                            android:textStyle="bold"
+                            android:textColor="@color/principal"
+
+                            ></TextView>
+
+                    </com.google.android.material.card.MaterialCardView>
+                    <CheckBox
+                        android:id="@+id/DomingoCheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:text="24 Hrs"
+                        android:textColor="@color/principal"
+                        android:textStyle="bold"></CheckBox>
+                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lunes"
+                            android:textStyle="italic"></TextView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/LunestimePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginLeft="21dp"
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/Lunestime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Apertura"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/LunestimePickerCierre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+
+
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/LunestimeCierre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Cierre"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <CheckBox
+                            android:id="@+id/LunesCheck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:text="24 Hrs"
+                            android:textColor="@color/principal"
+                            android:textStyle="bold"></CheckBox>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Martes"
+                            android:textStyle="italic"></TextView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/MartestimePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="3dp"
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/Martestime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Apertura"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/MartestimePickerCierre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+
+
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/MartestimeCierre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Cierre"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <CheckBox
+                            android:id="@+id/MartesCheck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:text="24 Hrs"
+                            android:textColor="@color/principal"
+                            android:textStyle="bold"></CheckBox>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Miercoles"
+                            android:textStyle="italic"></TextView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/MiercolestimePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:layout_marginHorizontal="3dp"
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/Miercolestime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Apertura"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/MiercolestimePickerCierre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+
+
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/MiercolestimeCierre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Cierre"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <CheckBox
+                            android:id="@+id/MiercolesCheck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:text="24 Hrs"
+                            android:textColor="@color/principal"
+                            android:textStyle="bold"></CheckBox>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jueves"
+                            android:textStyle="italic"></TextView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/JuevestimePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:layout_marginLeft="19dp"
+                            android:layout_marginRight="3dp"
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/Juevestime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Apertura"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/JuevestimePickerCierre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+
+
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/JuevestimeCierre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Cierre"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <CheckBox
+                            android:id="@+id/JuevesCheck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:text="24 Hrs"
+                            android:textColor="@color/principal"
+                            android:textStyle="bold"></CheckBox>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Viernes"
+                            android:textStyle="italic"></TextView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/ViernestimePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="3dp"
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/Viernestime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Apertura"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/ViernestimePickerCierre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+
+
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/ViernestimeCierre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Cierre"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <CheckBox
+                            android:id="@+id/ViernesCheck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:text="24 Hrs"
+                            android:textColor="@color/principal"
+                            android:textStyle="bold"></CheckBox>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sabado"
+                            android:textStyle="italic"></TextView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/SabadotimePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginRight="3dp"
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/Sabadotime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Apertura"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/SabadotimePickerCierre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+
+
+                            app:cardCornerRadius="12dp"
+                            app:strokeColor="@color/principal"
+                            app:strokeWidth="2dp"
+                            android:background="#E8DCFF"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@drawable/ic_time"
+                                android:layout_marginLeft="8.7dp"
+                                android:layout_marginTop="7dp"
+                                ></ImageView>
+
+                            <TextView
+                                android:id="@+id/SabadotimeCierre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:layout_marginLeft="30.3dp"
+                                android:layout_marginTop="7dp"
+                                android:layout_marginRight="5dp"
+                                android:text="Cierre"
+                                android:textStyle="bold"
+                                android:textColor="@color/principal"
+
+                                ></TextView>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <CheckBox
+                            android:id="@+id/SabadoCheck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="33dp"
+                            android:text="24 Hrs"
+                            android:textColor="@color/principal"
+                            android:textStyle="bold"></CheckBox>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/ErrorHorarios"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Error"
+                        android:textColor="@color/red"
+                        android:textStyle="bold"
+                        android:visibility="gone"></TextView>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etxt_descripcion"
                 android:layout_width="match_parent"
@@ -221,5 +869,6 @@
 
 
         </LinearLayout>
+    </ScrollView>
 
 </com.google.android.material.card.MaterialCardView>

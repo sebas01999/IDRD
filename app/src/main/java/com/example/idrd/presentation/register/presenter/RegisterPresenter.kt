@@ -64,6 +64,8 @@ class RegisterPresenter(registerInteractor: RegisterInteractor) : RegisterContra
         return cedula.isEmpty()    }
 
 
+
+
     override fun signUp(users: Users, pw1: String) {
         launch {
             try {

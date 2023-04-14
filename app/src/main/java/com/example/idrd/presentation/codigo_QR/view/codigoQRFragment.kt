@@ -2,6 +2,7 @@ package com.example.idrd.presentation.codigo_QR.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,18 +11,26 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.idrd.R
-import com.example.idrd.domain.interactor.registroBotonesInteractor.RegistrobotonesInteractorImpl
-import com.example.idrd.presentation.registro_botones.Registro_botonesContract
-import com.example.idrd.presentation.registro_botones.model.AforoViewModel
-import com.example.idrd.presentation.registro_botones.registro_botonesPresenter.registro_botonesPresenter
-import com.google.firebase.database.FirebaseDatabase
+import com.example.idrd.data.database.RepoAforo
+import com.example.idrd.data.model.Aforo
+import com.example.idrd.domain.interactor.registroEntradaInteractor.RegistroEntradaInteractorImpl
+import com.example.idrd.presentation.codigo_QR.CodigoQRContract
+import com.example.idrd.presentation.codigo_QR.codigo_QR_Presener.CodigoQR_Presenter
+import com.example.idrd.presentation.info_mapa.model.AforoViewModel
 import com.google.zxing.integration.android.IntentIntegrator
-import kotlinx.android.synthetic.main.fragment_registro_botones.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 
-class codigoQRFragment : Fragment(), Registro_botonesContract.Registro_botonesView {
-    lateinit var presenter: registro_botonesPresenter
-    private val viewModel by lazy { ViewModelProvider(this).get(AforoViewModel::class.java) }
+class codigoQRFragment : Fragment(), CodigoQRContract.RegistroEntradaView ,CoroutineScope {
+    lateinit var presenter: CodigoQR_Presenter
+    private val viewModel by lazy { ViewModelProvider(this).get(AforoViewModel::class.java)}
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main +job
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         qrScanner()
@@ -33,7 +42,7 @@ class codigoQRFragment : Fragment(), Registro_botonesContract.Registro_botonesVi
     ): View? {
         // Inflate the layout for this fragment
         val view: View= inflater!!.inflate(R.layout.fragment_codigo_q_r, container, false)
-        presenter= registro_botonesPresenter((RegistrobotonesInteractorImpl()))
+        presenter= CodigoQR_Presenter((RegistroEntradaInteractorImpl()))
         presenter.attachView(this)
         return view
     }
@@ -56,8 +65,7 @@ class codigoQRFragment : Fragment(), Registro_botonesContract.Registro_botonesVi
                 Toast.makeText(context ,"Cancelado", Toast.LENGTH_SHORT).show()
             }else{
 
-                Toast.makeText(context ,"El valor escaneado es: ${ result.contents}", Toast.LENGTH_SHORT).show()
-                observer(result.contents)
+                registroEntrada(result.contents)
             }
         }else{
 
@@ -73,18 +81,29 @@ class codigoQRFragment : Fragment(), Registro_botonesContract.Registro_botonesVi
         Toast.makeText(context, "Ingreso registrado correctamente ", Toast.LENGTH_SHORT).show()
     }
 
-    override fun registroB() {
+    override fun registroEntrada(idParque: String) {
+        val aforo = Aforo()
+        aforo.idParque=idParque
 
-    }
-    fun observer(idParque:String){
-        var aforo:Int=0
-        val ref= FirebaseDatabase.getInstance().getReference("Parques")
-        ref.child(idParque).get().addOnSuccessListener {
-           aforo= Integer.parseInt(it.value.toString())
-            aforo=aforo+1
-            presenter.registroB(aforo, idParque)
+
+
+
+        launch {
+
+            val encontro=RegistroEntradaInteractorImpl().getAforoUser(idParque)
+
+            if (encontro){
+                showError("Ya registro su entrada en este parque")
+                return@launch
+            }else{
+                Log.d("prueba","registro")
+                presenter.registroEntrada(aforo)
+                return@launch
+            }
         }
 
+
     }
+
 }
 

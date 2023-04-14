@@ -6,6 +6,7 @@ import com.example.idrd.domain.interactor.crudParques.CrudParqueInteractor
 import com.example.idrd.presentation.crud_parques.CrudParqueContract
 import com.example.idrd.presentation.crud_parques.exceptions.FirebaseCrudExceptions
 import kotlinx.coroutines.*
+import java.text.SimpleDateFormat
 import kotlin.coroutines.CoroutineContext
 
 class CrudParquesPresenter(crudParqueInteractor: CrudParqueInteractor):CrudParqueContract.CrudPresenter, CoroutineScope {
@@ -136,9 +137,15 @@ class CrudParquesPresenter(crudParqueInteractor: CrudParqueInteractor):CrudParqu
     override fun checkEmptytipo(tipo: String): Boolean {
         return tipo.isEmpty()
     }
+    override fun checkEmptyAforoMax(aforomax: String): Boolean {
+        return aforomax.isEmpty()
+    }
+    override fun checkHour(hourA: String, hourC: String): Boolean {
+        val formatedH = SimpleDateFormat("HH:mm")
+        val horaApertura= formatedH.parse(hourA)
+        val horaCierre= formatedH.parse(hourC)
 
-    override fun checkEmptyHour(hour: String): Boolean {
-        return hour.isEmpty()
+        return horaApertura.after(horaCierre)
     }
 
     override fun checkEmptyUbicacion(ubicacion: String): Boolean {

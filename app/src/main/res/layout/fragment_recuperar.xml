@@ -6,30 +6,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.recuperar.view.fragment_recuperar">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="28dp"
+        android:padding="48dp"
         >
-        <TextView
-            android:layout_width="19dp"
-            android:layout_height="19dp"
-            android:background="@drawable/ic_volver"
-            android:layout_marginTop="37dp"
-
-           ></TextView>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="86dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="¿Olvido su contraseña?"
-            android:textSize="30dp"
-            android:layout_marginTop="36dp"
-            android:textColor="#5D4395"
-
+            android:textSize="25dp"
+            android:textColor="@color/principal"
+            android:layout_gravity="center"
             ></TextView>
 
 
@@ -43,8 +33,8 @@
             android:layout_marginTop="28dp"
             >
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="317dp"
-                android:layout_height="55dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 >
 
@@ -61,7 +51,7 @@
         ></TextView>
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/buttonEnviar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner"
@@ -73,7 +63,18 @@
             android:layout_marginTop="50dp"
 
             ></Button>
+        <ProgressBar
+            android:id="@+id/progressBar_recuperar"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            style="?android:attr/progressBarStyle"
+            android:indeterminateDrawable="@drawable/progressbar"
+            android:indeterminateDuration="@android:integer/config_longAnimTime"
+            android:layout_marginTop="21dp"
+            android:visibility="gone">
 
+        </ProgressBar>
 
     </LinearLayout>
 </FrameLayout>

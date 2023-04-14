@@ -125,7 +125,7 @@
                  ></com.google.android.material.button.MaterialButton>
 
              <com.nex3z.notificationbadge.NotificationBadge
-                 android:id="@+id/badge"
+                 android:id="@+id/badgeAg"
                  android:layout_width="28dp"
                  android:layout_height="28dp"
                  android:layout_marginLeft="60dp"
@@ -238,7 +238,7 @@
 
         <com.google.android.material.button.MaterialButton
 
-            android:id="@+id/cerrarsesion"
+            android:id="@+id/cerrarsesionAg"
             android:textAllCaps="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

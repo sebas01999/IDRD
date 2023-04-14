@@ -5,6 +5,7 @@ import com.example.idrd.presentation.login.exceptions.FirebaseLoginException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -31,6 +32,31 @@ class RegisterInteractorImpl: RegisterInteractor
             }else{
                 continuation.resumeWithException(FirebaseLoginException(itSignUp.exception?.message))
             }
+        }
+    }
+    override suspend fun checkUsersCedula(cedula: String):Boolean= suspendCancellableCoroutine  { continuation ->
+
+        var ref=FirebaseFirestore.getInstance().collection("Users")
+        ref.whereEqualTo("cedula",cedula).get().addOnSuccessListener{ result->
+            if (result.isEmpty){
+                continuation.resume(false)
+            }else{
+                continuation.resume(true)
+            }
+
+        }
+
+    }
+    override suspend fun checkUsersCorreo(correo: String):Boolean= suspendCancellableCoroutine  { continuation ->
+
+        var ref=FirebaseFirestore.getInstance().collection("Users")
+        ref.whereEqualTo("correo",correo).get().addOnSuccessListener{ result->
+            if (result.isEmpty){
+                continuation.resume(false)
+            }else{
+                continuation.resume(true)
+            }
+
         }
     }
 }

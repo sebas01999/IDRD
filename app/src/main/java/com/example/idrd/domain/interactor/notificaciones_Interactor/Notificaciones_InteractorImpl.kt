@@ -3,7 +3,6 @@ package com.example.idrd.domain.interactor.notificaciones_Interactor
 import android.util.Log
 import com.example.idrd.data.model.Notificacion
 import com.example.idrd.presentation.notificaciones.exceptions.Firebase_notificaciones_Exceptions
-import com.example.idrd.presentation.registro_botones.exceptions.FirebaseRegistroBotonesExceptions
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume

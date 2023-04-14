@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.idrd.R
+import com.example.idrd.base.MyApp
 import com.example.idrd.presentation.codigo_QR.view.codigoQRFragment
 import com.example.idrd.presentation.cuenta.view.cuentaFragment
 import com.example.idrd.presentation.cuenta_AdminParque.view.cuenta_AdminParqueFragment
@@ -13,8 +14,6 @@ import com.example.idrd.presentation.cuenta_Admingeneral.view.cuenta_Admingenera
 import com.example.idrd.presentation.eventos.view.eventosFragment
 import com.example.idrd.presentation.inicio.view.InicioFragment
 import com.example.idrd.presentation.mainprincipal.model.UserIDViewModel
-import com.example.idrd.presentation.mapa.view.MapsFragment
-import com.example.idrd.presentation.registro_botones.view.fragment_registro_botones
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_mainprincipal.*
 
@@ -25,56 +24,41 @@ class mainprincipal : AppCompatActivity() {
         setContentView(R.layout.activity_mainprincipal)
         replaceFragment(InicioFragment())
         btn_nav.setItemSelected(R.id.item1)
-
+        observerData()
         btn_nav.setOnItemSelectedListener { es ->
             when(es){
                 R.id.item1 -> replaceFragment(InicioFragment())
-                R.id.item2 -> observerDataregistro()
+                R.id.item2 -> replaceFragment(codigoQRFragment())
                 R.id.item3 -> replaceFragment(eventosFragment())
-                R.id.item4 -> observerData()
+                R.id.item4 -> moveCuenta()
             }
         }
     }
     fun observerData(){
         val auth =FirebaseAuth.getInstance()
         viewModel.fetchDataIDUser(auth.currentUser?.uid.toString()).observe(this, Observer {
-            val bundle=Bundle()
-            bundle.putSerializable("user", it.get(0))
-            val adminParque=cuenta_AdminParqueFragment()
-            val cuentaUser=cuentaFragment()
-            val adming=cuenta_AdmingeneralFragment()
-            adminParque.arguments=bundle
-            cuentaUser.arguments=bundle
-            adming.arguments=bundle
-            if (it.get(0).rol.equals("USER")){
-               replaceFragment(cuentaUser)
-            }else if(it.get(0).rol.equals("ADMING")){
-                replaceFragment(adming)
-            }else{
-                replaceFragment(adminParque)
-            }
+            val myApp= application as MyApp
+            myApp.user=it.get(0)
         })
-
     }
-    fun observerDataregistro(){
-        val auth =FirebaseAuth.getInstance()
-        viewModel.fetchDataIDUser(auth.currentUser?.uid.toString()).observe(this, Observer {
-            val bundle=Bundle()
-            bundle.putSerializable("user", it.get(0))
-            val adminParque=fragment_registro_botones()
-            val user=codigoQRFragment()
+    fun moveCuenta(){
+        val myApp= application as MyApp
 
-            adminParque.arguments=bundle
-            user.arguments=bundle
-            if (it.get(0).rol.equals("USER")){
-                replaceFragment(user)
-            }else if(it.get(0).rol.equals("ADMING")){
-                replaceFragment(user)
-            }else{
-                replaceFragment(adminParque)
-            }
-        })
-
+        val bundle=Bundle()
+        bundle.putSerializable("user", myApp.user)
+        val adminParque=cuenta_AdminParqueFragment()
+        val cuentaUser=cuentaFragment()
+        val adming=cuenta_AdmingeneralFragment()
+        adminParque.arguments=bundle
+        cuentaUser.arguments=bundle
+        adming.arguments=bundle
+        if (myApp.user.rol.equals("USER")){
+            replaceFragment(cuentaUser)
+        }else if(myApp.user.rol.equals("ADMING")){
+            replaceFragment(adming)
+        }else{
+            replaceFragment(adminParque)
+        }
     }
 
     private fun replaceFragment(fragment: Fragment){

@@ -41,11 +41,28 @@ class AgregarEventoPresenter(crudEventoInteractor: CrudEventoInteractor):Agregar
         return view != null
     }
 
-    override fun addEvento(evento: Evento, uri: Uri) {
+    override fun addEventoPhoto(evento: Evento, uri: Uri) {
         launch {
             try {
                 view?.showProgressDialog()
-                crudEventoInteractor?.addEventos(evento, uri)
+                crudEventoInteractor?.addEventosPhoto(evento, uri)
+                if(isViewAttached()){
+                    view?.hideProgressDialog()
+                    view?.showSuccess()
+                }
+            }catch (e: FirebaseAgregarExceptions){
+                if(isViewAttached()){
+                    view?.showError(e.message)
+                    view?.hideProgressDialog()
+                }
+            }
+        }
+    }
+    override fun addEvento(evento: Evento) {
+        launch {
+            try {
+                view?.showProgressDialog()
+                crudEventoInteractor?.addEventos(evento)
                 if(isViewAttached()){
                     view?.hideProgressDialog()
                     view?.showSuccess()
@@ -72,7 +89,7 @@ class AgregarEventoPresenter(crudEventoInteractor: CrudEventoInteractor):Agregar
     }
 
     override fun formatedDate(date: String, hour: String): Date {
-        val obtenida= SimpleDateFormat("dd/MM/yyyy hh:mm").parse(date+" "+hour);
+        val obtenida= SimpleDateFormat("dd/MM/yyyy HH:mm").parse(date+" "+hour);
         return obtenida
     }
 }

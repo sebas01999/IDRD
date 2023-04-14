@@ -101,7 +101,7 @@ class CrudEventosPresenter(crudEventoInteractor: CrudEventoInteractor):CrudEvent
     }
 
     override fun formatedDate(date: String, hour: String): Date {
-        val obtenida= SimpleDateFormat("dd/MM/yyyy hh:mm").parse(date+" "+hour);
+        val obtenida= SimpleDateFormat("dd/MM/yyyy HH:mm").parse(date+" "+hour);
         return obtenida
     }
 }

@@ -17,6 +17,7 @@ import com.example.idrd.presentation.eventos.model.EventosViewModel
 import com.google.firebase.Timestamp
 import kotlinx.android.synthetic.main.fragment_eventos.*
 import kotlinx.android.synthetic.main.fragment_eventos.view.*
+import java.util.*
 
 
 class eventosFragment : Fragment(), EventosAdapter.OnItemClickListener {
@@ -44,13 +45,10 @@ private val viewModel by lazy { ViewModelProvider(this).get(EventosViewModel::cl
     override fun onItemClick(item: Evento) {
         val bundle=Bundle()
         bundle.putSerializable("evento",item)
-        val transaction=fragmentManager?.beginTransaction()
+
         val fragment=CalificarEventoFragment()
         fragment.arguments=bundle
-        transaction?.replace(R.id.container,fragment)
-        transaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-        transaction?.addToBackStack(null)
-        transaction?.commit()
+        fragment.show(childFragmentManager, "BottomSheetDialog")
     }
 
     fun observeData(){
@@ -58,8 +56,14 @@ private val viewModel by lazy { ViewModelProvider(this).get(EventosViewModel::cl
             var fechaActual= Timestamp.now().toDate()
             shimmer_view_container.stopShimmer()
             shimmer_view_container.visibility=View.GONE
-            val lista=it//.filter { x-> x.fecha!!.compareTo(fechaActual)>0 }
-            adapter.setListData(lista as MutableList<Evento>)
+            val lista= mutableListOf<Evento>()
+            it.forEach { evento ->
+                val fechaEvento = Date(evento.fecha!!.time + (1000 * 60 * 60 * 24))
+                if (fechaEvento.compareTo(fechaActual)>0){
+                    lista.add(evento)
+                }
+            }
+            adapter.setListData(lista)
             adapter.notifyDataSetChanged()
         })
     }

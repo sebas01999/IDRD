@@ -50,11 +50,19 @@
         </com.google.android.material.appbar.AppBarLayout>
     </com.google.android.material.card.MaterialCardView>
 
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
+    <FrameLayout
+        android:id="@+id/container2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/card"></androidx.viewpager.widget.ViewPager>
+        android:layout_below="@+id/card"
+        >
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/card"></androidx.viewpager.widget.ViewPager>
+    </FrameLayout>
+
 
 </RelativeLayout>

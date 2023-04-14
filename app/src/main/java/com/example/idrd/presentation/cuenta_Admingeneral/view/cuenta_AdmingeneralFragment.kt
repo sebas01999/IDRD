@@ -10,12 +10,14 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.idrd.R
+import com.example.idrd.data.database.RepoUser
 import com.example.idrd.data.model.Users
 import com.example.idrd.presentation.configuración_cuenta.view.fragment_configuracion_cuenta
 import com.example.idrd.presentation.crud_parques.view.CrudParquesFragment
 import com.example.idrd.presentation.crud_tipos_parques.view.CrudTiposFragment
 import com.example.idrd.presentation.notificaciones.model.NotificacionesViewModel
 import com.example.idrd.presentation.notificaciones.view.NotificacionesFragment
+import com.example.idrd.presentation.webView.view.WebViewFragment
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_cuenta__admingeneral.*
 import kotlinx.android.synthetic.main.fragment_cuenta__admingeneral.view.*
@@ -43,6 +45,9 @@ class cuenta_AdmingeneralFragment : Fragment() {
             transaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             transaction?.addToBackStack(null)
             transaction?.commit()
+        }
+        view.cerrarsesionAg.setOnClickListener {
+            signOut()
         }
         view.botonTiposParquesadming.setOnClickListener {
             val transaction=fragmentManager?.beginTransaction()
@@ -75,8 +80,21 @@ class cuenta_AdmingeneralFragment : Fragment() {
             transaction?.commit()
         }
 
+        view.botonreportesadming.setOnClickListener {
+            val transaction=fragmentManager?.beginTransaction()
+            val fragmento = WebViewFragment()
+            fragmento.arguments=arguments
+            transaction?.replace(R.id.container, fragmento)
+
+            transaction?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            transaction?.addToBackStack(null)
+            transaction?.commit()
+        }
         observeData()
         return view
+    }
+    private fun signOut() {
+        activity?.let { RepoUser().signOut(it) }
     }
     fun observeData(){
         val auth= FirebaseAuth.getInstance().currentUser?.uid.toString()
@@ -86,9 +104,9 @@ class cuenta_AdmingeneralFragment : Fragment() {
                     noti.visto==false
                 }
                 if (numer==0){
-                    badge.clear()
+                    badgeAg.clear()
                 }else{
-                    badge.setNumber(numer)
+                    badgeAg.setNumber(numer)
                 }
 
             }

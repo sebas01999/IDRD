@@ -52,7 +52,8 @@ class InicioFragment : Fragment(),MainAdapter.OnItemClickListener {
         view.searchView.clearFocus()
         view.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                TODO("Not yet implemented")
+                filterList(query)
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -128,8 +129,8 @@ class InicioFragment : Fragment(),MainAdapter.OnItemClickListener {
         viewModel.fetchParqueData().observe(viewLifecycleOwner , Observer {
             shimmer_view_container.stopShimmer()
             shimmer_view_container.visibility=View.GONE
-            dataList=it
-            adapter.setListData(it)
+            dataList= it.filter { x-> x.activo } as MutableList<Parque>
+            adapter.setListData(dataList)
             adapter.notifyDataSetChanged()
 
         })

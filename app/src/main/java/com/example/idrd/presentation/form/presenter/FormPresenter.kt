@@ -1,7 +1,11 @@
 package com.example.idrd.presentation.form.presenter
 
+import android.view.View
+import androidx.lifecycle.ViewModelProvider
+import com.example.idrd.base.ValidarSolicitud
 import com.example.idrd.data.model.Solicitud
 import com.example.idrd.domain.interactor.FormInteractor.FormInteractor
+import com.example.idrd.presentation.acceder_solicitudes.model.AccederViewModel
 import com.example.idrd.presentation.form.FormContract
 import com.example.idrd.presentation.form.exceptions.FirebaseFormExceptions
 import com.google.firebase.firestore.FirebaseFirestore
@@ -12,6 +16,7 @@ import kotlin.coroutines.CoroutineContext
 
 class FormPresenter(formInteractor: FormInteractor):FormContract.FormPresenter,
 CoroutineScope{
+
     var view : FormContract.FormView? = null
     var formInteractor:FormInteractor?= null
     private val job = Job()
@@ -86,8 +91,7 @@ CoroutineScope{
     }
 
     override fun formatedDate(date: String, hour: String): Date {
-        val obtenida=SimpleDateFormat("dd/MM/yyyy hh:mm").parse(date+" "+hour);
-        return obtenida
+        return ValidarSolicitud().formatedDate(date, hour);
     }
 
     override fun checkDate(date: Date, date2: Date?): Int {
@@ -95,5 +99,4 @@ CoroutineScope{
          return date.compareTo(date2)
 
     }
-
 }

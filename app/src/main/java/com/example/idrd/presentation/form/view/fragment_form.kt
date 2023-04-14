@@ -1,26 +1,18 @@
 package com.example.idrd.presentation.form.view
 
 import android.os.Bundle
-import android.text.BoringLayout
 import android.text.format.DateFormat
-import android.util.Log
-import android.util.MutableBoolean
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
 import com.example.idrd.R
+import com.example.idrd.base.ValidarSolicitud
 import com.example.idrd.data.model.Notificacion
 import com.example.idrd.data.model.Parque
 import com.example.idrd.data.model.Solicitud
 import com.example.idrd.domain.interactor.FormInteractor.FormInteractorImpl
 import com.example.idrd.domain.interactor.notificaciones_Interactor.Notificaciones_InteractorImpl
-import com.example.idrd.presentation.acceder_solicitudes.model.AccederViewModel
-import com.example.idrd.presentation.crud_eventos.model.EventosViewModelAdmin
-import com.example.idrd.presentation.eventos.model.EventosViewModel
 import com.example.idrd.presentation.form.FormContract
 import com.example.idrd.presentation.form.model.DatePicker
 import com.example.idrd.presentation.form.presenter.FormPresenter
@@ -31,15 +23,22 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_form.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.coroutines.CoroutineContext
 
 
-class fragment_form : BottomSheetDialogFragment(), FormContract.FormView, Notificaciones_Contract.NotificacionesView {
+class fragment_form : BottomSheetDialogFragment(), FormContract.FormView, Notificaciones_Contract.NotificacionesView,CoroutineScope {
     lateinit var presenter: FormPresenter
     lateinit var presenternoti: Notificaciones_Contract.NotificacionesPresenter
-    private val viewModel by lazy { ViewModelProvider(this).get(AccederViewModel::class.java)}
-    private val viewModel2 by lazy { ViewModelProvider(this).get(EventosViewModelAdmin::class.java)}
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main +job
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -155,8 +154,6 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView, Notifi
 
         val parque: Parque = arguments?.getSerializable("parque") as Parque
 
-
-        viewModel.fetchSolicitudAdminData(parque.id).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             val nature:String = editTextNaturaleza.editText?.text.toString().trim()
             val numUsers:String = num_usuarios.text.toString().trim()
             val duracionH:String = num_horas.text.toString().trim()
@@ -165,77 +162,29 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView, Notifi
 
             if(presenter.checkEmptyNature(nature)){
                 editTextNaturaleza.error="Ingrese la naturaleza del evento"
-                return@Observer
+                return
             }
             if(presenter.checkEmptyDate(date)){
                 showError("Seleccione una fecha")
-                return@Observer
+                return
             }
             if(presenter.checkEmptyHour(hour)){
                 showError("Ingrese hora")
-                return@Observer
+                return
             }
             val dateF:Date=presenter.formatedDate(date, hour)
-            var horas1:Int
-            Integer.parseInt(duracionH).also { horas1 = it }
-            val dateDuracion= presenter.formatedDate(date, (dateF.hours+horas1).toString()+':'+dateF.minutes.toString())
-            if (!it.isEmpty()){
 
-                for (item in it){
-                    if(presenter.checkDate(dateF, item.fecha)==0){
-                        showError("Esta fecha ya esta reservada")
-                        return@Observer
-
-                    }
-
-                    val fechaDuracion= presenter.formatedDate(date, (item.fecha?.hours!!+item.duracionH).toString()+':'+item.fecha?.minutes.toString())
-
-                    if (dateF.date == item.fecha!!.date  && dateF.month == item.fecha!!.month  && dateF.year == item.fecha!!.year ){
-                        if (presenter.checkDate(dateF,item.fecha)>0 && presenter.checkDate(dateF, fechaDuracion)<0){
-                            showError("Esta fecha ya esta reservada")
-                            return@Observer
-                        }
-                        if (presenter.checkDate(dateDuracion,item.fecha)>0 && presenter.checkDate(dateDuracion, fechaDuracion)<0){
-                            showError("Esta fecha ya esta reservada")
-                            return@Observer
-                        }
-                    }
-
-                }
-
-            }
-            viewModel2.fetchEventosDataAdmin(parque.id).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-                for (item in it){
-                    if(presenter.checkDate(dateF, item.fecha)==0){
-                        showError("Esta fecha ya esta reservada para un evento")
-                        return@Observer
-
-                    }
-
-                    val fechaDuracion= presenter.formatedDate(date, (item.fecha?.hours!!+item.duracionH).toString()+':'+item.fecha?.minutes.toString())
-
-                    if (dateF.date == item.fecha!!.date  && dateF.month == item.fecha!!.month  && dateF.year == item.fecha!!.year ){
-                        if (presenter.checkDate(dateF,item.fecha)>0 && presenter.checkDate(dateF, fechaDuracion)<0){
-                            showError("Esta fecha ya esta reservada para un evento")
-                            return@Observer
-                        }
-                        if (presenter.checkDate(dateDuracion,item.fecha)>0 && presenter.checkDate(dateDuracion, fechaDuracion)<0){
-                            showError("Esta fecha ya esta reservada para un evento")
-                            return@Observer
-                        }
-                    }
-                }
-                if(arguments!=null){
-                    val parque: Parque = arguments?.getSerializable("parque") as Parque
-
-                    var solicitud=Solicitud()
-                    Integer.parseInt(duracionH).also { solicitud.duracionH = it }
-                    Integer.parseInt(numUsers).also { solicitud.numUsers= it }
-                    solicitud.fecha= dateF
-                    solicitud.idParque=parque.id
-                    solicitud.nombre=parque.nombre
-                    solicitud.url=parque.imageUrl
-                    solicitud.naturaleza=nature
+            var solicitud=Solicitud()
+            Integer.parseInt(duracionH).also { solicitud.duracionH = it }
+            Integer.parseInt(numUsers).also { solicitud.numUsers= it }
+            solicitud.fecha= dateF
+            solicitud.idParque=parque.id
+            solicitud.nombre=parque.nombre
+            solicitud.url=parque.imageUrl
+            solicitud.naturaleza=nature
+            launch {
+                val validarSolicitud=ValidarSolicitud(idParque = parque.id, fecha = solicitud.fecha, context = requireContext(), date = date, duracionH = duracionH, parque = parque)
+                if(validarSolicitud.validarsolicitud() && validarSolicitud.validarevento() && validarSolicitud.validarHorario(hour) && validarSolicitud.validarAforo(numUsers)){
                     presenter.sendRequest(solicitud)
 
                     var id=FirebaseAuth.getInstance().currentUser?.uid.toString()
@@ -252,12 +201,11 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView, Notifi
                         presenternoti.notificacion(notificacion,parque.idAdmin)
                     }
                 }
-            })
-
-        })
+            }
 
 
     }
+
 
     override fun showSuccess() {
         Toast.makeText(context,"solicitud enviada", Toast.LENGTH_SHORT).show()
@@ -271,5 +219,6 @@ class fragment_form : BottomSheetDialogFragment(), FormContract.FormView, Notifi
         presenter.dettachView()
         presenter.dettachJob()
     }
+
 
 }

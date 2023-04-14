@@ -78,6 +78,10 @@ class AccederAdapter( private val context: Context, private var itemClickListene
                 itemView.infor_des.text = "Solicitud de prestamo para el dia " + salida +
                         " con duración de " + solicitud.duracionH + " horas"
                 itemView.estado.text = solicitud.estado
+                if (solicitud.estado !="En espera"){
+                    itemView.borrarSolicitud.visibility=View.GONE
+                    itemView.EditarSolicitud.visibility=View.GONE
+                }
                 itemView.borrarSolicitud.setOnClickListener {
                     borrarSolicitud(solicitud)
                     datalist.remove(solicitud)

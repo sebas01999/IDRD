@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menu_agregar"
+        android:icon="@drawable/ic_add"
+        android:title="Agregar"
+        app:showAsAction="always"></item>
+    <item android:id="@+id/menu_modificar"
+        android:icon="@drawable/ic_edit"
+        android:title="Editar"
+        app:showAsAction="always"></item>
+</menu>

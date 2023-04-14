@@ -46,6 +46,7 @@
                 android:text="NOMBRE DEL PARQUE"
                 android:textColor="@color/title_park"
                 android:textSize="17dp"
+                android:textAllCaps="true"
                 android:textStyle="bold"></TextView>
 
             <ImageView
@@ -67,36 +68,43 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"></TextView>
 
-            <TextView
-                android:id="@+id/ubicacion_parque"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="65dp"
-                android:layout_marginEnd="17dp"
-                android:layout_marginBottom="17dp"
-                android:text="UBICACION"
-                android:textColor="@color/location_park"
-                android:textSize="14dp"
-                android:textStyle="bold"></TextView>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_linea"
-                android:layout_marginTop="85dp"
-                android:layout_marginStart="17dp"></ImageView>
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/horario_parque"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="95dp"
-                android:layout_marginEnd="17dp"
-                android:layout_marginBottom="17dp"
-                android:text="Horario"
-                android:textSize="11dp"
-                android:textColor="@color/hour_park"></TextView>
+                <TextView
+                    android:id="@+id/ubicacion_parque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginEnd="17dp"
+                    android:layout_marginBottom="17dp"
+                    android:text="UBICACION"
+                    android:textColor="@color/location_park"
+                    android:textSize="14dp"
+                    android:textStyle="bold"></TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:src="@drawable/ic_linea"></ImageView>
+
+                <TextView
+                    android:id="@+id/horario_parque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="17dp"
+                    android:layout_marginBottom="17dp"
+                    android:text="Horario"
+                    android:textColor="@color/hour_park"
+                    android:textSize="11dp"></TextView>
+            </LinearLayout>
+
 
 
         </RelativeLayout>

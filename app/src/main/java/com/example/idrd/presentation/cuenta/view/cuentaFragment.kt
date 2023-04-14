@@ -1,5 +1,6 @@
 package com.example.idrd.presentation.cuenta.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,19 +11,21 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.idrd.R
+import com.example.idrd.data.database.RepoUser
 import com.example.idrd.data.model.Users
 import com.example.idrd.presentation.acceder_solicitudes.view.fragment_acceder_solicitudes
 import com.example.idrd.presentation.configuración_cuenta.view.fragment_configuracion_cuenta
+import com.example.idrd.presentation.main.MainActivity
 import com.example.idrd.presentation.notificaciones.model.NotificacionesViewModel
 import com.example.idrd.presentation.notificaciones.view.NotificacionesFragment
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_cuenta.*
 import kotlinx.android.synthetic.main.fragment_cuenta.view.*
-import kotlinx.android.synthetic.main.fragment_cuenta__admin_parque.view.*
-import kotlinx.android.synthetic.main.fragment_cuenta__admingeneral.*
 
 
 class cuentaFragment : Fragment() {
     private val viewModel by lazy { ViewModelProvider(this).get(NotificacionesViewModel::class.java) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -75,11 +78,17 @@ class cuentaFragment : Fragment() {
                 transaction?.addToBackStack(null)
                 transaction?.commit()
             }
+            view.cerrarsesionUs.setOnClickListener {
+                signOut()
+            }
         }
         observeData()
 
 
         return view
+    }
+    private fun signOut() {
+        activity?.let { RepoUser().signOut(it) }
     }
     fun observeData(){
         val auth= FirebaseAuth.getInstance().currentUser?.uid.toString()
@@ -89,9 +98,9 @@ class cuentaFragment : Fragment() {
                     noti.visto==false
                 }
                 if (numer==0){
-                    badge.clear()
+                    badgeUs.clear()
                 }else{
-                    badge.setNumber(numer)
+                    badgeUs.setNumber(numer)
                 }
 
             }

@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.idrd.R
 import com.example.idrd.domain.interactor.loginInteractor.SignInInteractorImpl
+import com.example.idrd.presentation.form.view.fragment_form
 import com.example.idrd.presentation.login.LoginContract
 import com.example.idrd.presentation.login.presenter.LoginPresenter
 import com.example.idrd.presentation.mainprincipal.view.mainprincipal
+import com.example.idrd.presentation.recuperar.view.fragment_recuperar
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
 
@@ -35,6 +37,9 @@ class LoginFragment : Fragment(), LoginContract.LoginView {
         presenter.attachView(this)
         view.button1.setOnClickListener {
             signIn()
+        }
+        view.txt_recover_pw.setOnClickListener {
+            navigeteToRecoverPassword()
         }
         return view
     }
@@ -68,6 +73,12 @@ class LoginFragment : Fragment(), LoginContract.LoginView {
 
 
     override fun navigeteToRecoverPassword() {
+        val fragmentManager = requireActivity().supportFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.viewpager, fragment_recuperar())
+        transaction.replace(R.id.container2, fragment_recuperar())
+        transaction.addToBackStack(null)
+        transaction.commit()
 
     }
     override fun onDestroy() {

@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.idrd.R
+import com.example.idrd.base.ValidarSolicitud
 import com.example.idrd.data.model.Evento
 import com.example.idrd.data.model.Users
 import com.example.idrd.domain.interactor.crudEventos.CrudEventosInteractorImpl
@@ -28,18 +29,28 @@ import kotlinx.android.synthetic.main.fragment_agregar_evento.cancelar
 import kotlinx.android.synthetic.main.fragment_agregar_evento.guardar
 import kotlinx.android.synthetic.main.fragment_agregar_evento.progressBar_guardar
 import kotlinx.android.synthetic.main.fragment_agregar_evento.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import top.defaults.colorpicker.ColorPickerPopup
 import top.defaults.colorpicker.ColorPickerPopup.ColorPickerObserver
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.coroutines.CoroutineContext
 import kotlin.math.absoluteValue
 
-class agregarEventoFragment : DialogFragment(), AgregarEventoContract.AgregarEventoView {
+class agregarEventoFragment : DialogFragment(), AgregarEventoContract.AgregarEventoView,
+    CoroutineScope {
+
 
     lateinit var filepath : Uri
     var colorcard:Int=-1
     lateinit var presenter:AgregarEventoPresenter
     private val vieModel by lazy { ViewModelProvider(this).get(ViewModelParqueID::class.java) }
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main +job
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -175,10 +186,6 @@ class agregarEventoFragment : DialogFragment(), AgregarEventoContract.AgregarEve
             etxt_descripcionEvento.error="Ingrese la descripcion del evento"
             return
         }
-        if (filepath==null){
-            showError("Seleccione una imagen")
-            return
-        }
         if (presenter.checkEmptyDate(date)){
             showError("Seleccione una fecha")
             return
@@ -199,10 +206,23 @@ class agregarEventoFragment : DialogFragment(), AgregarEventoContract.AgregarEve
             vieModel.fetchParqueData(user.rol).observe(viewLifecycleOwner, androidx.lifecycle.Observer {
                 evento.idParque=it.get(0).id
                 evento.nombreParque=it.get(0).nombre
+                launch {
+                    val validarSolicitud= ValidarSolicitud(idParque = user.rol, fecha = evento.fecha, context = requireContext(), date = date, duracionH = duracionH, parque = it.get(0))
+                    if(validarSolicitud.validarsolicitud() && validarSolicitud.validarevento() && validarSolicitud.validarHorario(hour)){
+                        if (filepath==null){
+                            presenter.addEvento(evento)
+                        }else{
+                            presenter.addEventoPhoto(evento, filepath)
+                        }
+
+                    }
+                }
             })
+
+
         }
 
-        presenter.addEvento(evento, filepath)
+
     }
 
     override fun addFoto() {

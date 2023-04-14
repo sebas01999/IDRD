@@ -12,7 +12,6 @@ interface CrudParqueContract {
         fun hideProgressDialogV()
         fun verificar()
         fun editar()
-        fun borrar()
         fun cancelarV()
         fun addFoto()
         fun showSuccess(msgSuccess:String?)
@@ -30,7 +29,8 @@ interface CrudParqueContract {
         fun editParqueCambiarAdmin(parque: Parque)
         fun checkEmptyNombre(nombre: String):Boolean
         fun checkEmptytipo(tipo: String):Boolean
-        fun checkEmptyHour(hour: String):Boolean
+        fun checkHour(hourA: String, hourC: String):Boolean
+        fun checkEmptyAforoMax(aforomax: String):Boolean
         fun checkEmptyUbicacion(ubicacion: String):Boolean
         fun checkEmptyDescripcion(descripcion: String):Boolean
         fun checkEmptyCedulaAdmin(cedula: String):Boolean

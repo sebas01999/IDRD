@@ -22,7 +22,6 @@ interface RegisterContract {
         fun checkEmptyPhone(phone: String):Boolean
         fun checkEmptyAdress(adress: String):Boolean
         fun checkEmptyCedula(cedula: String):Boolean
-
         fun signUp(user:Users, pw1: String )
     }
 }

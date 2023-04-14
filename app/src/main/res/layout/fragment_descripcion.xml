@@ -17,10 +17,6 @@
             android:layout_height="274dp"
             android:background="@color/placeholder_bg"
             android:scaleType="fitXY"></ImageView>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_btn_back"></ImageButton>
 
         <ImageButton
             android:id="@+id/btn_map"
@@ -55,10 +51,10 @@
             android:paddingRight="30dp"
             android:text="4.5"
             android:textAlignment="inherit"
-            android:textColor="@color/white"
+            android:textColor="@color/principalClaro"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:backgroundTint="@color/placeholder_bg"></com.google.android.material.button.MaterialButton>
+            app:backgroundTint="@color/principal"></com.google.android.material.button.MaterialButton>
 
 
 
@@ -87,19 +83,21 @@
             android:layout_marginTop="260dp"
             android:background="@color/white"
             app:cardCornerRadius="32dp"
-            app:cardElevation="7dp">
+            app:cardElevation="7dp"
+            >
 
             <TextView
                 android:id="@+id/nombre_parque"
+                android:layout_marginTop="7dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
                 android:layout_marginHorizontal="8dp"
                 android:text="Nombre del parque"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="17dp"
-                android:textStyle="normal"></TextView>
+                android:textAllCaps="true"
+                android:textStyle="bold"></TextView>
 
 
         </androidx.cardview.widget.CardView>

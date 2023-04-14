@@ -20,7 +20,8 @@ interface AgregarEventoContract {
         fun dettachView()
         fun dettachJob()
         fun isViewAttached():Boolean
-        fun addEvento(evento: Evento, uri: Uri)
+        fun addEventoPhoto(evento: Evento, uri: Uri)
+        fun addEvento(evento: Evento)
         fun checkEmptyDescripcion(descripcion: String):Boolean
         fun checkEmptyDate(date: String):Boolean
         fun checkEmptyHour(hour: String):Boolean

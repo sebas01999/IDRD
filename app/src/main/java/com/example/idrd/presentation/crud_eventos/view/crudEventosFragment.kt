@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.idrd.R
+import com.example.idrd.base.ValidarSolicitud
 import com.example.idrd.data.model.Evento
 import com.example.idrd.data.model.Users
 import com.example.idrd.domain.interactor.crudEventos.CrudEventosInteractorImpl
@@ -32,10 +33,16 @@ import kotlinx.android.synthetic.main.fragment_crud_eventos.*
 import kotlinx.android.synthetic.main.fragment_crud_eventos.cancelar
 import kotlinx.android.synthetic.main.fragment_crud_eventos.progressBar_crud
 import kotlinx.android.synthetic.main.fragment_crud_eventos.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import top.defaults.colorpicker.ColorPickerPopup
 import java.text.SimpleDateFormat
+import kotlin.coroutines.CoroutineContext
 
-class crudEventosFragment : Fragment(), EventosAdapter.OnItemClickListener, CrudEventosContract.CrudEventosView {
+class crudEventosFragment : Fragment(), EventosAdapter.OnItemClickListener, CrudEventosContract.CrudEventosView,
+    CoroutineScope {
     private lateinit var adapter: EventosAdapter
     private val viewModel by lazy { ViewModelProvider(this).get(EventosViewModelAdmin::class.java) }
     private var evento:Evento?=null
@@ -43,6 +50,9 @@ class crudEventosFragment : Fragment(), EventosAdapter.OnItemClickListener, Crud
     var colorcard:Int=-1
     var selecciono:Boolean=false
     lateinit var presenter:CrudEventosPresenter
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main +job
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -195,6 +205,7 @@ class crudEventosFragment : Fragment(), EventosAdapter.OnItemClickListener, Crud
             val duracionH: String = num_horas.text.toString().trim()
             val hour: String = time.text.toString().trim()
             val date: String = date.text.toString().trim()
+            val idparque=evento?.idParque!!
 
             if (presenter.checkEmptyDescripcion(descripcionEvento)){
                 etxt_descripcionEvento.error="Ingrese la descripcion del evento"
@@ -203,17 +214,26 @@ class crudEventosFragment : Fragment(), EventosAdapter.OnItemClickListener, Crud
             evento?.eventoDes=descripcionEvento
             evento?.duracionH=Integer.parseInt(duracionH)
             evento?.fecha=presenter.formatedDate(date, hour)
+            val fecha=evento?.fecha!!
             if (selecciono){
                 evento?.color=colorcard
             }
+            val eventoEnv=evento
+            val filepathEnv=filepath
+            launch {
+                val validarSolicitud= ValidarSolicitud(idParque = idparque, fecha =fecha, context = requireContext(), date = date, duracionH = duracionH, parque = null)
+                if(validarSolicitud.validarsolicitud() && validarSolicitud.validarevento() && validarSolicitud.validarParque("0",hour)){
+                    if (filepathEnv==null){
+                        presenter.editar(eventoEnv!!)
+                    }else{
+                        presenter.editarFoto(eventoEnv!!, filepathEnv!!)
+                    }
 
-            if (filepath==null){
-                presenter.editar(evento!!)
-            }else{
-                presenter.editarFoto(evento!!,filepath!!)
+                }
+                observeData()
+                evento=null
             }
-            observeData()
-            evento=null
+
         }
 
     }

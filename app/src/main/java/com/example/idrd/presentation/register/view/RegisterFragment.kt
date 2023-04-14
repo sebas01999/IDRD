@@ -17,9 +17,18 @@ import com.google.firebase.firestore.auth.User
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class RegisterFragment : Fragment(),RegisterContract.RegisterView {
+class RegisterFragment : Fragment(),RegisterContract.RegisterView,
+    CoroutineScope {
     lateinit var presenter:RegisterPresenter
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main +job
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -52,43 +61,53 @@ class RegisterFragment : Fragment(),RegisterContract.RegisterView {
         val phone:String = etxt_phone.editText?.text.toString()
         val adress:String = etxt_adress.editText?.text.toString().trim()
         val pw1:String = etxt_contraseña.editText?.text.toString().trim()
+        launch {
+            showProgress()
+            if (RegisterInteractorImpl().checkUsersCedula(cedula)){
+                etxt_cedula.error="Esta cedula ya existe"
+                return@launch
+            }
+            if (RegisterInteractorImpl().checkUsersCorreo(email)){
+                etxt_email_registro.error="Este correo ya existe"
+                return@launch
+            }
+            if (presenter.checkEmptyFields(fullname)){
+                etxt_fullname.error="El nombre esta vacio"
+                return@launch
+            }
+            if(presenter.checkEmptyEmail(email)){
+                etxt_email_registro.error="El Email es vacio"
+                return@launch
+            }
 
-        if (presenter.checkEmptyFields(fullname)){
-            etxt_fullname.error="El nombre esta vacio"
-            return
-        }
-        if(presenter.checkEmptyEmail(email)){
-            etxt_email_registro.error="El Email es vacio"
-            return
-        }
+            if (presenter.checkEmptyPasswords(pw1)){
+                etxt_contraseña.error="contraseña vacia"
+                return@launch
+            }
 
-        if (presenter.checkEmptyPasswords(pw1)){
-            etxt_contraseña.error="contraseña vacia"
-            return
-        }
-
-        if (presenter.checkEmptyCedula(cedula)){
-            etxt_cedula.error="contraseña vacia"
-            return
-        }
-        if (presenter.checkEmptyPhone(phone)){
-            etxt_phone.error="contraseña vacia"
-            return
-        }
-        if (presenter.checkEmptyCedula(adress)){
-            etxt_adress.error="contraseña vacia"
-            return
-        }
-        var users=Users()
-        users.nombre=fullname
-        users.cedula=cedula
-        users.correo=email
-        users.direction=adress
-        users.telefono=phone
+            if (presenter.checkEmptyCedula(cedula)){
+                etxt_cedula.error="contraseña vacia"
+                return@launch
+            }
 
 
+            if (presenter.checkEmptyPhone(phone)){
+                etxt_phone.error="contraseña vacia"
+                return@launch
+            }
+            if (presenter.checkEmptyCedula(adress)){
+                etxt_adress.error="contraseña vacia"
+                return@launch
+            }
 
-        presenter.signUp(users, pw1)
+            var users=Users()
+            users.nombre=fullname
+            users.cedula=cedula
+            users.correo=email
+            users.direction=adress
+            users.telefono=phone
+            presenter.signUp(users, pw1)
+        }
     }
 
     override fun showProgress() {

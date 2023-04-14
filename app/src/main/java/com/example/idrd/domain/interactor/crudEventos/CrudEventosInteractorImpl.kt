@@ -12,7 +12,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 class CrudEventosInteractorImpl:CrudEventoInteractor {
-    override suspend fun addEventos(evento: Evento, uri: Uri):Unit=
+    override suspend fun addEventosPhoto(evento: Evento, uri: Uri):Unit=
         suspendCancellableCoroutine{ continuacion->
             val db = Firebase.firestore
             var imagen = FirebaseStorage.getInstance().reference.child(evento.eventoDes)
@@ -31,6 +31,21 @@ class CrudEventosInteractorImpl:CrudEventoInteractor {
                 }
             })
     }
+    override suspend fun addEventos(evento: Evento):Unit=
+        suspendCancellableCoroutine{ continuacion->
+            val db = Firebase.firestore
+            evento.imageUrl = "https://firebasestorage.googleapis.com/v0/b/idrd-6eff9.appspot.com/o/Park-icon_30285%20(2).png?alt=media&token=9b6cbd67-0472-4388-910d-b6c335376e7f"
+            var ref = db.collection("Eventos").document()
+            evento.id = ref.id
+            ref.set(evento).addOnCompleteListener { cont ->
+                if (cont.isSuccessful) {
+                            continuacion.resume(Unit)
+                } else {
+                    continuacion.resumeWithException(FirebaseAgregarExceptions(cont.exception?.message))
+                }
+            }
+        }
+
 
     override suspend fun editEvento(evento: Evento): Unit= suspendCancellableCoroutine {continuacion->
         val db = Firebase.firestore
