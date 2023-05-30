@@ -17,11 +17,4 @@ class AforoViewModel:ViewModel() {
         }
         return mutableData
     }
-    fun fetchAforoDataUser(idparque: String):LiveData<MutableList<Aforo>>{
-        val mutableData = MutableLiveData<MutableList<Aforo>>()
-        repo.getAforoUser(idparque).observeForever {
-            mutableData.value=it
-        }
-        return mutableData
-    }
 }

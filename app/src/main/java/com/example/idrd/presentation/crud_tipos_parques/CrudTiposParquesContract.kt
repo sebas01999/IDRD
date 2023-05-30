@@ -11,7 +11,6 @@ interface CrudTiposParquesContract {
         fun showProgressDialog()
         fun hideProgressDialog()
         fun editar()
-        fun borrar()
         fun cancelar()
         fun showSuccess(msgSuccess:String?)
 
@@ -22,8 +21,8 @@ interface CrudTiposParquesContract {
         fun dettachView()
         fun dettachJob()
         fun isViewAttached():Boolean
-        fun editar(tipo_parque:TiposParque)
-        fun borrar(tipo_parque:TiposParque)
+        fun editar(tipoParque:TiposParque)
+        fun borrar(tipoParque:TiposParque)
         fun checkEmptyTipo(tipo: String):Boolean
 
     }

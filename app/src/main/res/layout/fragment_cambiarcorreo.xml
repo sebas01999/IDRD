@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.cambiar_correo.view.fragment_cambiarcorreo">
+    tools:context=".presentation.cambiar_correo.view.FragmentCambiarcorreo">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -13,12 +13,6 @@
         android:orientation="vertical"
         android:padding="28dp"
         >
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="37dp"
-            android:background="@drawable/ic_volver"></ImageButton>
 
         <TextView
             android:layout_marginTop="15dp"

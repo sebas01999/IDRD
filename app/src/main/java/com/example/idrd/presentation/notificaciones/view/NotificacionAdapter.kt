@@ -7,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.idrd.R
 import com.example.idrd.data.model.Notificacion
-import kotlinx.android.synthetic.main.fragment_calificar_parque.*
 import kotlinx.android.synthetic.main.notificacion_item_row.view.*
+import java.text.SimpleDateFormat
 
 class NotificacionAdapter(private val context: Context, private var itemClickListener: OnItemClickListener) : RecyclerView.Adapter<NotificacionAdapter.MainViewHolder>() {
     private var dataList= mutableListOf<Notificacion>()
@@ -43,9 +42,11 @@ class NotificacionAdapter(private val context: Context, private var itemClickLis
         fun bindView(notificacion: Notificacion){
             itemView.tarjeta.setOnClickListener{ itemClickListener.onItemClick(notificacion)
             itemView.textoNoti.visibility=View.VISIBLE}
-            itemView.tituloNoti.text = notificacion.Titulo
-            itemView.textoNoti.text = notificacion.Texto
-            itemView.fechaNoti.text = notificacion.Fecha.toString()
+            itemView.tituloNoti.text = notificacion.titulo
+            itemView.textoNoti.text = notificacion.texto
+            val formatter = SimpleDateFormat("MMMM dd, yyyy")
+            val salida= formatter.format(notificacion.fecha!!)
+            itemView.fechaNoti.text = salida
             if (notificacion.visto==true){
                 var tarjeta=itemView.tarjeta.background
                 tarjeta=DrawableCompat.wrap(tarjeta)

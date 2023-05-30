@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.cuenta_Director.view.CuentaDirectorFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="#F5F5F8"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="42dp"
+            android:text="Tu información"
+            android:textAlignment="center"
+            android:textColor="@color/principal"
+            android:textSize="28dp"
+            android:textStyle="bold"></TextView>
+
+        <com.google.android.material.card.MaterialCardView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:elevation="8dp"
+            app:cardCornerRadius="20dp"
+
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="94dp"
+                    android:layout_height="94dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_user"></ImageView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/nombreDirec"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sebastian Salamanca"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/correoDirec"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="sebastian123@gmail.com"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        ></TextView>
+
+                    <TextView
+                        android:id="@+id/direcDirec"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Carrera 15# 11- 49"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="15dp"
+                        ></TextView>
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+
+            >
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/botonnotificacionesDirec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:drawableTop="@drawable/ic_notificacion"
+                    android:elevation="8dp"
+                    android:text="Notificaciones"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="10dp"
+
+                    ></com.google.android.material.button.MaterialButton>
+
+                <com.nex3z.notificationbadge.NotificationBadge
+                    android:id="@+id/badgeDr"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginTop="5dp"
+                    android:elevation="9dp" />
+            </RelativeLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/botonconfigDirec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:backgroundTint="@color/white"
+                android:elevation="8dp"
+                android:drawableTop="@drawable/ic_configuracion"
+                android:text="Configuración"
+                android:textSize="10dp"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+
+                ></com.google.android.material.button.MaterialButton>
+
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+
+            android:id="@+id/botonReportesDirec"
+            android:textAlignment="textStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/white"
+            android:elevation="8dp"
+            android:padding="12dp"
+            android:text="Reportes"
+            android:textAllCaps="false"
+            android:textColor="@color/principal"
+            android:textSize="18dp"
+            app:cornerRadius="10dp"
+            android:drawableRight="@drawable/ic_ir"
+
+            >
+
+        </com.google.android.material.button.MaterialButton>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cerrarsesionDirec"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/principal"
+            android:elevation="8dp"
+            android:text="Cerrar sesión"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            app:cornerRadius="10dp"
+            ></com.google.android.material.button.MaterialButton>
+
+    </LinearLayout>
+
+</FrameLayout>

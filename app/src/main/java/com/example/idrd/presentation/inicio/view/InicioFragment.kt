@@ -1,18 +1,13 @@
 package com.example.idrd.presentation.inicio.view
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
 import androidx.core.view.isEmpty
 import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,14 +15,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.idrd.R
 import com.example.idrd.data.model.Parque
 import com.example.idrd.data.model.TiposParque
-import com.example.idrd.presentation.descripcion.view.descripcionFragment
+import com.example.idrd.presentation.descripcion.view.DescripcionFragment
 import com.example.idrd.presentation.inicio.model.MainViewModel
 import com.example.idrd.presentation.inicio.model.TiposViewModel
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.fragment_inicio.*
 import kotlinx.android.synthetic.main.fragment_inicio.view.*
-import kotlinx.coroutines.Job
-import java.security.Key
 
 class InicioFragment : Fragment(),MainAdapter.OnItemClickListener {
     private lateinit var adapter: MainAdapter
@@ -110,7 +103,7 @@ class InicioFragment : Fragment(),MainAdapter.OnItemClickListener {
         bundle.putSerializable("parque", item)
         val transaction=fragmentManager?.beginTransaction()
 
-        val fragmento = descripcionFragment()
+        val fragmento = DescripcionFragment()
         fragmento.arguments=bundle
 
 
@@ -125,7 +118,6 @@ class InicioFragment : Fragment(),MainAdapter.OnItemClickListener {
 
 
     fun observeData(){
-        //shimmer_view_container.startShimmer()
         viewModel.fetchParqueData().observe(viewLifecycleOwner , Observer {
             shimmer_view_container.stopShimmer()
             shimmer_view_container.visibility=View.GONE
@@ -139,7 +131,8 @@ class InicioFragment : Fragment(),MainAdapter.OnItemClickListener {
     fun observeDataTipos(){
         //shimmer_view_container.startShimmer()
         viewModelTipos.fetchTiposParqueData().observe(viewLifecycleOwner , Observer {
-            for (item in it){
+            val tiposparque=it.filter { x -> x.activo } as MutableList<TiposParque>
+            for (item in tiposparque){
                 addChip(item)
             }
             scroll.visibility=View.VISIBLE

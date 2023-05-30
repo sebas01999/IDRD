@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.idrd.R
 import com.example.idrd.data.model.TiposParque
 import com.example.idrd.domain.interactor.crud_TiposParques.CrudTiposParquesInteractorImpl
-import com.example.idrd.presentation.agregarTiposParques.view.agregar_tipos_parqueFragment
+import com.example.idrd.presentation.agregarTiposParques.view.AgregarTiposParqueFragment
 import com.example.idrd.presentation.crud_tipos_parques.CrudTiposParquesContract
 import com.example.idrd.presentation.crud_tipos_parques.crudTiposParquesPresenter.CrudTiposParquesPresenter
 import com.example.idrd.presentation.inicio.model.TiposViewModel
@@ -54,17 +54,12 @@ class CrudTiposFragment : Fragment(),TiposAdapter.OnItemClickListener,CrudTiposP
         view.toolbar.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.menu_agregar->{
-                    val fragment=agregar_tipos_parqueFragment()
+                    val fragment=AgregarTiposParqueFragment()
                     fragment.show(childFragmentManager,"SimpleDialog")
                     true
                 }
                 R.id.menu_modificar->{
                     editar()
-                    true
-
-                }
-                R.id.menu_eliminar->{
-                    borrar()
                     true
 
                 }
@@ -104,7 +99,8 @@ class CrudTiposFragment : Fragment(),TiposAdapter.OnItemClickListener,CrudTiposP
                 txt_tipo_parque.error="Ingrese un tipo de parque"
                 return
             }
-            tipo?.tipo=nombre
+            tipo!!.tipo=nombre
+            tipo!!.activo=swactivo.isChecked
             presenter.editar(tipo!!)
             adapter.notifyDataSetChanged()
             tipo=null
@@ -112,13 +108,6 @@ class CrudTiposFragment : Fragment(),TiposAdapter.OnItemClickListener,CrudTiposP
 
     }
 
-    override fun borrar() {
-        if(tipo!=null){
-            presenter.borrar(tipo!!)
-            observerData()
-            tipo=null
-        }
-    }
 
     override fun cancelar() {
        form_agregar_tipo.visibility=View.GONE
@@ -140,6 +129,7 @@ class CrudTiposFragment : Fragment(),TiposAdapter.OnItemClickListener,CrudTiposP
 
     override fun onItemClick(item: TiposParque) {
         tipo= item
+        swactivo.isChecked=item!!.activo
         tipo_parque.setText(tipo!!.tipo)
         form_agregar_tipo.visibility= View.VISIBLE
 

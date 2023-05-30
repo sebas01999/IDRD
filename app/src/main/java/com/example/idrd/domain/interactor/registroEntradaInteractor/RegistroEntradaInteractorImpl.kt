@@ -1,9 +1,7 @@
 package com.example.idrd.domain.interactor.registroEntradaInteractor
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.idrd.data.model.Aforo
-import com.example.idrd.presentation.codigo_QR.exceptions.CodigoQr_Exceptions
+import com.example.idrd.presentation.codigo_QR.exceptions.CodigoQrExceptions
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -15,7 +13,7 @@ import kotlin.coroutines.suspendCoroutine
 class RegistroEntradaInteractorImpl : RegistroEntradaInteractor {
 
 
-    override suspend fun Registrobotones(aforo:Aforo):Unit= suspendCancellableCoroutine { continuation->
+    override suspend fun registroAforo(aforo:Aforo):Unit= suspendCancellableCoroutine { continuation->
         aforo.idUser= FirebaseAuth.getInstance().currentUser?.uid.toString()
         val db = FirebaseFirestore.getInstance().collection("Aforo").document()
         aforo.id=db.id
@@ -23,7 +21,7 @@ class RegistroEntradaInteractorImpl : RegistroEntradaInteractor {
             if(it.isSuccessful){
                 continuation.resume(Unit)
             }else{
-                continuation.resumeWithException(CodigoQr_Exceptions(it.exception?.message))
+                continuation.resumeWithException(CodigoQrExceptions(it.exception?.message))
             }
         }
 

@@ -19,7 +19,7 @@ interface AgregarTipoParqueContract {
         fun dettachView()
         fun dettachJob()
         fun isViewAttached():Boolean
-        fun addTipoParque(tipo_parque:TiposParque)
+        fun addTipoParque(tipoParque:TiposParque)
         fun checkEmptytipo(tipo: String):Boolean
 
     }

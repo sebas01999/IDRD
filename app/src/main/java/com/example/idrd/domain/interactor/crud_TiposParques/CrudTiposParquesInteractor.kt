@@ -5,8 +5,8 @@ import com.example.idrd.data.model.TiposParque
 
 interface CrudTiposParquesInteractor {
 
-    suspend fun addTipoParque(tipo_parque : TiposParque)
-    suspend fun editTipoParque(tipo_parque : TiposParque)
-    suspend fun borarTipoParque(tipo_parque : TiposParque)
+    suspend fun addTipoParque(tipoParque : TiposParque)
+    suspend fun editTipoParque(tipoParque : TiposParque)
+    suspend fun borarTipoParque(tipoParque : TiposParque)
 
 }

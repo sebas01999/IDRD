@@ -50,15 +50,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_margin="10dp">
+
                     <Switch
                         android:id="@+id/swactivo"
-                        android:layout_marginTop="7dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="7dp"
                         android:text="Activar o Desactivar este parque"
                         android:textColor="@color/location_park"
-                        android:textStyle="italic"
-                        ></Switch>
+                        android:textStyle="italic"></Switch>
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/etxt_nombre"
                         android:layout_width="match_parent"

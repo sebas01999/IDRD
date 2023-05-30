@@ -49,7 +49,7 @@
                     android:layout_width="323dp"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginLeft="16dp"
                     android:background="@drawable/buscar_bg"
                     app:iconifiedByDefault="false"
                     app:queryHint="Busca un parque"></androidx.appcompat.widget.SearchView>
@@ -59,8 +59,12 @@
                     android:layout_width="52dp"
                     android:layout_height="52dp"
                     android:layout_alignParentRight="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginRight="17dp"
+
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/searchView"
                     android:backgroundTint="@color/white"
                     android:elevation="5dp"
                     android:src="@drawable/ic_filtro"></ImageButton>

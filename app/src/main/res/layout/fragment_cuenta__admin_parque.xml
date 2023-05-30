@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.cuenta_AdminParque.view.cuenta_AdminParqueFragment">
+    tools:context=".presentation.cuenta_AdminParque.view.CuentaAdminParqueFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -205,22 +205,42 @@
 
         <com.google.android.material.button.MaterialButton
 
-            android:id="@+id/ayudaadming"
-            android:layout_width="match_parent"
+            android:id="@+id/botonreportesadminp"
             android:textAlignment="textStart"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/white"
             android:elevation="8dp"
             android:padding="12dp"
-            android:text="Ayuda"
+            android:text="Reportes"
             android:textAllCaps="false"
             android:textColor="@color/principal"
             android:textSize="18dp"
             app:cornerRadius="10dp"
             android:drawableRight="@drawable/ic_ir"
+
             >
+
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
+
+            android:id="@+id/ayudaadminP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/white"
+            android:drawableRight="@drawable/ic_ir"
+            android:elevation="8dp"
+            android:padding="12dp"
+            android:text="Contactanos"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/principal"
+            android:textSize="18dp"
+            app:cornerRadius="10dp">
 
         </com.google.android.material.button.MaterialButton>
 

@@ -5,7 +5,6 @@ import com.example.idrd.domain.interactor.calificacionInteractor.CalificacionInt
 import com.example.idrd.presentation.agregarCalificacion.AgregarCalificacionContract
 import com.example.idrd.presentation.agregarCalificacion.exceptions.FirebaseCalificacionExceptiones
 import kotlinx.coroutines.*
-import java.util.*
 import kotlin.coroutines.CoroutineContext
 
 class AgregarCalificacionPresenter(calificacionInteractor: CalificacionInteractor):AgregarCalificacionContract.AgregarCalificacionPresenter, CoroutineScope {
@@ -58,7 +57,7 @@ class AgregarCalificacionPresenter(calificacionInteractor: CalificacionInteracto
         launch {
             try {
                 view?.showProgressDialog()
-                calificacionInteractor?.EditCalificacion(calificacion)
+                calificacionInteractor?.editCalificacion(calificacion)
                 if (isViewAttached()){
                     view?.hideProgressDialog()
                     view?.showSuccess()
@@ -76,7 +75,7 @@ class AgregarCalificacionPresenter(calificacionInteractor: CalificacionInteracto
         launch {
             try {
                 view?.showProgressDialog()
-                calificacionInteractor?.EditCalificacionParque(calificacion,idParque)
+                calificacionInteractor?.editCalificacionParque(calificacion,idParque)
                 if (isViewAttached()){
                     view?.hideProgressDialog()
                     view?.showSuccess()

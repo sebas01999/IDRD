@@ -4,6 +4,6 @@ import com.example.idrd.data.model.Aforo
 
 interface RegistroEntradaInteractor {
 
-    suspend fun Registrobotones(aforo: Aforo)
+    suspend fun registroAforo(aforo: Aforo)
 
 }

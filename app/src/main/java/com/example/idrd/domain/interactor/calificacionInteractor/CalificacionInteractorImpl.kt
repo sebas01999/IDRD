@@ -25,7 +25,7 @@ class CalificacionInteractorImpl:CalificacionInteractor {
         }
     }
 
-    override suspend fun EditCalificacion(calificacion: Calificacion):Unit= suspendCancellableCoroutine {continuation->
+    override suspend fun editCalificacion(calificacion: Calificacion):Unit= suspendCancellableCoroutine { continuation->
 
         val db = Firebase.firestore
         db.collection("Calificaciones").document(calificacion.id).set(calificacion).addOnCompleteListener {
@@ -37,7 +37,7 @@ class CalificacionInteractorImpl:CalificacionInteractor {
         }
     }
 
-    override suspend fun EditCalificacionParque(calificacion: String, idParque: String):Unit= suspendCancellableCoroutine{ continuation->
+    override suspend fun editCalificacionParque(calificacion: String, idParque: String):Unit= suspendCancellableCoroutine{ continuation->
         val db = Firebase.firestore
         db.collection("Parques").document(idParque).update("calificacion", calificacion).addOnCompleteListener {
             if (it.isSuccessful){

@@ -2,11 +2,9 @@ package com.example.idrd.presentation.agregarTiposParques.AgregarTipoParquePrese
 
 import com.example.idrd.data.model.TiposParque
 import com.example.idrd.domain.interactor.crud_TiposParques.CrudTiposParquesInteractor
-import com.example.idrd.presentation.agregarParque.exceptions.FirebaseAgregarExceptions
 import com.example.idrd.presentation.agregarTiposParques.AgregarTipoParqueContract
 import com.example.idrd.presentation.agregarTiposParques.exceptions.FirebaseAgregarTipoExceptions
 import kotlinx.coroutines.*
-import java.lang.NullPointerException
 import kotlin.coroutines.CoroutineContext
 
 class AgregarTipoParquePresenter (crudTiposParquesInteractor: CrudTiposParquesInteractor): AgregarTipoParqueContract.AgregarTipoPresenter,CoroutineScope {
@@ -38,11 +36,11 @@ class AgregarTipoParquePresenter (crudTiposParquesInteractor: CrudTiposParquesIn
         return view != null
     }
 
-    override fun addTipoParque(tipo_parque: TiposParque) {
+    override fun addTipoParque(tipoParque: TiposParque) {
         launch {
             try {
                 view?.showProgressDialog()
-                crudTiposParquesInteractor?.addTipoParque(tipo_parque)
+                crudTiposParquesInteractor?.addTipoParque(tipoParque)
                 if (isViewAttached()){
                     view?.hideProgressDialog()
                     view?.showSuccess()

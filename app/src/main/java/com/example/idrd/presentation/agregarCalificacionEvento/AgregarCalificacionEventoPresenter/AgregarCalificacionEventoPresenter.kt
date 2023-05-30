@@ -1,7 +1,6 @@
 package com.example.idrd.presentation.agregarCalificacionEvento.AgregarCalificacionEventoPresenter
 
 import com.example.idrd.data.model.CalificacionEvento
-import com.example.idrd.domain.interactor.calificacionInteractor.CalificacionInteractor
 import com.example.idrd.domain.interactor.calificacion_eventosInteractor.CalificacionEventoInteractor
 import com.example.idrd.presentation.agregarCalificacionEvento.AgregarCalificacionEventoContract
 import com.example.idrd.presentation.agregarCalificacionEvento.exceptions.FirebaseCalificacionEventosExceptions
@@ -59,7 +58,7 @@ class AgregarCalificacionEventoPresenter(calificacionEventoInteractor: Calificac
         launch {
             try {
                 view?.showProgressDialog()
-                calificacionEventoInteractor?.EditCalificacionEvento(calificacion)
+                calificacionEventoInteractor?.editCalificacionEvento(calificacion)
                 if (isViewAttached()) {
                     view?.hideProgressDialog()
                     view?.showSuccess()
@@ -77,7 +76,7 @@ class AgregarCalificacionEventoPresenter(calificacionEventoInteractor: Calificac
         launch {
             try {
                 view?.showProgressDialog()
-                calificacionEventoInteractor?.EditCalificacionEventoGeneral(calificacion, idEvento)
+                calificacionEventoInteractor?.editCalificacionEventoGeneral(calificacion, idEvento)
                 if (isViewAttached()) {
                     view?.hideProgressDialog()
                     view?.showSuccess()

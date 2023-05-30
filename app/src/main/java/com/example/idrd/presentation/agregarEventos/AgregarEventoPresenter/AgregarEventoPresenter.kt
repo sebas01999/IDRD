@@ -1,10 +1,18 @@
 package com.example.idrd.presentation.agregarEventos.AgregarEventoPresenter
 
+import android.content.Context
 import android.net.Uri
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
 import com.example.idrd.data.model.Evento
 import com.example.idrd.domain.interactor.crudEventos.CrudEventoInteractor
 import com.example.idrd.presentation.agregarEventos.AgregarEventoContract
+import com.example.idrd.presentation.agregarEventos.model.ViewModelParqueID
 import com.example.idrd.presentation.agregarParque.exceptions.FirebaseAgregarExceptions
+import com.example.idrd.presentation.agregarParque.model.UserViewModel
+import com.example.idrd.presentation.notificaciones.NotificacionesContract
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -75,6 +83,7 @@ class AgregarEventoPresenter(crudEventoInteractor: CrudEventoInteractor):Agregar
             }
         }
     }
+
 
     override fun checkEmptyDescripcion(descripcion: String): Boolean {
         return descripcion.isEmpty()

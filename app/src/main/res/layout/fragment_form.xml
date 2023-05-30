@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rounded_form"
     android:orientation="vertical"
-    tools:context=".presentation.form.view.fragment_form"
+    tools:context=".presentation.form.view.FragmentForm"
     android:minWidth="800dp">
 
 

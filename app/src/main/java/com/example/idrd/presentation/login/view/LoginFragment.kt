@@ -9,11 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.idrd.R
 import com.example.idrd.domain.interactor.loginInteractor.SignInInteractorImpl
-import com.example.idrd.presentation.form.view.fragment_form
 import com.example.idrd.presentation.login.LoginContract
 import com.example.idrd.presentation.login.presenter.LoginPresenter
-import com.example.idrd.presentation.mainprincipal.view.mainprincipal
-import com.example.idrd.presentation.recuperar.view.fragment_recuperar
+import com.example.idrd.presentation.mainprincipal.view.Mainprincipal
+import com.example.idrd.presentation.recuperar.view.FragmentRecuperar
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
 
@@ -66,7 +65,7 @@ class LoginFragment : Fragment(), LoginContract.LoginView {
     }
 
     override fun navigateToMain() {
-        val intent = Intent(context, mainprincipal::class.java)
+        val intent = Intent(context, Mainprincipal::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
@@ -75,8 +74,8 @@ class LoginFragment : Fragment(), LoginContract.LoginView {
     override fun navigeteToRecoverPassword() {
         val fragmentManager = requireActivity().supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.viewpager, fragment_recuperar())
-        transaction.replace(R.id.container2, fragment_recuperar())
+        transaction.replace(R.id.viewpager, FragmentRecuperar())
+        transaction.replace(R.id.container2, FragmentRecuperar())
         transaction.addToBackStack(null)
         transaction.commit()
 

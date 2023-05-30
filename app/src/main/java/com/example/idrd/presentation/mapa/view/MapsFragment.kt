@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.idrd.R
 import com.example.idrd.data.model.Parque
-import com.example.idrd.presentation.info_mapa.view.Fragment_infomapa
+import com.example.idrd.presentation.info_mapa.view.FragmentInfomapa
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -60,7 +60,7 @@ class MapsFragment : Fragment(),GoogleMap.OnMarkerClickListener {
     }
 
     override fun onMarkerClick(p0: Marker): Boolean {
-        val info= Fragment_infomapa()
+        val info= FragmentInfomapa()
         info.arguments=arguments
         info.show(childFragmentManager,"SimpleDialog")
         return false

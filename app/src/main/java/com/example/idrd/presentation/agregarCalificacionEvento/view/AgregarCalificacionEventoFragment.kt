@@ -38,6 +38,8 @@ class AgregarCalificacionEventoFragment : BottomSheetDialogFragment(),AgregarCal
     private val viewModel by lazy { ViewModelProvider(this).get(CalificacionEventoUserViewModel::class.java) }
     private val viewModelTodas by lazy { ViewModelProvider(this).get(CalificacionEventoViewModel::class.java)}
     private var calificacion:CalificacionEvento?=null
+    val color1="#EBF0FF"
+    val color2="#FFC833"
     var estrellasI:Int=1
     var calificacionTotal=0.0
 
@@ -54,7 +56,7 @@ class AgregarCalificacionEventoFragment : BottomSheetDialogFragment(),AgregarCal
         val view:View=inflater!!.inflate(R.layout.fragment_agregar_calificacion_evento, container, false)
         presenter= AgregarCalificacionEventoPresenter((CalificacionEventoInteractorImpl()))
         presenter.attachView(this)
-        view.unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
+        view.unaEstrella.setColorFilter(Color.parseColor(color2))
         observeData()
         view.unaEstrella.setOnClickListener{
             estrellasI=1
@@ -84,11 +86,11 @@ class AgregarCalificacionEventoFragment : BottomSheetDialogFragment(),AgregarCal
     }
 
     fun limpiar(){
-        unaEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
-        dosEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
-        tresEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
-        cuatroEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
-        cincoEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
+        unaEstrella.setColorFilter(Color.parseColor(color1))
+        dosEstrella.setColorFilter(Color.parseColor(color1))
+        tresEstrella.setColorFilter(Color.parseColor(color1))
+        cuatroEstrella.setColorFilter(Color.parseColor(color1))
+        cincoEstrella.setColorFilter(Color.parseColor(color1))
     }
 
     fun observeData(){
@@ -177,41 +179,41 @@ class AgregarCalificacionEventoFragment : BottomSheetDialogFragment(),AgregarCal
     override fun unaEstrella() {
         limpiar()
         estrellas.text="1/5"
-        unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
+        unaEstrella.setColorFilter(Color.parseColor(color2))
     }
 
     override fun dosEstrella() {
         limpiar()
         estrellas.text="2/5"
-        unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
-        dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
+        unaEstrella.setColorFilter(Color.parseColor(color2))
+        dosEstrella.setColorFilter(Color.parseColor(color2))
     }
 
     override fun tresEstrella() {
         limpiar()
         estrellas.text="3/5"
-        unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
-        dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
-        tresEstrella.setColorFilter(Color.parseColor("#FFC833"))
+        unaEstrella.setColorFilter(Color.parseColor(color2))
+        dosEstrella.setColorFilter(Color.parseColor(color2))
+        tresEstrella.setColorFilter(Color.parseColor(color2))
     }
 
     override fun cuatroEstrella() {
         limpiar()
         estrellas.text="4/5"
-        unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
-        dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
-        tresEstrella.setColorFilter(Color.parseColor("#FFC833"))
-        cuatroEstrella.setColorFilter(Color.parseColor("#FFC833"))
+        unaEstrella.setColorFilter(Color.parseColor(color2))
+        dosEstrella.setColorFilter(Color.parseColor(color2))
+        tresEstrella.setColorFilter(Color.parseColor(color2))
+        cuatroEstrella.setColorFilter(Color.parseColor(color2))
     }
 
     override fun cincoEstrella() {
         limpiar()
         estrellas.text="5/5"
-        unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
-        dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
-        tresEstrella.setColorFilter(Color.parseColor("#FFC833"))
-        cuatroEstrella.setColorFilter(Color.parseColor("#FFC833"))
-        cincoEstrella.setColorFilter(Color.parseColor("#FFC833"))
+        unaEstrella.setColorFilter(Color.parseColor(color2))
+        dosEstrella.setColorFilter(Color.parseColor(color2))
+        tresEstrella.setColorFilter(Color.parseColor(color2))
+        cuatroEstrella.setColorFilter(Color.parseColor(color2))
+        cincoEstrella.setColorFilter(Color.parseColor(color2))
     }
 
     override fun showSuccess() {

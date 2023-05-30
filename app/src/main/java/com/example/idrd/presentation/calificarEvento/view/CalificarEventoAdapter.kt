@@ -14,7 +14,8 @@ import java.text.SimpleDateFormat
 class CalificarEventoAdapter(private val context: Context ):RecyclerView.Adapter<CalificarEventoAdapter.CalificarEventoViewHolder>(){
 
     private var dataList= mutableListOf<CalificacionEvento>()
-
+    val color1="#EBF0FF"
+    val color2="#FFC833"
     fun setListData(data:MutableList<CalificacionEvento>){
         dataList=data
     }
@@ -36,42 +37,42 @@ class CalificarEventoAdapter(private val context: Context ):RecyclerView.Adapter
     inner class CalificarEventoViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         fun bindView(calificacion: CalificacionEvento){
             val formatter = SimpleDateFormat("MMMM dd, yyyy")
-            val salida= formatter.format(calificacion.fecha)
+            val salida= formatter.format(calificacion.fecha!!)
             itemView.fecha.text=salida
             if (calificacion.estrellas==1){
                 limpiar()
-                itemView.unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
+                itemView.unaEstrella.setColorFilter(Color.parseColor(color2))
             }else  if (calificacion.estrellas==2){
                 limpiar()
-                itemView.unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
-                itemView.dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
+                itemView.unaEstrella.setColorFilter(Color.parseColor(color2))
+                itemView.dosEstrella.setColorFilter(Color.parseColor(color2))
             }else if (calificacion.estrellas==3){
                 limpiar()
-                itemView.unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
-                itemView.dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
-                itemView.tresEstrella.setColorFilter(Color.parseColor("#FFC833"))
+                itemView.unaEstrella.setColorFilter(Color.parseColor(color2))
+                itemView.dosEstrella.setColorFilter(Color.parseColor(color2))
+                itemView.tresEstrella.setColorFilter(Color.parseColor(color2))
             }else if (calificacion.estrellas==4){
                 limpiar()
-                itemView.unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
-                itemView.dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
-                itemView.tresEstrella.setColorFilter(Color.parseColor("#FFC833"))
-                itemView.cuatroEstrella.setColorFilter(Color.parseColor("#FFC833"))
+                itemView.unaEstrella.setColorFilter(Color.parseColor(color2))
+                itemView.dosEstrella.setColorFilter(Color.parseColor(color2))
+                itemView.tresEstrella.setColorFilter(Color.parseColor(color2))
+                itemView.cuatroEstrella.setColorFilter(Color.parseColor(color2))
             }else if (calificacion.estrellas==5){
                 limpiar()
-                itemView.unaEstrella.setColorFilter(Color.parseColor("#FFC833"))
-                itemView.dosEstrella.setColorFilter(Color.parseColor("#FFC833"))
-                itemView.tresEstrella.setColorFilter(Color.parseColor("#FFC833"))
-                itemView.cuatroEstrella.setColorFilter(Color.parseColor("#FFC833"))
-                itemView.cincoEstrella.setColorFilter(Color.parseColor("#FFC833"))
+                itemView.unaEstrella.setColorFilter(Color.parseColor(color2))
+                itemView.dosEstrella.setColorFilter(Color.parseColor(color2))
+                itemView.tresEstrella.setColorFilter(Color.parseColor(color2))
+                itemView.cuatroEstrella.setColorFilter(Color.parseColor(color2))
+                itemView.cincoEstrella.setColorFilter(Color.parseColor(color2))
             }
             itemView.comentario.text=calificacion.comentario
         }
         fun limpiar(){
-            itemView.unaEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
-            itemView.dosEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
-            itemView.tresEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
-            itemView.cuatroEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
-            itemView.cincoEstrella.setColorFilter(Color.parseColor("#EBF0FF"))
+            itemView.unaEstrella.setColorFilter(Color.parseColor(color1))
+            itemView.dosEstrella.setColorFilter(Color.parseColor(color1))
+            itemView.tresEstrella.setColorFilter(Color.parseColor(color1))
+            itemView.cuatroEstrella.setColorFilter(Color.parseColor(color1))
+            itemView.cincoEstrella.setColorFilter(Color.parseColor(color1))
         }
 
     }

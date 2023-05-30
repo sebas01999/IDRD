@@ -16,6 +16,7 @@ import com.example.idrd.data.model.Notificacion
 import com.example.idrd.presentation.notificaciones.model.NotificacionesViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_notificaciones.*
 import kotlinx.android.synthetic.main.fragment_notificaciones.view.*
 import kotlinx.android.synthetic.main.notificacion_item_row.view.*
 
@@ -51,6 +52,8 @@ class NotificacionesFragment : Fragment(), NotificacionAdapter.OnItemClickListen
             if (!it.isEmpty()){
                 adapter.setListData(it)
                 adapter.notifyDataSetChanged()
+            }else{
+                noEncontrado.visibility=View.VISIBLE
             }
         })
     }

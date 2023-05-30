@@ -10,11 +10,9 @@ import android.widget.Toast
 import com.example.idrd.R
 import com.example.idrd.data.model.Users
 import com.example.idrd.domain.interactor.registerInteractor.RegisterInteractorImpl
-import com.example.idrd.presentation.mainprincipal.view.mainprincipal
+import com.example.idrd.presentation.mainprincipal.view.Mainprincipal
 import com.example.idrd.presentation.register.RegisterContract
 import com.example.idrd.presentation.register.presenter.RegisterPresenter
-import com.google.firebase.firestore.auth.User
-import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.view.*
 import kotlinx.coroutines.CoroutineScope
@@ -49,7 +47,7 @@ class RegisterFragment : Fragment(),RegisterContract.RegisterView,
     }
 
     override fun navigateToMain() {
-        val intent = Intent(context, mainprincipal::class.java)
+        val intent = Intent(context, Mainprincipal::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
@@ -92,11 +90,11 @@ class RegisterFragment : Fragment(),RegisterContract.RegisterView,
 
 
             if (presenter.checkEmptyPhone(phone)){
-                etxt_phone.error="contraseña vacia"
+                etxt_phone.error="telefono vacio"
                 return@launch
             }
             if (presenter.checkEmptyCedula(adress)){
-                etxt_adress.error="contraseña vacia"
+                etxt_adress.error="direccion vacia"
                 return@launch
             }
 

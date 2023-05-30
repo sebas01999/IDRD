@@ -1,25 +1,19 @@
 package com.example.idrd.presentation.acceder_solicitudes.view
 
+import android.app.AlertDialog
 import android.content.Context
-import android.os.Build
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.idrd.R
 import com.example.idrd.data.model.Solicitud
 import com.example.idrd.domain.interactor.FormInteractor.FormInteractorImpl
-import com.example.idrd.presentation.acceder_solicitudes.Acceder_solicitudesContract
-import com.example.idrd.presentation.acceder_solicitudes.acceder_solicitudesPresenter.Acceder_solicitudesPresenter
-import com.example.idrd.presentation.aceptar_rechazar.Aceptar_rechazarContract
-import com.example.idrd.presentation.editar_solicitud.view.fragment_editar_solicitud
-import com.example.idrd.presentation.form.view.fragment_form
-import com.example.idrd.presentation.inicio.model.MainViewModel
-import com.example.idrd.presentation.inicio.view.MainAdapter
-import kotlinx.android.synthetic.main.item_acceder_solicitudes.view.*
+import com.example.idrd.presentation.acceder_solicitudes.AccederSolicitudesContract
+import com.example.idrd.presentation.acceder_solicitudes.acceder_solicitudesPresenter.AccederSolicitudesPresenter
 import kotlinx.android.synthetic.main.item_acceder_solicitudes.view.estado
 import kotlinx.android.synthetic.main.item_acceder_solicitudes.view.imagen_parque
 import kotlinx.android.synthetic.main.item_acceder_solicitudes.view.infor_des
@@ -27,8 +21,6 @@ import kotlinx.android.synthetic.main.item_acceder_solicitudes.view.item_card
 import kotlinx.android.synthetic.main.item_acceder_solicitudes.view.parque
 import kotlinx.android.synthetic.main.item_acceder_solicitudes_user.view.*
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
-import kotlin.time.Duration.Companion.days
 
 class AccederAdapter( private val context: Context, private var itemClickListener: OnItemClickListener, private val rol:String):RecyclerView.Adapter<AccederAdapter.MainViewHolder>() {
     private var datalist= mutableListOf<Solicitud>()
@@ -64,11 +56,10 @@ class AccederAdapter( private val context: Context, private var itemClickListene
         }
     }
 
-    inner class MainViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), Acceder_solicitudesContract.Acceder_solicitudesView{
-
-        lateinit var presenter:Acceder_solicitudesPresenter
+    inner class MainViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), AccederSolicitudesContract.AccederSolicitudesView{
+        lateinit var presenter:AccederSolicitudesPresenter
         fun bindView(solicitud: Solicitud){
-            presenter= Acceder_solicitudesPresenter(FormInteractorImpl())
+            presenter= AccederSolicitudesPresenter(FormInteractorImpl())
             presenter.attachView(this)
             if (rol=="USER") {
                 val formatter = SimpleDateFormat("EEE, dd 'de' MMMM 'del' yyyy 'a las' hh:mm a")
@@ -84,8 +75,6 @@ class AccederAdapter( private val context: Context, private var itemClickListene
                 }
                 itemView.borrarSolicitud.setOnClickListener {
                     borrarSolicitud(solicitud)
-                    datalist.remove(solicitud)
-                    notifyDataSetChanged()
                 }
                 itemView.EditarSolicitud.setOnClickListener {
                     itemClickListener.onItemClick(solicitud)
@@ -123,7 +112,14 @@ class AccederAdapter( private val context: Context, private var itemClickListene
         }
 
         override fun borrarSolicitud(solicitud: Solicitud) {
-            presenter.borrarSolicitud(solicitud)
+            val confirmacion = AlertDialog.Builder(context).setPositiveButton("Sí, eliminar", DialogInterface.OnClickListener { dialogInterface, i ->
+                presenter.borrarSolicitud(solicitud)
+                datalist.remove(solicitud)
+                notifyDataSetChanged()
+            }).setNegativeButton("Cancelar", DialogInterface.OnClickListener { dialogInterface, i ->
+                dialogInterface.dismiss()
+            }).setTitle("Confirmar").setMessage("¿Deseas eliminar la solicitud?").create()
+            confirmacion.show()
         }
     }
 

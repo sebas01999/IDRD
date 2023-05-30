@@ -7,6 +7,9 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import com.example.idrd.R
 
 abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,5 +26,6 @@ abstract class BaseActivity : AppCompatActivity() {
     fun Context.toast(context: Context = applicationContext, message: String?, duration: Int = Toast.LENGTH_SHORT){
         Toast.makeText(context, message, duration).show()
     }
+
 
 }

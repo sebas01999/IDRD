@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.idrd.R
 import com.example.idrd.data.model.Evento
-import com.example.idrd.presentation.agregarCalificacion.view.agregarCalificacionFragment
 import com.example.idrd.presentation.agregarCalificacionEvento.view.AgregarCalificacionEventoFragment
 import com.example.idrd.presentation.calificarEvento.model.CalificacionEventoViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -31,7 +30,9 @@ class CalificarEventoFragment : BottomSheetDialogFragment() {
 
     private lateinit var adapter: CalificarEventoAdapter
     private val viewModel by lazy { ViewModelProvider(this).get(CalificacionEventoViewModel::class.java) }
-
+    val color1="#EBF5FB"
+    val color2="#40BFFF"
+    val color3="#707070"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,9 +41,9 @@ class CalificarEventoFragment : BottomSheetDialogFragment() {
         val view:View= inflater!!.inflate(R.layout.fragment_calificar_evento, container, false)
         var butonDrawable=view.todasCali.background
         butonDrawable= DrawableCompat.wrap(butonDrawable)
-        DrawableCompat.setTint(butonDrawable, Color.parseColor("#EBF5FB"))
+        DrawableCompat.setTint(butonDrawable, Color.parseColor(color1))
         view.todasCali.background=butonDrawable
-        view.todasCali.setTextColor(Color.parseColor("#40BFFF"))
+        view.todasCali.setTextColor(Color.parseColor(color2))
 
         adapter=context?.let { CalificarEventoAdapter(it) }!!
         view.rv.layoutManager= LinearLayoutManager(context)
@@ -54,54 +55,54 @@ class CalificarEventoFragment : BottomSheetDialogFragment() {
             observeData()
             var butonDrawable=view.todasCali.background
             butonDrawable=DrawableCompat.wrap(butonDrawable)
-            DrawableCompat.setTint(butonDrawable,Color.parseColor("#EBF5FB"))
+            DrawableCompat.setTint(butonDrawable,Color.parseColor(color1))
             view.todasCali.background=butonDrawable
-            view.todasCali.setTextColor(Color.parseColor("#40BFFF"))
+            view.todasCali.setTextColor(Color.parseColor(color2))
         }
         view.unaEstrella.setOnClickListener {
             limpiar()
             observeDataXEstrellas(1)
             var butonDrawable=view.unaEstrella.background
             butonDrawable=DrawableCompat.wrap(butonDrawable)
-            DrawableCompat.setTint(butonDrawable,Color.parseColor("#EBF5FB"))
+            DrawableCompat.setTint(butonDrawable,Color.parseColor(color1))
             view.unaEstrella.background=butonDrawable
-            view.unaEstrella.setTextColor(Color.parseColor("#40BFFF"))
+            view.unaEstrella.setTextColor(Color.parseColor(color2))
         }
         view.dosEstrella.setOnClickListener {
             limpiar()
             observeDataXEstrellas(2)
             var butonDrawable=view.dosEstrella.background
             butonDrawable=DrawableCompat.wrap(butonDrawable)
-            DrawableCompat.setTint(butonDrawable,Color.parseColor("#EBF5FB"))
+            DrawableCompat.setTint(butonDrawable,Color.parseColor(color1))
             view.dosEstrella.background=butonDrawable
-            view.dosEstrella.setTextColor(Color.parseColor("#40BFFF"))
+            view.dosEstrella.setTextColor(Color.parseColor(color2))
         }
         view.tresEstrella.setOnClickListener {
             limpiar()
             observeDataXEstrellas(3)
             var butonDrawable=view.tresEstrella.background
             butonDrawable=DrawableCompat.wrap(butonDrawable)
-            DrawableCompat.setTint(butonDrawable,Color.parseColor("#EBF5FB"))
+            DrawableCompat.setTint(butonDrawable,Color.parseColor(color1))
             view.tresEstrella.background=butonDrawable
-            view.tresEstrella.setTextColor(Color.parseColor("#40BFFF"))
+            view.tresEstrella.setTextColor(Color.parseColor(color2))
         }
         view.cuatroEstrella.setOnClickListener {
             limpiar()
             observeDataXEstrellas(4)
             var butonDrawable=view.cuatroEstrella.background
             butonDrawable=DrawableCompat.wrap(butonDrawable)
-            DrawableCompat.setTint(butonDrawable,Color.parseColor("#EBF5FB"))
+            DrawableCompat.setTint(butonDrawable,Color.parseColor(color1))
             view.cuatroEstrella.background=butonDrawable
-            view.cuatroEstrella.setTextColor(Color.parseColor("#40BFFF"))
+            view.cuatroEstrella.setTextColor(Color.parseColor(color2))
         }
         view.cincoEstrella.setOnClickListener {
             limpiar()
             observeDataXEstrellas(5)
             var butonDrawable=view.cincoEstrella.background
             butonDrawable=DrawableCompat.wrap(butonDrawable)
-            DrawableCompat.setTint(butonDrawable,Color.parseColor("#EBF5FB"))
+            DrawableCompat.setTint(butonDrawable,Color.parseColor(color1))
             view.cincoEstrella.background=butonDrawable
-            view.cincoEstrella.setTextColor(Color.parseColor("#40BFFF"))
+            view.cincoEstrella.setTextColor(Color.parseColor(color2))
         }
         view.calificar.setOnClickListener{
             val bottomSheetFragmentCalificar= AgregarCalificacionEventoFragment()
@@ -116,37 +117,37 @@ class CalificarEventoFragment : BottomSheetDialogFragment() {
         butonDrawable=DrawableCompat.wrap(butonDrawable)
         DrawableCompat.setTint(butonDrawable,Color.WHITE)
         todasCali.background=butonDrawable
-        todasCali.setTextColor(Color.parseColor("#707070"))
+        todasCali.setTextColor(Color.parseColor(color3))
 
         var buton1Drawable=unaEstrella.background
         buton1Drawable=DrawableCompat.wrap(buton1Drawable)
         DrawableCompat.setTint(buton1Drawable,Color.WHITE)
         unaEstrella.background=buton1Drawable
-        unaEstrella.setTextColor(Color.parseColor("#707070"))
+        unaEstrella.setTextColor(Color.parseColor(color3))
 
         var buton2Drawable=dosEstrella.background
         buton2Drawable=DrawableCompat.wrap(buton2Drawable)
         DrawableCompat.setTint(buton2Drawable,Color.WHITE)
         dosEstrella.background=buton2Drawable
-        dosEstrella.setTextColor(Color.parseColor("#707070"))
+        dosEstrella.setTextColor(Color.parseColor(color3))
 
         var buton3Drawable=tresEstrella.background
         buton3Drawable=DrawableCompat.wrap(buton3Drawable)
         DrawableCompat.setTint(buton3Drawable,Color.WHITE)
         tresEstrella.background=buton3Drawable
-        tresEstrella.setTextColor(Color.parseColor("#707070"))
+        tresEstrella.setTextColor(Color.parseColor(color3))
 
         var buton4Drawable=cuatroEstrella.background
         buton4Drawable=DrawableCompat.wrap(buton4Drawable)
         DrawableCompat.setTint(buton4Drawable,Color.WHITE)
         cuatroEstrella.background=buton4Drawable
-        cuatroEstrella.setTextColor(Color.parseColor("#707070"))
+        cuatroEstrella.setTextColor(Color.parseColor(color3))
 
         var buton5Drawable=cincoEstrella.background
         buton5Drawable=DrawableCompat.wrap(buton5Drawable)
         DrawableCompat.setTint(buton5Drawable,Color.WHITE)
         cincoEstrella.background=buton5Drawable
-        cincoEstrella.setTextColor(Color.parseColor("#707070"))
+        cincoEstrella.setTextColor(Color.parseColor(color3))
     }
     fun observeData(){
         if (arguments!=null){

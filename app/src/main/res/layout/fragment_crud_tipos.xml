@@ -21,7 +21,7 @@
                android:layout_height="?attr/actionBarSize"
                app:title="IDRD "
                app:titleTextColor="@color/white"
-               app:menu="@menu/menu_crud"
+               app:menu="@menu/menu_parques"
                style="@style/Widget.MaterialComponents.Toolbar.Primary"></com.google.android.material.appbar.MaterialToolbar>
        </com.google.android.material.appbar.AppBarLayout>
 
@@ -47,7 +47,14 @@
            android:gravity="center"
            android:layout_margin="10dp"
            android:minWidth="800dp">
-
+               <Switch
+                   android:id="@+id/swactivo"
+                   android:layout_width="match_parent"
+                   android:layout_height="20dp"
+                   android:layout_marginTop="7dp"
+                   android:text="Activar o Desactivar este tipo parque"
+                   android:textColor="@color/location_park"
+                   android:textStyle="italic"></Switch>
            <com.google.android.material.textfield.TextInputLayout
                android:id="@+id/txt_tipo_parque"
                android:layout_width="match_parent"

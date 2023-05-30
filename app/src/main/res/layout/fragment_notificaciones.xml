@@ -3,8 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".presentation.notificaciones.view.NotificacionesFragment">
+   <LinearLayout
+       android:id="@+id/noEncontrado"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:visibility="gone"
+       android:layout_margin="30dp"
+       android:orientation="horizontal">
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_tristeemoji"
+          ></ImageView>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="No tienes notificaciones"
+          android:layout_gravity="center"
+          android:textColor="@color/hour_park"
+          android:textStyle="bold"
+          android:textSize="15dp"></TextView>
 
+   </LinearLayout>
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/rvNotificaciones"
        android:layout_margin="20dp"

@@ -36,6 +36,18 @@ class RepoUser {
         }
         return mutableData
     }
+    fun getAllUserData(): LiveData<MutableList<Users>> {
+        val mutableData = MutableLiveData<MutableList<Users>>()
+        FirebaseFirestore.getInstance().collection("Users").whereEqualTo("rol", "USER").get().addOnSuccessListener { result->
+            val listData = mutableListOf<Users>()
+            for (document in result){
+                val user:Users = document.toObject(Users::class.java)
+                listData.add(user)
+            }
+            mutableData.value=listData
+        }
+        return mutableData
+    }
      fun signOut(activity: Activity) {
         // Cerrar sesión en Firebase
          auth = FirebaseAuth.getInstance()

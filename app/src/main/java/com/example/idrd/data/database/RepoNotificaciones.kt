@@ -1,5 +1,6 @@
 package com.example.idrd.data.database
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.idrd.data.model.Notificacion
@@ -23,12 +24,14 @@ class RepoNotificaciones {
                         listData.add(notificaciones)
                     }
                     mutableData.value=listData
+                }else{
+                    mutableData.value=listData
                 }
 
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+                //no es necesario llenar para esta consulta
             }
         }
         ref.addValueEventListener(listener)

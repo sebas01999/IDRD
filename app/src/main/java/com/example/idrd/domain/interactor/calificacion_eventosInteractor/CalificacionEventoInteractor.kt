@@ -5,7 +5,7 @@ import com.example.idrd.data.model.CalificacionEvento
 interface CalificacionEventoInteractor {
 
     suspend fun sendCalificacionEvento(calificacionEvento:CalificacionEvento)
-    suspend fun EditCalificacionEvento(calificaciónEvento:CalificacionEvento)
-    suspend fun EditCalificacionEventoGeneral(calificaciónEvento: String, idEvento: String)
+    suspend fun editCalificacionEvento(calificacionEvento:CalificacionEvento)
+    suspend fun editCalificacionEventoGeneral(calificacionEvento: String, idEvento: String)
 
 }

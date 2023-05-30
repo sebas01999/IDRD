@@ -6,7 +6,7 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    tools:context=".presentation.cuenta_Admingeneral.view.cuenta_AdmingeneralFragment">
+    tools:context=".presentation.cuenta_Admingeneral.view.CuentaAdmingeneralFragment">
 
 
     <LinearLayout
@@ -226,7 +226,7 @@
             android:backgroundTint="@color/white"
             android:elevation="8dp"
             android:padding="12dp"
-            android:text="Ayuda"
+            android:text="Contactanos"
             android:textAllCaps="false"
             android:textColor="@color/principal"
             android:textSize="18dp"

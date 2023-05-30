@@ -17,5 +17,11 @@ class UserViewModel:ViewModel() {
         }
         return mutableData
     }
-
+    fun fetchDataAllUser():LiveData<MutableList<Users>>{
+        var mutableData= MutableLiveData <MutableList<Users>>()
+        repo.getAllUserData().observeForever {
+            mutableData.value=it
+        }
+        return mutableData
+    }
 }

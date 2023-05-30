@@ -37,11 +37,11 @@ class CrudTiposParquesPresenter(crudTiposParquesInteractor: CrudTiposParquesInte
         return view != null
     }
 
-    override fun editar(tipo_parque: TiposParque) {
+    override fun editar(tipoParque: TiposParque) {
         launch {
             try {
                 view?.showProgressDialog()
-                crudTiposInteractor?.editTipoParque(tipo_parque)
+                crudTiposInteractor?.editTipoParque(tipoParque)
                 if (isViewAttached()){
                     view?.hideProgressDialog()
                     view?.showSuccess("Tipo de parque editado correctamente")
@@ -55,12 +55,12 @@ class CrudTiposParquesPresenter(crudTiposParquesInteractor: CrudTiposParquesInte
         }
     }
 
-    override fun borrar(tipo_parque: TiposParque) {
+    override fun borrar(tipoParque: TiposParque) {
 
         launch{
             try {
                 view?.showProgressDialog()
-                crudTiposInteractor?.borarTipoParque(tipo_parque)
+                crudTiposInteractor?.borarTipoParque(tipoParque)
                 if (isViewAttached()){
                     view?.hideProgressDialog()
                     view?.showSuccess("Tipo de parque borrado correctamente")

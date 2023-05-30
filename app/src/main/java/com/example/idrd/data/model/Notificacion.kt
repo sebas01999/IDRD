@@ -10,8 +10,8 @@ import java.util.*
 
 class Notificacion:Serializable {
     var id:String=""
-    var Titulo:String=""
-    var Texto:String=""
-    var Fecha: Date =Timestamp.now().toDate()
+    var titulo:String=""
+    var texto:String=""
+    var fecha: Date =Timestamp.now().toDate()
     var visto: Boolean=false
 }

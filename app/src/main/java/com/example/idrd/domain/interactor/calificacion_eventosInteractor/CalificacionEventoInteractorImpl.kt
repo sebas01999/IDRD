@@ -30,7 +30,7 @@ class CalificacionEventoInteractorImpl:CalificacionEventoInteractor{
         }
     }
 
-    override suspend fun EditCalificacionEvento(calificacionEvento: CalificacionEvento):Unit= suspendCancellableCoroutine{continuation->
+    override suspend fun editCalificacionEvento(calificacionEvento: CalificacionEvento):Unit= suspendCancellableCoroutine{ continuation->
 
         val db = Firebase.firestore
         db.collection("CalificacionesEventos").document(calificacionEvento.id).set(calificacionEvento).addOnCompleteListener {
@@ -42,7 +42,7 @@ class CalificacionEventoInteractorImpl:CalificacionEventoInteractor{
         }
     }
 
-    override suspend fun EditCalificacionEventoGeneral(calificacionEvento: String, idEvento: String):Unit= suspendCancellableCoroutine {continuation->
+    override suspend fun editCalificacionEventoGeneral(calificacionEvento: String, idEvento: String):Unit= suspendCancellableCoroutine { continuation->
 
         val db = Firebase.firestore
         db.collection("Eventos").document(idEvento).update("calificacion", calificacionEvento).addOnCompleteListener {

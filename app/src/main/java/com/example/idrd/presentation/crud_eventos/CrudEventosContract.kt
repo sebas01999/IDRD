@@ -11,7 +11,6 @@ interface CrudEventosContract {
         fun showProgressDialog()
         fun hideProgressDialog()
         fun editar()
-        fun borrar()
         fun cancelarV()
         fun addFoto()
         fun showSuccess(msgSuccess:String?)

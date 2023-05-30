@@ -41,6 +41,7 @@ class ValidarSolicitud {
     private val reposolcitud= Reposolicitud()
     private val repo= RepoEventos()
     suspend fun validarsolicitud():Boolean = suspendCancellableCoroutine{continuation->
+        val mnsj="Esta fecha ya esta reservada"
         var horas1 = Integer.parseInt(duracionH)
         val dateDuracion= formatedDate(date!!, (fecha?.hours!! +horas1).toString()+':'+fecha?.minutes.toString())
         reposolcitud.getSolicitudAdminData(idParque!!).observeForever{solicitud1->
@@ -51,7 +52,7 @@ class ValidarSolicitud {
 
                     for (item in lista){
                         if(checkDate(fecha!!, item.fecha)==0){
-                            Toast.makeText(context,"Esta fecha ya esta reservada",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context,mnsj,Toast.LENGTH_SHORT).show()
                             continuation.resume(false)
                             return@observeForever
                         }
@@ -60,12 +61,12 @@ class ValidarSolicitud {
 
                         if (fecha?.day == item.fecha!!.day  && fecha?.month == item.fecha!!.month  && fecha?.year == item.fecha!!.year ){
                             if (checkDate(fecha!!,item.fecha)>0 && checkDate(fecha!!, fechaDuracion)<0){
-                                Toast.makeText(context,"Esta fecha ya esta reservada",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context,mnsj,Toast.LENGTH_SHORT).show()
                                 continuation.resume(false)
                                 return@observeForever
                             }
                             if (checkDate(dateDuracion,item.fecha)>0 && checkDate(dateDuracion, fechaDuracion)<0){
-                                Toast.makeText(context,"Esta fecha ya esta reservada",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context,mnsj,Toast.LENGTH_SHORT).show()
                                 continuation.resume(false)
                                 return@observeForever
                             }
@@ -82,6 +83,7 @@ class ValidarSolicitud {
 
     }
     suspend fun validarevento():Boolean = suspendCancellableCoroutine{continuation->
+        val mnsj="Esta fecha ya esta reservada para un evento"
         var horas1 = Integer.parseInt(duracionH)
         val dateDuracion= formatedDate(date!!, (fecha?.hours!! +horas1).toString()+':'+fecha?.minutes.toString())
         repo.getEventosDataAdmin(idParque!!).observeForever { evento1->
@@ -89,7 +91,7 @@ class ValidarSolicitud {
                 for (item in it){
 
                     if(checkDate(fecha!!, item.fecha)==0){
-                        Toast.makeText(context,"Esta fecha ya esta reservada para un evento",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context,mnsj,Toast.LENGTH_SHORT).show()
                         continuation.resume(false)
                         return@observeForever
                     }
@@ -98,12 +100,12 @@ class ValidarSolicitud {
 
                     if (fecha!!.day == item.fecha!!.day  && fecha!!.month == item.fecha!!.month  && fecha!!.year == item.fecha!!.year ){
                         if (checkDate(fecha!!,item.fecha)>0 && checkDate(fecha!!, fechaDuracion)<0){
-                            Toast.makeText(context,"Esta fecha ya esta reservada para un evento",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context,mnsj,Toast.LENGTH_SHORT).show()
                             continuation.resume(false)
                             return@observeForever
                         }
                         if (checkDate(dateDuracion,item.fecha)>0 && checkDate(dateDuracion, fechaDuracion)<0){
-                            Toast.makeText(context,"Esta fecha ya esta reservada para un evento",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context,mnsj,Toast.LENGTH_SHORT).show()
                             continuation.resume(false)
                             return@observeForever
                         }
@@ -146,7 +148,7 @@ class ValidarSolicitud {
         val calendar =  Calendar.getInstance()
         calendar.time=fecha
         val diaSemana=calendar.get(Calendar.DAY_OF_WEEK) - 1
-
+        val mnsj="La hora seleccionada no cumple con el horario"
 
         if (parque!!.horarios[diaSemana]=="DEFAULT"){
             Toast.makeText(context,"El dia seleccionado no abre el parque",Toast.LENGTH_SHORT).show()
@@ -155,11 +157,11 @@ class ValidarSolicitud {
 
             var list:List<String> = parque!!.horarios[diaSemana].split("-")
             if (checkHour(list.get(0),hour)){
-                Toast.makeText(context,"La hora seleccionada no cumple con el horario",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,mnsj,Toast.LENGTH_SHORT).show()
                 return false
             }
             if (checkHour(hour,list.get(1))){
-                Toast.makeText(context,"La hora seleccionada no cumple con el horario",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,mnsj,Toast.LENGTH_SHORT).show()
                 return false
             }
 

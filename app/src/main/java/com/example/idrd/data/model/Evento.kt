@@ -5,6 +5,7 @@ import java.util.*
 
 class Evento: Serializable {
     var id:String="DEFAULT ID"
+    var activo:Boolean=true
     var imageUrl:String = "DEFAULT URL"
     var eventoDes:String = "DEFAULT EVENTO"
     var color:Int = -1

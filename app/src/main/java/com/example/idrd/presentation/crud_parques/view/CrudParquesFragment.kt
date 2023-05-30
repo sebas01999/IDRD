@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.format.DateFormat
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,9 +18,8 @@ import com.example.idrd.R
 import com.example.idrd.data.model.Parque
 import com.example.idrd.data.model.Users
 import com.example.idrd.domain.interactor.crudParques.CrudParqueInteractorImpl
-import com.example.idrd.presentation.acceder_solicitudes.view.fragment_acceder_solicitudes
 import com.example.idrd.presentation.agregarParque.model.UserViewModel
-import com.example.idrd.presentation.agregarParque.view.agregarParqueFragment
+import com.example.idrd.presentation.agregarParque.view.AgregarParqueFragment
 import com.example.idrd.presentation.crud_parques.CrudParqueContract
 import com.example.idrd.presentation.crud_parques.CrudParquesPresenter.CrudParquesPresenter
 import com.example.idrd.presentation.inicio.model.MainViewModel
@@ -127,6 +125,12 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
     private var dataListTipos = mutableListOf<String>()
     lateinit var presenter: CrudParquesPresenter
     private var dataList = mutableListOf<Parque>()
+    val apertura="Apertura"
+    val cierre="Cierre"
+    val todoElDia="Abierto las 24 horas"
+    val verifiqueHorario="Verifique sus horarios"
+    val horaAperturaMayor="La hora de apertura es mayor a la de cierre"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -179,7 +183,7 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         view.toolbar.setOnMenuItemClickListener{
             when (it.itemId) {
                 R.id.menu_agregar -> {
-                    val dialog=agregarParqueFragment()
+                    val dialog=AgregarParqueFragment()
                     //dialog.dialog?.window?.setLayout(500, 500)
                     dialog.show(childFragmentManager, "SimpleDialog")
                     true
@@ -207,9 +211,9 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         view.DomingoCheck.setOnCheckedChangeListener { compoundButton, b ->
             if (view.DomingoCheck.isChecked){
                 view.DomingotimePicker.isClickable=false
-                view.Domingotime.text="Apertura"
+                view.Domingotime.text=apertura
                 view.DomingotimePickerCierre.isClickable=false
-                view.DomingotimeCierre.text="Cierre"
+                view.DomingotimeCierre.text=cierre
             }else{
                 view.DomingotimePicker.isClickable=true
                 view.DomingotimePickerCierre.isClickable=true
@@ -225,9 +229,9 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         view.LunesCheck.setOnCheckedChangeListener { compoundButton, b ->
             if (view.LunesCheck.isChecked){
                 view.LunestimePicker.isClickable=false
-                view.Lunestime.text="Apertura"
+                view.Lunestime.text=apertura
                 view.LunestimePickerCierre.isClickable=false
-                view.LunestimeCierre.text="Cierre"
+                view.LunestimeCierre.text=cierre
             }else{
                 view.LunestimePicker.isClickable=true
                 view.LunestimePickerCierre.isClickable=true
@@ -243,9 +247,9 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         view.MartesCheck.setOnCheckedChangeListener { compoundButton, b ->
             if (view.MartesCheck.isChecked){
                 view.MartestimePicker.isClickable=false
-                view.Martestime.text="Apertura"
+                view.Martestime.text=apertura
                 view.MartestimePickerCierre.isClickable=false
-                view.MartestimeCierre.text="Cierre"
+                view.MartestimeCierre.text=cierre
             }else{
                 view.MartestimePicker.isClickable=true
                 view.MartestimePickerCierre.isClickable=true
@@ -261,9 +265,9 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         view.MiercolesCheck.setOnCheckedChangeListener { compoundButton, b ->
             if (view.MiercolesCheck.isChecked){
                 view.MiercolestimePicker.isClickable=false
-                view.Miercolestime.text="Apertura"
+                view.Miercolestime.text=apertura
                 view.MiercolestimePickerCierre.isClickable=false
-                view.MiercolestimeCierre.text="Cierre"
+                view.MiercolestimeCierre.text=cierre
             }else{
                 view.MiercolestimePicker.isClickable=true
                 view.MiercolestimePickerCierre.isClickable=true
@@ -279,9 +283,9 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         view.JuevesCheck.setOnCheckedChangeListener { compoundButton, b ->
             if (view.JuevesCheck.isChecked){
                 view.JuevestimePicker.isClickable=false
-                view.Juevestime.text="Apertura"
+                view.Juevestime.text=apertura
                 view.JuevestimePickerCierre.isClickable=false
-                view.JuevestimeCierre.text="Cierre"
+                view.JuevestimeCierre.text=cierre
             }else{
                 view.JuevestimePicker.isClickable=true
                 view.JuevestimePickerCierre.isClickable=true
@@ -297,9 +301,9 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         view.ViernesCheck.setOnCheckedChangeListener { compoundButton, b ->
             if (view.ViernesCheck.isChecked){
                 view.ViernestimePicker.isClickable=false
-                view.Viernestime.text="Apertura"
+                view.Viernestime.text=apertura
                 view.ViernestimePickerCierre.isClickable=false
-                view.ViernestimeCierre.text="Cierre"
+                view.ViernestimeCierre.text=cierre
             }else{
                 view.ViernestimePicker.isClickable=true
                 view.ViernestimePickerCierre.isClickable=true
@@ -315,9 +319,9 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         view.SabadoCheck.setOnCheckedChangeListener { compoundButton, b ->
             if (view.SabadoCheck.isChecked){
                 view.SabadotimePicker.isClickable=false
-                view.Sabadotime.text="Apertura"
+                view.Sabadotime.text=apertura
                 view.SabadotimePickerCierre.isClickable=false
-                view.SabadotimeCierre.text="Cierre"
+                view.SabadotimeCierre.text=cierre
             }else{
                 view.SabadotimePicker.isClickable=true
                 view.SabadotimePickerCierre.isClickable=true
@@ -362,20 +366,20 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
         JuevesCheck.isChecked=false
         ViernesCheck.isChecked=false
         SabadoCheck.isChecked=false
-        Domingotime.text="Apertura"
-        Lunestime.text="Apertura"
-        Martestime.text="Apertura"
-        Miercolestime.text="Apertura"
-        Juevestime.text="Apertura"
-        Viernestime.text="Apertura"
-        Sabadotime.text="Apertura"
-        DomingotimeCierre.text="Cierre"
-        LunestimeCierre.text="Cierre"
-        MartestimeCierre.text="Cierre"
-        MiercolestimeCierre.text="Cierre"
-        JuevestimeCierre.text="Cierre"
-        ViernestimeCierre.text="Cierre"
-        SabadotimeCierre.text="Cierre"
+        Domingotime.text=apertura
+        Lunestime.text=apertura
+        Martestime.text=apertura
+        Miercolestime.text=apertura
+        Juevestime.text=apertura
+        Viernestime.text=apertura
+        Sabadotime.text=apertura
+        DomingotimeCierre.text=cierre
+        LunestimeCierre.text=cierre
+        MartestimeCierre.text=cierre
+        MiercolestimeCierre.text=cierre
+        JuevestimeCierre.text=cierre
+        ViernestimeCierre.text=cierre
+        SabadotimeCierre.text=cierre
     }
     override fun onItemClick(item: Parque) {
         limpiarHorarios()
@@ -389,49 +393,49 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
             if (parque!!.horarios[i] != "DEFAULT"){
 
                 when(i){
-                    0 -> if (parque!!.horarios[i]=="Abierto las 24 horas"){
+                    0 -> if (parque!!.horarios[i]==todoElDia){
                         DomingoCheck.isChecked=true
                     }else{
                         list = parque!!.horarios[i].split("-")
                         Domingotime.text = list.get(0)
                         DomingotimeCierre.text = list.get(1)
                     }
-                    1 -> if (parque!!.horarios[i]=="Abierto las 24 horas"){
+                    1 -> if (parque!!.horarios[i]==todoElDia){
                         LunesCheck.isChecked=true
                     }else{
                         list = parque!!.horarios[i].split("-")
                         Lunestime.text = list.get(0)
                         LunestimeCierre.text = list.get(1)
                     }
-                    2 -> if (parque!!.horarios[i]=="Abierto las 24 horas"){
+                    2 -> if (parque!!.horarios[i]==todoElDia){
                         MartesCheck.isChecked=true
                     }else{
                         list = parque!!.horarios[i].split("-")
                         Martestime.text = list.get(0)
                         MartestimeCierre.text = list.get(1)
                     }
-                    3 -> if (parque!!.horarios[i]=="Abierto las 24 horas"){
+                    3 -> if (parque!!.horarios[i]==todoElDia){
                         MiercolesCheck.isChecked=true
                     }else{
                         list = parque!!.horarios[i].split("-")
                         Miercolestime.text = list.get(0)
                         MiercolestimeCierre.text = list.get(1)
                     }
-                    4 -> if (parque!!.horarios[i]=="Abierto las 24 horas"){
+                    4 -> if (parque!!.horarios[i]==todoElDia){
                         JuevesCheck.isChecked=true
                     }else{
                         list = parque!!.horarios[i].split("-")
                         Juevestime.text = list.get(0)
                         JuevestimeCierre.text = list.get(1)
                     }
-                    5 -> if (parque!!.horarios[i]=="Abierto las 24 horas"){
+                    5 -> if (parque!!.horarios[i]==todoElDia){
                         ViernesCheck.isChecked=true
                     }else{
                         list = parque!!.horarios[i].split("-")
                         Viernestime.text = list.get(0)
                         ViernestimeCierre.text = list.get(1)
                     }
-                    6 -> if (parque!!.horarios[i]=="Abierto las 24 horas"){
+                    6 -> if (parque!!.horarios[i]==todoElDia){
                         SabadoCheck.isChecked=true
                     }else{
                         list = parque!!.horarios[i].split("-")
@@ -592,20 +596,20 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
                 verificado=null
             }
             if (DomingoCheck.isChecked){
-                horarios.add(0, "Abierto las 24 horas")
+                horarios.add(0, todoElDia)
             }else{
                 val domingoApertura:String = Domingotime.text.toString()
                 val domingoCierre:String = DomingotimeCierre.text.toString()
-                if (domingoApertura != "Apertura" && domingoCierre != "Cierre"){
+                if (domingoApertura != apertura && domingoCierre != cierre){
                     if (presenter.checkHour(domingoApertura,domingoCierre)){
-                        ErrorHorarios.text="La hora de apertura es mayor a la de cierre"
+                        ErrorHorarios.text=horaAperturaMayor
                         ErrorHorarios.visibility=View.VISIBLE
                         return
                     }else{
                         horarios.add(0,domingoApertura+"-"+ domingoCierre)
                     }
-                }else if(domingoApertura == "Apertura" && domingoCierre != "Cierre" || domingoApertura != "Apertura" && domingoCierre == "Cierre"){
-                    ErrorHorarios.text="Verifique sus horarios"
+                }else if(domingoApertura == apertura && domingoCierre != cierre || domingoApertura != apertura && domingoCierre == cierre){
+                    ErrorHorarios.text=verifiqueHorario
                     ErrorHorarios.visibility=View.VISIBLE
                     return
                 }else{
@@ -614,20 +618,20 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
             }
 
             if (LunesCheck.isChecked){
-                horarios.add(1, "Abierto las 24 horas")
+                horarios.add(1, todoElDia)
             }else{
-                val LunesApertura:String = Lunestime.text.toString()
-                val LunesCierre:String = LunestimeCierre.text.toString()
-                if (LunesApertura != "Apertura" && LunesCierre != "Cierre"){
-                    if (presenter.checkHour(LunesApertura,LunesCierre)){
-                        ErrorHorarios.text="La hora de apertura es mayor a la de cierre"
+                val lunesApertura:String = Lunestime.text.toString()
+                val lunesCierre:String = LunestimeCierre.text.toString()
+                if (lunesApertura != apertura && lunesCierre != cierre){
+                    if (presenter.checkHour(lunesApertura,lunesCierre)){
+                        ErrorHorarios.text=horaAperturaMayor
                         ErrorHorarios.visibility=View.VISIBLE
                         return
                     }else{
-                        horarios.add(1,LunesApertura+"-"+ LunesCierre)
+                        horarios.add(1,lunesApertura+"-"+ lunesCierre)
                     }
-                }else if(LunesApertura == "Apertura" && LunesCierre != "Cierre" || LunesApertura != "Apertura" && LunesCierre == "Cierre"){
-                    ErrorHorarios.text="Verifique sus horarios"
+                }else if(lunesApertura == apertura && lunesCierre != cierre || lunesApertura != apertura && lunesCierre == cierre){
+                    ErrorHorarios.text=verifiqueHorario
                     ErrorHorarios.visibility=View.VISIBLE
                     return
                 }else{
@@ -635,20 +639,20 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
                 }
             }
             if (MartesCheck.isChecked){
-                horarios.add(2, "Abierto las 24 horas")
+                horarios.add(2, todoElDia)
             }else{
-                val MartesApertura:String = Martestime.text.toString()
-                val MartesCierre:String = MartestimeCierre.text.toString()
-                if (MartesApertura != "Apertura" && MartesCierre != "Cierre"){
-                    if (presenter.checkHour(MartesApertura,MartesCierre)){
-                        ErrorHorarios.text="La hora de apertura es mayor a la de cierre"
+                val martesApertura:String = Martestime.text.toString()
+                val martesCierre:String = MartestimeCierre.text.toString()
+                if (martesApertura != apertura && martesCierre != cierre){
+                    if (presenter.checkHour(martesApertura,martesCierre)){
+                        ErrorHorarios.text=horaAperturaMayor
                         ErrorHorarios.visibility=View.VISIBLE
                         return
                     }else{
-                        horarios.add(2,MartesApertura+"-"+ MartesCierre)
+                        horarios.add(2,martesApertura+"-"+ martesCierre)
                     }
-                }else if(MartesApertura == "Apertura" && MartesCierre != "Cierre" || MartesApertura != "Apertura" && MartesCierre == "Cierre"){
-                    ErrorHorarios.text="Verifique sus horarios"
+                }else if(martesApertura == apertura && martesCierre != cierre || martesApertura != apertura && martesCierre == cierre){
+                    ErrorHorarios.text=verifiqueHorario
                     ErrorHorarios.visibility=View.VISIBLE
                     return
                 }else{
@@ -656,20 +660,20 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
                 }
             }
             if (MiercolesCheck.isChecked){
-                horarios.add(3, "Abierto las 24 horas")
+                horarios.add(3, todoElDia)
             }else{
-                val MiercolesApertura:String = Miercolestime.text.toString()
-                val MiercolesCierre:String = MiercolestimeCierre.text.toString()
-                if (MiercolesApertura != "Apertura" && MiercolesCierre != "Cierre"){
-                    if (presenter.checkHour(MiercolesApertura,MiercolesCierre)){
-                        ErrorHorarios.text="La hora de apertura es mayor a la de cierre"
+                val miercolesApertura:String = Miercolestime.text.toString()
+                val miercolesCierre:String = MiercolestimeCierre.text.toString()
+                if (miercolesApertura != apertura && miercolesCierre != cierre){
+                    if (presenter.checkHour(miercolesApertura,miercolesCierre)){
+                        ErrorHorarios.text=horaAperturaMayor
                         ErrorHorarios.visibility=View.VISIBLE
                         return
                     }else{
-                        horarios.add(3,MiercolesApertura+"-"+ MiercolesCierre)
+                        horarios.add(3,miercolesApertura+"-"+ miercolesCierre)
                     }
-                }else if(MiercolesApertura == "Apertura" && MiercolesCierre != "Cierre" || MiercolesApertura != "Apertura" && MiercolesCierre == "Cierre"){
-                    ErrorHorarios.text="Verifique sus horarios"
+                }else if(miercolesApertura == apertura && miercolesCierre != cierre || miercolesApertura != apertura && miercolesCierre == cierre){
+                    ErrorHorarios.text=verifiqueHorario
                     ErrorHorarios.visibility=View.VISIBLE
                     return
                 }else{
@@ -677,20 +681,20 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
                 }
             }
             if (JuevesCheck.isChecked){
-                horarios.add(4, "Abierto las 24 horas")
+                horarios.add(4, todoElDia)
             }else{
-                val JuevesApertura:String = Juevestime.text.toString()
-                val JuevesCierre:String = JuevestimeCierre.text.toString()
-                if (JuevesApertura != "Apertura" && JuevesCierre != "Cierre"){
-                    if (presenter.checkHour(JuevesApertura,JuevesCierre)){
-                        ErrorHorarios.text="La hora de apertura es mayor a la de cierre"
+                val juevesApertura:String = Juevestime.text.toString()
+                val juevesCierre:String = JuevestimeCierre.text.toString()
+                if (juevesApertura != apertura && juevesCierre != cierre){
+                    if (presenter.checkHour(juevesApertura,juevesCierre)){
+                        ErrorHorarios.text=horaAperturaMayor
                         ErrorHorarios.visibility=View.VISIBLE
                         return
                     }else{
-                        horarios.add(4,JuevesApertura+"-"+ JuevesCierre)
+                        horarios.add(4,juevesApertura+"-"+ juevesCierre)
                     }
-                }else if(JuevesApertura == "Apertura" && JuevesCierre != "Cierre" || JuevesApertura != "Apertura" && JuevesCierre == "Cierre"){
-                    ErrorHorarios.text="Verifique sus horarios"
+                }else if(juevesApertura == apertura && juevesCierre != cierre || juevesApertura != apertura && juevesCierre == cierre){
+                    ErrorHorarios.text=verifiqueHorario
                     ErrorHorarios.visibility=View.VISIBLE
                     return
                 }else{
@@ -698,20 +702,20 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
                 }
             }
             if (ViernesCheck.isChecked){
-                horarios.add(5, "Abierto las 24 horas")
+                horarios.add(5, todoElDia)
             }else{
-                val ViernesApertura:String = Viernestime.text.toString()
-                val ViernesCierre:String = ViernestimeCierre.text.toString()
-                if (ViernesApertura != "Apertura" && ViernesCierre != "Cierre"){
-                    if (presenter.checkHour(ViernesApertura,ViernesCierre)){
-                        ErrorHorarios.text="La hora de apertura es mayor a la de cierre"
+                val viernesApertura:String = Viernestime.text.toString()
+                val viernesCierre:String = ViernestimeCierre.text.toString()
+                if (viernesApertura != apertura && viernesCierre != cierre){
+                    if (presenter.checkHour(viernesApertura,viernesCierre)){
+                        ErrorHorarios.text=horaAperturaMayor
                         ErrorHorarios.visibility=View.VISIBLE
                         return
                     }else{
-                        horarios.add(5,ViernesApertura+"-"+ ViernesCierre)
+                        horarios.add(5,viernesApertura+"-"+ viernesCierre)
                     }
-                }else if(ViernesApertura == "Apertura" && ViernesCierre != "Cierre" || ViernesApertura != "Apertura" && ViernesCierre == "Cierre"){
-                    ErrorHorarios.text="Verifique sus horarios"
+                }else if(viernesApertura == apertura && viernesCierre != cierre || viernesApertura != apertura && viernesCierre == cierre){
+                    ErrorHorarios.text=verifiqueHorario
                     ErrorHorarios.visibility=View.VISIBLE
                     return
                 }else{
@@ -719,20 +723,20 @@ class CrudParquesFragment : Fragment(), MainAdapter.OnItemClickListener, CrudPar
                 }
             }
             if (SabadoCheck.isChecked){
-                horarios.add(6, "Abierto las 24 horas")
+                horarios.add(6, todoElDia)
             }else{
-                val SabadoApertura:String = Sabadotime.text.toString()
-                val SabadoCierre:String = SabadotimeCierre.text.toString()
-                if (SabadoApertura != "Apertura" && SabadoCierre != "Cierre"){
-                    if (presenter.checkHour(SabadoApertura,SabadoCierre)){
-                        ErrorHorarios.text="La hora de apertura es mayor a la de cierre"
+                val sabadoApertura:String = Sabadotime.text.toString()
+                val sabadoCierre:String = SabadotimeCierre.text.toString()
+                if (sabadoApertura != apertura && sabadoCierre != cierre){
+                    if (presenter.checkHour(sabadoApertura,sabadoCierre)){
+                        ErrorHorarios.text=horaAperturaMayor
                         ErrorHorarios.visibility=View.VISIBLE
                         return
                     }else{
-                        horarios.add(6,SabadoApertura+"-"+ SabadoCierre)
+                        horarios.add(6,sabadoApertura+"-"+ sabadoCierre)
                     }
-                }else if(SabadoApertura == "Apertura" && SabadoCierre != "Cierre" || SabadoApertura != "Apertura" && SabadoCierre == "Cierre"){
-                    ErrorHorarios.text="Verifique sus horarios"
+                }else if(sabadoApertura == apertura && sabadoCierre != cierre || sabadoApertura != apertura && sabadoCierre == cierre){
+                    ErrorHorarios.text=verifiqueHorario
                     ErrorHorarios.visibility=View.VISIBLE
                     return
                 }else{
